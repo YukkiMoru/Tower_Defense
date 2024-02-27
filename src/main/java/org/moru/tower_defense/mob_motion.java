@@ -4,15 +4,12 @@ package org.moru.tower_defense;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
 方向を決める
-　北
-西  東　
-  南
-String使って、ブロックに応じてmobの向きを変える
 その宣言する
 東=Gold_Block
 西=Emerald_Block
@@ -35,24 +32,24 @@ public class mob_motion extends BukkitRunnable {
     }
 
     public static void mob_motion(Location loc, LivingEntity mob) {
-        Material block = loc.getBlock().getRelative(0, -1, 0).getType();
+        // mobの位置から1マス下と2マス下のブロックの種類を取得
+        Material block1 = loc.getBlock().getRelative(0, -1, 0).getType();
+        Material block2 = loc.getBlock().getRelative(0, -2, 0).getType();
 
-        String west_direction_block = "EMERALD_BLOCK";
-        String east_direction_block = "GOLD_BLOCK";
-        String south_direction_block = "IRON_BLOCK";
-        String north_direction_block = "DIAMOND_BLOCK";
+        // 各方向のブロックと対応するローテーション値をマップに格納
+        Map<Material, Float> directionMap = new HashMap<>();
+        directionMap.put(Material.valueOf("EMERALD_BLOCK"), -90f); //東
+        directionMap.put(Material.valueOf("GOLD_BLOCK"), 90f); //西
+        directionMap.put(Material.valueOf("IRON_BLOCK"), 0f); //南
+        directionMap.put(Material.valueOf("DIAMOND_BLOCK"), 180f); //北
 
-        if (block.toString().equals(west_direction_block)) {
-            mob.setRotation(-90, mob.getLocation().getPitch());
+        // block1とblock2のどちらかが指定のブロックであれば、モブの向きを変える
+        Float rotation = directionMap.get(block1);
+        if (rotation == null) {
+            rotation = directionMap.get(block2);
         }
-        if (block.toString().equals(east_direction_block)) {
-            mob.setRotation(90, mob.getLocation().getPitch());
-        }
-        if (block.toString().equals(south_direction_block)) {
-            mob.setRotation(180, mob.getLocation().getPitch());
-        }
-        if (block.toString().equals(north_direction_block)) {
-            mob.setRotation(0, mob.getLocation().getPitch());
+        if (rotation != null) {
+            mob.setRotation(rotation, mob.getLocation().getPitch());
         }
     }
 }
