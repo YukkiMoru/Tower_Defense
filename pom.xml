@@ -31,7 +31,10 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>3.2.4</version>
-        <executions>
+          <configuration>
+              <outputFile>C:\Users\Yutak\デスクトップ\Tower_Defense\plugins\${project.artifactId}-${project.version}.jar</outputFile>
+          </configuration>
+          <executions>
           <execution>
             <phase>package</phase>
             <goals>
