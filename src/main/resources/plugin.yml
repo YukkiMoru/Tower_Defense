@@ -1,0 +1,4 @@
+name: Tower_Defense
+version: '${project.version}'
+main: org.moru.tower_defense.Tower_Defense
+api-version: '1.20'
