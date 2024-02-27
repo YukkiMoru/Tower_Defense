@@ -10,7 +10,7 @@ public final class Tower_Defense extends JavaPlugin {
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
 
-        getServer().getPluginManager().registerEvents(this, this);
+
     }
 
     @Override
