@@ -10,15 +10,13 @@ public final class Tower_Defense extends JavaPlugin {
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
 
-
+        // リスナーの登録
+        getServer().getPluginManager().registerEvents(new MobSpawnListener(this), this);
     }
-
     @Override
     public void onDisable() {
         // Plugin shutdown logic
         // チャットにメッセージを送信("Tower_Defenseプラグインが無効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが無効化されました");
-
-
     }
 }
