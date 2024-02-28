@@ -1,4 +1,2 @@
 # プロジェクトの除外パス
 /target/
-# remove pom.xml
-pom.xml
