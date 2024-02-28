@@ -8,5 +8,5 @@
 
 pom.xmlと同じ層にあるoutput_file.propertiesを作成する。
 ```properties
-サーバーファイルにあるプラグインフォルダーの絶対パス
+output.path=サーバーファイルにあるプラグインフォルダーの絶対パス
 ```
