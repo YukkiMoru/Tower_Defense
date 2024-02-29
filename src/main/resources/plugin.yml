@@ -2,3 +2,8 @@ name: Tower_Defense
 version: '${project.version}'
 main: org.moru.tower_defense.Tower_Defense
 api-version: '1.20'
+commands:
+  towerdefense:
+    description: Controls the Tower Defense plugin
+    usage: /<command> <mob_motion> <start|stop>
+    aliases: [td]

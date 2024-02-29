@@ -49,6 +49,5 @@ public class mob_motion extends BukkitRunnable {
         Location loc = mob.getLocation();
         Vector direction = loc.getDirection().normalize();
         loc.add(direction);
-        mob.teleport(loc);
     }
 }
