@@ -17,7 +17,7 @@ public class MobListener implements Listener {
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (event.getEntity() instanceof LivingEntity) {
             LivingEntity mob = (LivingEntity) event.getEntity();
-            mob_motion mobMotion = new mob_motion(mob);
+            Mob_Motion mobMotion = new Mob_Motion(mob);
             mobMotion.runTaskTimer(plugin, 0L, 1L);
         }
     }
