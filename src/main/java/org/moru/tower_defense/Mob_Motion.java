@@ -4,12 +4,15 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 public class Mob_Motion extends BukkitRunnable {
     private final LivingEntity mob;
 
     public Mob_Motion(LivingEntity mob) {
         this.mob = mob;
+        //mobのAIを無効化
+        this.mob.setAI(false);
     }
 
     @Override
@@ -42,7 +45,16 @@ public class Mob_Motion extends BukkitRunnable {
         }
         //ブロックに応じてmobの動きを変える
         if (block == moveBlock) {
-            mob.setVelocity(mob.getLocation().getDirection().multiply(0.5));
+            //秒速0.5で移動
+            Vector direction = mob.getLocation().getDirection();
+            Location newLocation = mob.getLocation().add(direction.multiply(0.5));
+
+            //新しい場所がブロックの中にあるかどうかを確認
+            if (!newLocation.getBlock().isEmpty()) {
+                //新しい場所が空でない場合、移動をキャンセル
+                return;
+            }
+            mob.teleport(newLocation);
         }
     }
 }
