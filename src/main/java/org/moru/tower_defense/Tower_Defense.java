@@ -9,6 +9,10 @@ public final class Tower_Defense extends JavaPlugin {
         // mob_motionの起動
         // リスナーの登録
         getServer().getPluginManager().registerEvents(new MobListener(this), this);
+
+        // リスナーの登録
+        getServer().getPluginManager().registerEvents(new building(), this);
+
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
     }
