@@ -10,6 +10,7 @@ public class Mob_Motion extends BukkitRunnable {
     private final LivingEntity mob;
 
     public Mob_Motion(LivingEntity mob) {
+        //mobを取得
         this.mob = mob;
         //mobのAIを無効化
         this.mob.setAI(false);
@@ -17,44 +18,45 @@ public class Mob_Motion extends BukkitRunnable {
 
     @Override
     public void run() {
-        mobMotion();
+        mob_motion();
     }
 
-    private void mobMotion() {
+    private void mob_motion() {
         Location loc = mob.getLocation();
-        Material block = loc.getBlock().getRelative(0, -1, 0).getType();
 
-        Material westDirectionBlock = Material.EMERALD_BLOCK;
-        Material eastDirectionBlock = Material.GOLD_BLOCK;
-        Material southDirectionBlock = Material.IRON_BLOCK;
-        Material northDirectionBlock = Material.DIAMOND_BLOCK;
-        Material moveBlock = Material.LAPIS_BLOCK;
+        Material WestDirectionBlock = Material.EMERALD_BLOCK;
+        Material EastDirectionBlock = Material.GOLD_BLOCK;
+        Material SouthDirectionBlock = Material.IRON_BLOCK;
+        Material NorthDirectionBlock = Material.DIAMOND_BLOCK;
+        Material MoveBlock = Material.LAPIS_BLOCK;
 
-        //ブロックに応じてmobの向きを変える
-        if (block == westDirectionBlock) {
+        for (int y = -2; y > -10; y--) {
+            Material block = loc.getBlock().getRelative(0, y, 0).getType();
+            if (block == MoveBlock) {
+                //秒速0.5で移動
+                Vector direction = mob.getLocation().getDirection();
+                Location newLocation = mob.getLocation().add(direction.multiply(0.5));
+
+                //新しい場所がブロックの中にあるかどうかを確認
+                if (!newLocation.getBlock().isEmpty()) {
+                    //新しい場所が空でない場合、移動をキャンセル
+                    return;
+                }
+                mob.teleport(newLocation);
+            }
+        }
+        Material under_block = loc.getBlock().getRelative(0, -2, 0).getType();
+        if (under_block == WestDirectionBlock) {
             mob.setRotation(-90, mob.getLocation().getPitch());
         }
-        if (block == eastDirectionBlock) {
+        if (under_block == EastDirectionBlock) {
             mob.setRotation(90, mob.getLocation().getPitch());
         }
-        if (block == southDirectionBlock) {
+        if (under_block == SouthDirectionBlock) {
             mob.setRotation(180, mob.getLocation().getPitch());
         }
-        if (block == northDirectionBlock) {
+        if (under_block == NorthDirectionBlock) {
             mob.setRotation(0, mob.getLocation().getPitch());
-        }
-        //ブロックに応じてmobの動きを変える
-        if (block == moveBlock) {
-            //秒速0.5で移動
-            Vector direction = mob.getLocation().getDirection();
-            Location newLocation = mob.getLocation().add(direction.multiply(0.5));
-
-            //新しい場所がブロックの中にあるかどうかを確認
-            if (!newLocation.getBlock().isEmpty()) {
-                //新しい場所が空でない場合、移動をキャンセル
-                return;
-            }
-            mob.teleport(newLocation);
         }
     }
 }
