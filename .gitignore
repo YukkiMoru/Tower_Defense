@@ -1,3 +1,7 @@
 # プロジェクトの除外パス
 /target/
 output_file.properties
+
+# serverの除外パス
+Tower_Defense_Server/logs/
+Tower_Defense_Server/eula.txt
