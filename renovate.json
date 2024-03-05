@@ -23,13 +23,13 @@
       "matchPackageNames": ["papermc", "maven", "worldedit"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minecraft updates",
-      "automerge": true
+      "automerge": false
     },
     {
       "datasources": ["maven"],
       "packageNames": ["com.destroystokyo.paper:paper:paper"],
       "groupName": "papermc updates",
-      "automerge": true
+      "automerge": false
     }
   ]
 }
