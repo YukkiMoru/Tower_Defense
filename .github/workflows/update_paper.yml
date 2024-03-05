@@ -2,7 +2,7 @@ name: Update PaperMC
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 毎日JST 00:00に実行
+    - cron: '0 23 * * *'  # 毎日JST 00:00に実行
 
 jobs:
   update-papermc:
