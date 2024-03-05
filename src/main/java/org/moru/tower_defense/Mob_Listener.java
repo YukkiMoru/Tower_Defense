@@ -6,10 +6,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class MobListener implements Listener {
+public class Mob_Listener implements Listener {
     private final JavaPlugin plugin;
 
-    public MobListener(JavaPlugin plugin) {
+    public Mob_Listener(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
