@@ -2,7 +2,7 @@ name: Update PaperMC
 
 on:
   schedule:
-    - cron: '0 15 * * *'  # 毎日JST 00:00に実行
+    - cron: '0 23 * * *'  # 毎日JST 00:00に実行
 
 jobs:
   update-papermc:
@@ -37,6 +37,9 @@ jobs:
           
           # Replace old PaperMC JAR with the new one
           cp $JAR_NAME Tower_Defense_Server/
+          
+          # Move to the server directory
+          cd Tower_Defense_Server/
           
           # Update start.bat with the new JAR filename
           sed -i "s/java.exe -Xms8G -Xmx8G -jar paper-[0-9.]*-[0-9]*.jar/java.exe -Xms8G -Xmx8G -jar $JAR_NAME/" start.bat
