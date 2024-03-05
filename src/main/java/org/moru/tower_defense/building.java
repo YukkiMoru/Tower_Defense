@@ -32,25 +32,34 @@ public class building implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
 
-@EventHandler
-public void onPlayerInteract(PlayerInteractEvent event) {
-    if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
-        if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
-            if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                if (isCenterOf3x3(event.getClickedBlock().getLocation())) {
-                    Player player = event.getPlayer();
-                    player.sendMessage("You clicked the center of a 3x3 oak wood!");
+    public building(JavaPlugin plugin) {
+        this.plugin = plugin;
+    }
 
-                    // Run code to summon the structure
-                    summonStructure(event.getClickedBlock().getLocation());
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event) {
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
+            if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
+                if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
+                    if (isCenterOf3x3(event.getClickedBlock().getLocation())) {
+                        Player player = event.getPlayer();
+                        player.sendMessage("You clicked the center of a 3x3 oak wood!2");
 
-                    // Apply cooldown
-                    setCooldown();
+                        // Run code to summon the structure
+                        summonStructure(event.getClickedBlock().getLocation());
+
+                        // Apply cooldown
+                        setCooldown();
+
+                        // Cancel the event to prevent it from triggering again before the cooldown is applied
+                        event.setCancelled(true);
+                    }
                 }
             }
         }
     }
-}    private boolean isCenterOf3x3(Location location) {
+
+private boolean isCenterOf3x3(Location location) {
         // Check if the blocks around the clicked block form a 3x3x1 of oak wood
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
@@ -63,7 +72,7 @@ public void onPlayerInteract(PlayerInteractEvent event) {
     }
 
     private void summonStructure(Location location) {
-        File schematic = new File(plugin.getDataFolder(), "test_tower.schematic"); // Replace "test_tower.schematic" with your schematic file name
+        File schematic = new File("plugins/WorldEdit/schematics/test_tower.schem");
         WorldEdit worldEdit = WorldEdit.getInstance();
         ClipboardFormat format = ClipboardFormats.findByFile(schematic);
         try (Closer closer = Closer.create()) {
@@ -90,6 +99,11 @@ public void onPlayerInteract(PlayerInteractEvent event) {
 
     private void setCooldown() {
         cooldown = true;
-        plugin.getServer().getScheduler().runTaskLater(plugin, () -> cooldown = false, 40L); // 2 ticks cooldown (20 ticks/sec * 2 sec = 40 ticks)
+        System.out.println("Cooldown started"); // Debug message
+
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
+            cooldown = false;
+            System.out.println("Cooldown ended"); // Debug message
+        }, 200L); // 2 ticks cooldown (20 ticks/sec * 2 sec = 40 ticks)
     }
 }
