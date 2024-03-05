@@ -1,0 +1,51 @@
+name: Update PaperMC
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 毎日JST 00:00に実行
+
+jobs:
+  update-papermc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Update PaperMC
+        run: |
+          LATEST_VERSION=$(curl -s https://papermc.io/api/v2/projects/paper | jq -r '.versions[-1]')
+          JAR_NAME="paper-1.20.4-$LATEST_VERSION.jar"
+          BRANCH_NAME="PaperMC-update-$LATEST_VERSION"
+          
+          git checkout -b $BRANCH_NAME
+          
+          # Download and build the latest PaperMC version with versioned filename
+          curl -o $JAR_NAME https://papermc.io/api/v2/projects/paper/versions/$LATEST_VERSION/builds/latest/downloads/paper-$LATEST_VERSION.jar
+          
+          # You might need to stop the server before updating files
+          # systemctl stop minecraft-server
+          
+          # Replace old PaperMC JAR with the new one
+          cp $JAR_NAME Tower_Defense_Server/
+          
+          # Update start.bat with the new JAR filename
+          sed -i "s/java.exe -Xms8G -Xmx8G -jar paper-[0-9.]*-[0-9]*.jar/java.exe -Xms8G -Xmx8G -jar $JAR_NAME/" start.bat
+          
+          # Restart the server after updating
+          # systemctl start minecraft-server
+          
+          git add .
+          git commit -m "Update to PaperMC $LATEST_VERSION"
+          git push origin $BRANCH_NAME
+          
+          gh pr create --base main --head $BRANCH_NAME --title "Update to PaperMC $LATEST_VERSION" --body "Automated update to the latest PaperMC version"
