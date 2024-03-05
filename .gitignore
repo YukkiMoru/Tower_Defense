@@ -5,3 +5,4 @@ output_file.properties
 # serverの除外パス
 Tower_Defense_Server/logs/
 Tower_Defense_Server/eula.txt
+Tower_Defense_Server/plugins/Tower_Defense-1.0-SNAPSHOT.jar

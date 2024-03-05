@@ -5,6 +5,7 @@
   ],
   "dependencyDashboard": false,
   "requiredStatusChecks": null,
+  "packageFiles": ["**/pom.xml"],
   "schedule": [
     "every 1 hour after 00:00 and before 23:59 every day"
   ],
@@ -17,7 +18,7 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": false
+      "automerge": true
     },
     {
       "matchPackageNames": ["papermc", "maven", "worldedit"],
