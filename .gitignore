@@ -2,3 +2,4 @@
 /target/
 output_file.properties
 !/Tower_Defense_Server/plugins/worldedit/schematics
+Tower_Defense_Server/logs
