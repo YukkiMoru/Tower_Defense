@@ -5,3 +5,6 @@ output_file.properties
 # serverの除外パス
 Tower_Defense_Server/logs/
 Tower_Defense_Server/eula.txt
+Tower_Defense_Server/server.properties
+Tower_Defense_Server/usercache.json
+Tower_Defense_Server/TD_world/
