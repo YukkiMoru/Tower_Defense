@@ -80,7 +80,7 @@
           <url>https://oss.sonatype.org/content/groups/public/</url>
       </repository>
       <repository>
-          <id>sk89q-repo</id>
+          <id>enginehub-maven</id>
           <url>https://maven.enginehub.org/repo/</url>
       </repository>
   </repositories>
@@ -98,5 +98,6 @@
           <version>7.2.18</version>
           <scope>provided</scope>
       </dependency>
+
   </dependencies>
 </project>
