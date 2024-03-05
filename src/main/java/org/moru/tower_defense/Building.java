@@ -28,11 +28,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class building implements Listener {
+public class Building implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
 
-    public building(JavaPlugin plugin) {
+    public Building(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 

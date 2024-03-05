@@ -12,7 +12,7 @@ public final class Tower_Defense extends JavaPlugin {
 
         // リスナーの登録
         // Create an instance of the building class, passing this plugin instance to the constructor
-        building buildingInstance = new building(this);
+        Building buildingInstance = new Building(this);
 
         // Register the building instance as an event listener
         getServer().getPluginManager().registerEvents(buildingInstance, this);
