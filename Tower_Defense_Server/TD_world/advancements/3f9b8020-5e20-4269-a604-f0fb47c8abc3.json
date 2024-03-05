@@ -19,7 +19,8 @@
   },
   "minecraft:adventure/kill_all_mobs": {
     "criteria": {
-      "minecraft:creeper": "2024-02-27 22:34:24 +0900"
+      "minecraft:creeper": "2024-02-27 22:34:24 +0900",
+      "minecraft:shulker": "2024-03-02 00:11:48 +0900"
     },
     "done": false
   },
@@ -325,85 +326,19 @@
   },
   "minecraft:recipes/misc/lapis_lazuli": {
     "criteria": {
-      "has_lapis_block": "2024-03-01 10:09:56 +0900"
+      "has_lapis_block": "2024-03-01 23:24:24 +0900"
     },
     "done": true
   },
   "minecraft:recipes/building_blocks/spruce_planks": {
     "criteria": {
-      "has_logs": "2024-03-02 10:36:34 +0900"
+      "has_logs": "2024-03-02 14:46:58 +0900"
     },
     "done": true
   },
   "minecraft:recipes/building_blocks/spruce_wood": {
     "criteria": {
-      "has_log": "2024-03-02 10:36:34 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/spruce_button": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/spruce_pressure_plate": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/spruce_sign": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/spruce_trapdoor": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/spruce_door": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/redstone/spruce_fence_gate": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/decorations/spruce_fence": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/spruce_stairs": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/spruce_slab": {
-    "criteria": {
-      "has_planks": "2024-03-02 10:36:37 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/oak_planks": {
-    "criteria": {
-      "has_logs": "2024-03-02 11:02:01 +0900"
-    },
-    "done": true
-  },
-  "minecraft:recipes/building_blocks/oak_wood": {
-    "criteria": {
-      "has_log": "2024-03-02 11:02:01 +0900"
+      "has_log": "2024-03-02 14:46:58 +0900"
     },
     "done": true
   },
