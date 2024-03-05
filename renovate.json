@@ -12,17 +12,23 @@
     "every 1 hour after 00:00 and before 23:59 every day"
   ],
   "major": {
-    "enabled": false
+    "enabled": true
   },
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "automerge": true
+      "automerge": false
     },
     {
       "matchPackageNames": ["papermc", "maven", "worldedit"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "groupName": "minecraft updates",
+      "automerge": true
+    },
+    {
+      "datasources": ["maven"],
+      "packageNames": ["com.destroystokyo.paper:paper:paper"],
+      "groupName": "papermc updates",
       "automerge": true
     }
   ]
