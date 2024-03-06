@@ -37,6 +37,16 @@ public class Building implements Listener {
 
     public Building(JavaPlugin plugin) {
         this.plugin = plugin;
+
+        // Schedule the attackMobs method to be called periodically
+        plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
+            @Override
+            public void run() {
+                if (tower != null) {
+                    tower.attackMobs();
+                }
+            }
+        }, 0L, 20L); // 20 ticks = 1 second
     }
 
     @EventHandler

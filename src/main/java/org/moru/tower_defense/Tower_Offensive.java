@@ -26,7 +26,7 @@ public class Tower_Offensive {
 
         for (Entity entity : nearbyEntities) {
             if (entity instanceof Monster) {
-                armorStand.launchProjectile(Arrow.class);
+                shootArrow((LivingEntity) entity);
                 break;
             }
         }
