@@ -34,7 +34,10 @@ public class Tower_Offensive {
 
     private void shootArrow(LivingEntity target) {
         Location loc = armorStand.getEyeLocation().clone();
-        Vector direction = target.getLocation().clone().subtract(loc).toVector();
+        Location targetLocation = target.getLocation().clone();
+        // Adjust the target location to aim for the head
+        targetLocation.add(0, target.getHeight() * 0.9, 0);
+        Vector direction = targetLocation.subtract(loc).toVector();
         Arrow arrow = armorStand.getWorld().spawnArrow(loc, direction, (float) damage, 0);
         arrow.setShooter(armorStand);
     }
