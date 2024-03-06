@@ -8,7 +8,7 @@ public final class Tower_Defense extends JavaPlugin {
     public void onEnable() {
         // mob_motionの起動
         // リスナーの登録
-        getServer().getPluginManager().registerEvents(new MobListener(this), this);
+        getServer().getPluginManager().registerEvents(new Mob_Listener(this), this);
 
         // リスナーの登録
         // Create an instance of the building class, passing this plugin instance to the constructor
