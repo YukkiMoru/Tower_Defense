@@ -22,6 +22,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.ArmorStand;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -32,8 +33,20 @@ public class Building implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
 
+    private Tower_Offensive tower;
+
     public Building(JavaPlugin plugin) {
         this.plugin = plugin;
+
+        // Schedule the attackMobs method to be called periodically
+        plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
+            @Override
+            public void run() {
+                if (tower != null) {
+                    tower.attackMobs();
+                }
+            }
+        }, 0L, 20L); // 20 ticks = 1 second
     }
 
     @EventHandler
@@ -43,10 +56,18 @@ public class Building implements Listener {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
                     if (isCenterOf3x3(event.getClickedBlock().getLocation())) {
                         Player player = event.getPlayer();
-                        player.sendMessage("You clicked the center of a 3x3 oak wood!2");
+                        player.sendMessage("You clicked the center of a 3x3 oak wood!3");
 
                         // Run code to summon the structure
                         summonStructure(event.getClickedBlock().getLocation());
+
+                        // Create and setup the tower
+                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
+                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
+                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 5);
+                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
+                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
+                        tower = new Tower_Offensive(armorStand, 5.0, 20L, 10.0);
 
                         // Apply cooldown
                         setCooldown();
