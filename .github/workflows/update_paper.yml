@@ -3,7 +3,7 @@ name: Update PaperMC
 on:
   schedule:
     #　日本時間午前15時00分に実行
-    - cron: '0 15 * * *'
+    - cron: '0 11 * * *'
 
 jobs:
   update-papermc:
