@@ -1,15 +1,3 @@
 # プロジェクトの除外パス
 /target/
-output_file.properties
-
-# serverの除外パス
-Tower_Defense_Server/
-
-# プラグインファイルの除外
-!Tower_Defense_Server/plugins/
-Tower_Defense_Server/plugins/Tower_Defense-1.0-SNAPSHOT.jar
-
-# 要りそうなものの追加
-!Tower_Defense_Server/TD_world
-!Tower_Defense_Server/start.bat
-
+/.idea/
