@@ -1,9 +1,3 @@
 # プロジェクトの除外パス
 /target/
 /.idea/
-
-# serverファイル
-!/Tower_Defense_Server/start.bat
-!/Tower_Defense_Server/plugins/
-!/Tower_Defense_Server/TD_world/
-

@@ -1,0 +1,78 @@
+[18:47:04] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[18:47:05] [ServerMain/INFO]: Loaded 1174 recipes
+[18:47:05] [ServerMain/INFO]: Loaded 1271 advancements
+[18:47:06] [Server thread/INFO]: Starting minecraft server version 1.20.4
+[18:47:06] [Server thread/INFO]: Loading properties
+[18:47:06] [Server thread/INFO]: This server is running Paper version git-Paper-435 (MC: 1.20.4) (Implementing API version 1.20.4-R0.1-SNAPSHOT) (Git: 681bbff)
+[18:47:06] [Server thread/INFO]: Using 4 threads for Netty based IO
+[18:47:06] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[18:47:06] [Server thread/WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
+    We recommend installing the spark profiler as a replacement: https://spark.lucko.me/
+    For more information please visit: https://github.com/PaperMC/Paper/issues/8948
+[18:47:06] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 5 worker threads, and gen parallelism of 5 threads
+[18:47:06] [Server thread/INFO]: Default game type: CREATIVE
+[18:47:06] [Server thread/INFO]: Generating keypair
+[18:47:06] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:47:06] [Server thread/INFO]: Using default channel type
+[18:47:06] [Server thread/INFO]: Paper: Using Java compression from Velocity.
+[18:47:06] [Server thread/INFO]: Paper: Using Java cipher from Velocity.
+[18:47:07] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.2.19+6642-415ef95
+[18:47:07] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@38fa44b]
+[18:47:07] [Server thread/INFO]: [Tower_Defense] Loading server plugin Tower_Defense v1.0-SNAPSHOT
+[18:47:07] [Server thread/INFO]: [PlugManX] Loading server plugin PlugManX v2.3.5
+[18:47:07] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[18:47:07] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.2.19+6642-415ef95
+[18:47:07] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[18:47:07] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[18:47:08] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[18:47:08] [Server thread/INFO]: [PlugManX] Enabling PlugManX v2.3.5
+[18:47:08] [Server thread/WARN]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[18:47:08] [Server thread/WARN]: It seems like you're running on paper.
+[18:47:08] [Server thread/WARN]: This may cause issues.
+[18:47:08] [Server thread/WARN]: If you encounter any issues, please join my dicord: https://discord.gg/dBhfCzdZxq
+[18:47:08] [Server thread/WARN]: Or create an issue on GitHub: https://github.com/TheBlackEntity/PlugMan
+[18:47:08] [Server thread/WARN]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[18:47:09] [Server thread/INFO]: Preparing level "TD_world"
+[18:47:09] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[18:47:09] [Server thread/INFO]: Time elapsed: 182 ms
+[18:47:09] [Server thread/INFO]: [Tower_Defense] Enabling Tower_Defense v1.0-SNAPSHOT
+[18:47:09] [Server thread/INFO]: Tower_Defenseプラグインが有効化されました
+[18:47:09] [Server thread/INFO]: Running delayed init tasks
+[18:47:09] [Server thread/INFO]: Done (3.862s)! For help, type "help"
+[18:47:09] [Server thread/INFO]: Timings Reset
+[18:47:23] [User Authenticator #0/INFO]: UUID of player Yukki_Moru is 3f9b8020-5e20-4269-a604-f0fb47c8abc3
+[18:47:24] [Server thread/INFO]: Yukki_Moru joined the game
+[18:47:24] [Server thread/INFO]: Yukki_Moru[/127.0.0.1:52794] logged in with entity id 6 at ([TD_world]17.114421906412726, -35.326074241328975, -6.8833494302589395)
+[18:47:45] [Server thread/INFO]: [Tower_Defense] [STDOUT] Cooldown started
+[18:47:45] [Server thread/WARN]: Nag author(s): '[]' of 'Tower_Defense v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
+[18:47:55] [Server thread/INFO]: [Tower_Defense] [STDOUT] Cooldown ended
+[18:48:57] [Server thread/INFO]: Yukki_Moru issued server command: /kill @e[type=!minecraft:player]
+[18:48:57] [Server thread/INFO]: [Yukki_Moru: Killed 46 entities]
+[18:48:58] [Server thread/INFO]: Yukki_Moru issued server command: /kill @e[type=!minecraft:player]
+[18:48:58] [Server thread/INFO]: [Yukki_Moru: Killed 7 entities]
+[18:49:56] [Server thread/INFO]: Yukki_Moru issued server command: //pos1
+[18:49:59] [Server thread/INFO]: Yukki_Moru issued server command: //pos2
+[18:50:00] [Server thread/INFO]: Yukki_Moru issued server command: //set
+[18:50:03] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[18:50:35] [Server thread/INFO]: Yukki_Moru issued server command: /stop
+[18:50:35] [Server thread/INFO]: [Yukki_Moru: Stopping the server]
+[18:50:35] [Server thread/INFO]: Stopping server
+[18:50:35] [Server thread/INFO]: [PlugManX] Disabling PlugManX v2.3.5
+[18:50:35] [Server thread/INFO]: [Tower_Defense] Disabling Tower_Defense v1.0-SNAPSHOT
+[18:50:35] [Server thread/INFO]: Tower_Defenseプラグインが無効化されました
+[18:50:35] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.2.19+6642-415ef95
+[18:50:35] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[18:50:35] [Server thread/INFO]: Saving players
+[18:50:35] [Server thread/INFO]: Yukki_Moru lost connection: Server closed
+[18:50:35] [Server thread/INFO]: Yukki_Moru left the game
+[18:50:35] [Server thread/INFO]: Saving worlds
+[18:50:35] [Server thread/INFO]: Saving chunks for level 'ServerLevel[TD_world]'/minecraft:overworld
+[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'TD_world'
+[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'TD_world'
+[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'TD_world'
+[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Saved 1722 block chunks, 1448 entity chunks, 0 poi chunks in world 'TD_world' in 0.52s
+[18:50:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (TD_world): All chunks are saved
+[18:50:35] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[18:50:35] [Server thread/INFO]: Flushing Chunk IO
+[18:50:35] [Server thread/INFO]: Closing Thread Pool
+[18:50:35] [Server thread/INFO]: Closing Server
