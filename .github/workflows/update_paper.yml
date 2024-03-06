@@ -2,8 +2,8 @@ name: Update PaperMC
 
 on:
   schedule:
-    #　日本時間午前10時00分に実行
-    - cron: '0 1 * * *'
+    #　日本時間午前12時00分に実行
+    - cron: '0 15 * * *'
 
 jobs:
   update-papermc:
@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set up Git user
+        run: |
+          git config --global user.email "Yukki_Moru@outlook.jp"
+          git config --global user.name "YukkiMoru"
 
       - name: Set up Java
         uses: actions/setup-java@v4
