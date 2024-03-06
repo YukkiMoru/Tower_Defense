@@ -31,7 +31,7 @@ jobs:
         run: |
           LATEST_VERSION=$(curl -s https://papermc.io/api/v2/projects/paper | jq -r '.versions[-1]')
           LATEST_BUILD=$(curl -s https://papermc.io/api/v2/projects/paper/versions/$LATEST_VERSION/builds | jq -r '.builds | map(select(.channel == "default") | .build) | .[-1]')
-          JAR_NAME="paper-1.20.4-$LATEST_VERSION-$LATEST_BUILD.jar"
+          JAR_NAME="paper-$LATEST_VERSION-$LATEST_BUILD.jar"
           BRANCH_NAME="PaperMC-update-$LATEST_VERSION"
 
           git checkout -b $BRANCH_NAME
