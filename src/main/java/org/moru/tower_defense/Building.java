@@ -22,6 +22,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.ArmorStand;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -31,6 +32,8 @@ import java.io.IOException;
 public class Building implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
+
+    private Tower_Offensive tower;
 
     public Building(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -47,6 +50,10 @@ public class Building implements Listener {
 
                         // Run code to summon the structure
                         summonStructure(event.getClickedBlock().getLocation());
+
+                        // Create and setup the tower
+                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(event.getClickedBlock().getLocation().add(0, 1, 0), ArmorStand.class);
+                        tower = new Tower_Offensive(armorStand, 5.0, 20L, 10.0);
 
                         // Apply cooldown
                         setCooldown();

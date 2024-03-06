@@ -1,12 +1,11 @@
 package org.moru.tower_defense;
 
 import org.bukkit.Location;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Mob;
+import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 
+
+import java.util.Collection;
 import java.util.List;
 
 public class Tower_Offensive {
@@ -15,18 +14,25 @@ public class Tower_Offensive {
     private long fireRate;
     private double range;
 
+
     public Tower_Offensive(ArmorStand armorStand, double damage, long fireRate, double range) {
         this.armorStand = armorStand;
         this.damage = damage;
         this.fireRate = fireRate;
         this.range = range;
+
+        Location towerCenter = armorStand.getLocation().clone();
+        towerCenter.setY(towerCenter.getY() + 5);
+        armorStand.teleport(towerCenter);
     }
 
     public void attackMobs() {
-        List<Mob> mobs = armorStand.getWorld().getEntitiesByClass(Mob.class);
-        for (Mob mob : mobs) {
-            if (mob.getLocation().distance(armorStand.getLocation()) <= range) {
-                shootArrow(mob);
+        List<Entity> nearbyEntities = armorStand.getNearbyEntities(range, range, range);
+
+        for (Entity entity : nearbyEntities) {
+            if (entity instanceof Monster) {
+                armorStand.launchProjectile(Arrow.class);
+                break;
             }
         }
     }
