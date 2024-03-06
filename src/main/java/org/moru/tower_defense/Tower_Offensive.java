@@ -4,8 +4,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.util.Vector;
 
-
-import java.util.Collection;
 import java.util.List;
 
 public class Tower_Offensive {
@@ -21,9 +19,6 @@ public class Tower_Offensive {
         this.fireRate = fireRate;
         this.range = range;
 
-        Location towerCenter = armorStand.getLocation().clone();
-        towerCenter.setY(towerCenter.getY() + 5);
-        armorStand.teleport(towerCenter);
     }
 
     public void attackMobs() {
