@@ -61,13 +61,13 @@ public class Building implements Listener {
                         // Run code to summon the structure
                         summonStructure(event.getClickedBlock().getLocation());
 
-                        // Create and setup the tower
+                        // Create and set up the tower
                         Location spawnLocation = event.getClickedBlock().getLocation().clone();
                         spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
-                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 5);
+                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
                         spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
                         ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-                        tower = new Tower_Offensive(armorStand, 5.0, 20L, 10.0);
+                        tower = new Tower_Offensive(armorStand, 5.0, 1L, 10.0);
 
                         // Apply cooldown
                         setCooldown();
