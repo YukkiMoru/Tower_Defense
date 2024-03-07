@@ -1,5 +1,4 @@
 settings:
-settings:
   allow-end: false
   warn-on-overload: true
   permissions-file: permissions.yml
