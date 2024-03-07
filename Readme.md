@@ -6,7 +6,6 @@
 
 ## セットアップ
 
-pom.xmlと同じ層にあるoutput_file.propertiesを作成する。
-```properties
-output.path=サーバーファイルにあるプラグインフォルダーの絶対パス
-```
+サーバーごとGithubにいれたことにより、サーバーのセットアップが簡単になりました。
+mavenのパッケージを設定。
+start.batを実行することでサーバーが起動します。

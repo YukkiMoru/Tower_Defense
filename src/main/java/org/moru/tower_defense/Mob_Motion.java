@@ -35,7 +35,7 @@ public class Mob_Motion extends BukkitRunnable {
             if (block == MoveBlock) {
                 //秒速0.5で移動
                 Vector direction = mob.getLocation().getDirection();
-                Location newLocation = mob.getLocation().add(direction.multiply(0.01));
+                Location newLocation = mob.getLocation().add(direction.multiply(0.1));
 
                 //新しい場所がブロックの中にあるかどうかを確認
                 if (!newLocation.getBlock().isEmpty()) {
