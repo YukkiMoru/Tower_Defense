@@ -1,78 +1,339 @@
-[18:47:04] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[18:47:05] [ServerMain/INFO]: Loaded 1174 recipes
-[18:47:05] [ServerMain/INFO]: Loaded 1271 advancements
-[18:47:06] [Server thread/INFO]: Starting minecraft server version 1.20.4
-[18:47:06] [Server thread/INFO]: Loading properties
-[18:47:06] [Server thread/INFO]: This server is running Paper version git-Paper-435 (MC: 1.20.4) (Implementing API version 1.20.4-R0.1-SNAPSHOT) (Git: 681bbff)
-[18:47:06] [Server thread/INFO]: Using 4 threads for Netty based IO
-[18:47:06] [Server thread/INFO]: Server Ping Player Sample Count: 12
-[18:47:06] [Server thread/WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
+[21:23:40] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[21:23:41] [ServerMain/INFO]: Loaded 1174 recipes
+[21:23:41] [ServerMain/INFO]: Loaded 1271 advancements
+[21:23:42] [Server thread/INFO]: Starting minecraft server version 1.20.4
+[21:23:42] [Server thread/INFO]: Loading properties
+[21:23:42] [Server thread/INFO]: This server is running Paper version git-Paper-435 (MC: 1.20.4) (Implementing API version 1.20.4-R0.1-SNAPSHOT) (Git: 681bbff)
+[21:23:42] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[21:23:42] [Server thread/INFO]: Using 4 threads for Netty based IO
+[21:23:43] [Server thread/WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
     We recommend installing the spark profiler as a replacement: https://spark.lucko.me/
     For more information please visit: https://github.com/PaperMC/Paper/issues/8948
-[18:47:06] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 5 worker threads, and gen parallelism of 5 threads
-[18:47:06] [Server thread/INFO]: Default game type: CREATIVE
-[18:47:06] [Server thread/INFO]: Generating keypair
-[18:47:06] [Server thread/INFO]: Starting Minecraft server on *:25565
-[18:47:06] [Server thread/INFO]: Using default channel type
-[18:47:06] [Server thread/INFO]: Paper: Using Java compression from Velocity.
-[18:47:06] [Server thread/INFO]: Paper: Using Java cipher from Velocity.
-[18:47:07] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.2.19+6642-415ef95
-[18:47:07] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@38fa44b]
-[18:47:07] [Server thread/INFO]: [Tower_Defense] Loading server plugin Tower_Defense v1.0-SNAPSHOT
-[18:47:07] [Server thread/INFO]: [PlugManX] Loading server plugin PlugManX v2.3.5
-[18:47:07] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
-[18:47:07] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.2.19+6642-415ef95
-[18:47:07] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
-[18:47:07] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
-[18:47:08] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
-[18:47:08] [Server thread/INFO]: [PlugManX] Enabling PlugManX v2.3.5
-[18:47:08] [Server thread/WARN]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[18:47:08] [Server thread/WARN]: It seems like you're running on paper.
-[18:47:08] [Server thread/WARN]: This may cause issues.
-[18:47:08] [Server thread/WARN]: If you encounter any issues, please join my dicord: https://discord.gg/dBhfCzdZxq
-[18:47:08] [Server thread/WARN]: Or create an issue on GitHub: https://github.com/TheBlackEntity/PlugMan
-[18:47:08] [Server thread/WARN]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[18:47:09] [Server thread/INFO]: Preparing level "TD_world"
-[18:47:09] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
-[18:47:09] [Server thread/INFO]: Time elapsed: 182 ms
-[18:47:09] [Server thread/INFO]: [Tower_Defense] Enabling Tower_Defense v1.0-SNAPSHOT
-[18:47:09] [Server thread/INFO]: Tower_Defenseプラグインが有効化されました
-[18:47:09] [Server thread/INFO]: Running delayed init tasks
-[18:47:09] [Server thread/INFO]: Done (3.862s)! For help, type "help"
-[18:47:09] [Server thread/INFO]: Timings Reset
-[18:47:23] [User Authenticator #0/INFO]: UUID of player Yukki_Moru is 3f9b8020-5e20-4269-a604-f0fb47c8abc3
-[18:47:24] [Server thread/INFO]: Yukki_Moru joined the game
-[18:47:24] [Server thread/INFO]: Yukki_Moru[/127.0.0.1:52794] logged in with entity id 6 at ([TD_world]17.114421906412726, -35.326074241328975, -6.8833494302589395)
-[18:47:45] [Server thread/INFO]: [Tower_Defense] [STDOUT] Cooldown started
-[18:47:45] [Server thread/WARN]: Nag author(s): '[]' of 'Tower_Defense v1.0-SNAPSHOT' about their usage of System.out/err.print. Please use your plugin's logger instead (JavaPlugin#getLogger).
-[18:47:55] [Server thread/INFO]: [Tower_Defense] [STDOUT] Cooldown ended
-[18:48:57] [Server thread/INFO]: Yukki_Moru issued server command: /kill @e[type=!minecraft:player]
-[18:48:57] [Server thread/INFO]: [Yukki_Moru: Killed 46 entities]
-[18:48:58] [Server thread/INFO]: Yukki_Moru issued server command: /kill @e[type=!minecraft:player]
-[18:48:58] [Server thread/INFO]: [Yukki_Moru: Killed 7 entities]
-[18:49:56] [Server thread/INFO]: Yukki_Moru issued server command: //pos1
-[18:49:59] [Server thread/INFO]: Yukki_Moru issued server command: //pos2
-[18:50:00] [Server thread/INFO]: Yukki_Moru issued server command: //set
-[18:50:03] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
-[18:50:35] [Server thread/INFO]: Yukki_Moru issued server command: /stop
-[18:50:35] [Server thread/INFO]: [Yukki_Moru: Stopping the server]
-[18:50:35] [Server thread/INFO]: Stopping server
-[18:50:35] [Server thread/INFO]: [PlugManX] Disabling PlugManX v2.3.5
-[18:50:35] [Server thread/INFO]: [Tower_Defense] Disabling Tower_Defense v1.0-SNAPSHOT
-[18:50:35] [Server thread/INFO]: Tower_Defenseプラグインが無効化されました
-[18:50:35] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.2.19+6642-415ef95
-[18:50:35] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
-[18:50:35] [Server thread/INFO]: Saving players
-[18:50:35] [Server thread/INFO]: Yukki_Moru lost connection: Server closed
-[18:50:35] [Server thread/INFO]: Yukki_Moru left the game
-[18:50:35] [Server thread/INFO]: Saving worlds
-[18:50:35] [Server thread/INFO]: Saving chunks for level 'ServerLevel[TD_world]'/minecraft:overworld
-[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'TD_world'
-[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'TD_world'
-[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'TD_world'
-[18:50:35] [Server thread/INFO]: [ChunkHolderManager] Saved 1722 block chunks, 1448 entity chunks, 0 poi chunks in world 'TD_world' in 0.52s
-[18:50:35] [Server thread/INFO]: ThreadedAnvilChunkStorage (TD_world): All chunks are saved
-[18:50:35] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
-[18:50:35] [Server thread/INFO]: Flushing Chunk IO
-[18:50:35] [Server thread/INFO]: Closing Thread Pool
-[18:50:35] [Server thread/INFO]: Closing Server
+[21:23:43] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 5 worker threads, and gen parallelism of 5 threads
+[21:23:43] [Server thread/INFO]: Default game type: CREATIVE
+[21:23:43] [Server thread/INFO]: Generating keypair
+[21:23:44] [Server thread/INFO]: Starting Minecraft server on *:25565
+[21:23:44] [Server thread/INFO]: Using default channel type
+[21:23:44] [Server thread/INFO]: Paper: Using Java compression from Velocity.
+[21:23:44] [Server thread/INFO]: Paper: Using Java cipher from Velocity.
+[21:23:44] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.2.19+6642-415ef95
+[21:23:45] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@5d090931]
+[21:23:45] [Server thread/INFO]: [Tower_Defense] Loading server plugin Tower_Defense v1.0-SNAPSHOT
+[21:23:45] [Server thread/INFO]: [PlugManX] Loading server plugin PlugManX v2.3.5
+[21:23:45] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[21:23:45] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.2.19+6642-415ef95
+[21:23:45] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[21:23:45] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[21:23:46] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[21:23:48] [Server thread/INFO]: [PlugManX] Enabling PlugManX v2.3.5
+[21:23:48] [Server thread/WARN]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[21:23:48] [Server thread/WARN]: It seems like you're running on paper.
+[21:23:48] [Server thread/WARN]: This may cause issues.
+[21:23:48] [Server thread/WARN]: If you encounter any issues, please join my dicord: https://discord.gg/dBhfCzdZxq
+[21:23:48] [Server thread/WARN]: Or create an issue on GitHub: https://github.com/TheBlackEntity/PlugMan
+[21:23:48] [Server thread/WARN]: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[21:23:48] [Server thread/INFO]: Preparing level "TD_world"
+[21:23:49] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[21:23:49] [Server thread/INFO]: Time elapsed: 217 ms
+[21:23:49] [Server thread/INFO]: [Tower_Defense] Enabling Tower_Defense v1.0-SNAPSHOT
+[21:23:49] [Server thread/INFO]: Tower_Defenseプラグインが有効化されました
+[21:23:49] [Server thread/INFO]: Running delayed init tasks
+[21:23:49] [Server thread/INFO]: Done (7.417s)! For help, type "help"
+[21:23:49] [Server thread/INFO]: Timings Reset
+[21:23:51] [User Authenticator #0/INFO]: UUID of player Yukki_Moru is 3f9b8020-5e20-4269-a604-f0fb47c8abc3
+[21:23:52] [Server thread/INFO]: Yukki_Moru joined the game
+[21:23:52] [Server thread/INFO]: Yukki_Moru[/127.0.0.1:60261] logged in with entity id 3 at ([TD_world]1.9695814218666847, -34.030754875059586, 3.652292767916997)
+[21:24:08] [Server thread/INFO]: Yukki_Moru issued server command: //pos1
+[21:24:14] [Server thread/INFO]: Yukki_Moru issued server command: //pos2
+[21:24:18] [Server thread/INFO]: Yukki_Moru issued server command: //set glass
+[21:46:20] [Server thread/INFO]: Yukki_Moru issued server command: //shift 30 east
+[21:46:29] [Server thread/INFO]: Yukki_Moru issued server command: //shift 7 east
+[21:46:32] [Server thread/INFO]: Yukki_Moru issued server command: //shift 5 east
+[21:46:36] [Server thread/INFO]: Yukki_Moru issued server command: //set glass
+[21:46:44] [Server thread/INFO]: Yukki_Moru issued server command: //pos1
+[21:46:46] [Server thread/INFO]: Yukki_Moru issued server command: //pos2
+[21:46:49] [Server thread/INFO]: Yukki_Moru issued server command: //set glass
+[21:57:15] [Server thread/INFO]: Yukki_Moru issued server command: //wand
+[21:57:20] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[21:57:21] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[21:57:25] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[21:57:27] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[21:58:01] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[21:58:06] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[21:58:19] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[21:58:36] [Server thread/INFO]: Yukki_Moru issued server command: //cut
+[21:58:40] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[21:58:47] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[21:58:54] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[21:59:32] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:00:57] [Server thread/INFO]: Yukki_Moru issued server command: /gamerule doDaylightCycle false
+[22:00:57] [Server thread/INFO]: [Yukki_Moru: Gamerule doDaylightCycle is now set to: false]
+[22:01:02] [Server thread/INFO]: Yukki_Moru issued server command: /time set noon
+[22:01:02] [Server thread/INFO]: [Yukki_Moru: Set the time to 6000]
+[22:01:33] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:03:01] [Server thread/INFO]: Yukki_Moru issued server command: /cut
+[22:03:04] [Server thread/INFO]: Yukki_Moru issued server command: //cut
+[22:03:06] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:03:56] [Server thread/INFO]: Yukki_Moru issued server command: //cut
+[22:04:02] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:06:14] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:06:23] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard
+[22:06:27] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:06:34] [Server thread/INFO]: Yukki_Moru issued server command: //copt
+[22:06:37] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:06:42] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard
+[22:06:52] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:07:00] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:07:05] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard
+[22:07:12] [Server thread/INFO]: Yukki_Moru issued server command: //undo
+[22:07:20] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[x,y,z]
+[22:07:23] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,y,z]
+[22:07:27] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,1]
+[22:07:31] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,2,1]
+[22:07:32] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,2,3]
+[22:07:35] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[3,2,3]
+[22:07:38] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,2,3]
+[22:07:52] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[4,2,3]
+[22:07:58] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[4,2,3]
+[22:08:28] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[22:08:58] [Server thread/INFO]: Yukki_Moru issued server command: //cut
+[22:09:00] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:09:16] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:09:21] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:09:23] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:09:26] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:09:32] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:09:34] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:20:08] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:20:36] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:20:47] [Server thread/INFO]: Yukki_Moru issued server command: //undo
+[22:20:55] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:21:19] [Server thread/INFO]: Yukki_Moru issued server command: //expand
+[22:21:21] [Server thread/INFO]: Yukki_Moru issued server command: //expand vert 1
+[22:21:26] [Server thread/INFO]: Yukki_Moru issued server command: //expand vert 1
+[22:21:30] [Server thread/INFO]: Yukki_Moru issued server command: //expand
+[22:21:33] [Server thread/INFO]: Yukki_Moru issued server command: //expand 1
+[22:21:37] [Server thread/INFO]: Yukki_Moru issued server command: //expand 1 back
+[22:21:42] [Server thread/INFO]: Yukki_Moru issued server command: //expand back 1
+[22:21:45] [Server thread/INFO]: Yukki_Moru issued server command: //expand vert
+[22:22:15] [Server thread/INFO]: Yukki_Moru issued server command: //expand 5
+[22:22:22] [Server thread/INFO]: Yukki_Moru issued server command: //expand 5
+[22:22:23] [Server thread/INFO]: Yukki_Moru issued server command: //expand 5
+[22:22:25] [Server thread/INFO]: Yukki_Moru issued server command: //expand 5
+[22:22:27] [Server thread/INFO]: Yukki_Moru issued server command: //set glass
+[22:22:52] [Server thread/INFO]: Yukki_Moru issued server command: //shift
+[22:22:57] [Server thread/INFO]: Yukki_Moru issued server command: //shift 10 up
+[22:23:02] [Server thread/INFO]: Yukki_Moru issued server command: //shift 10 up
+[22:23:06] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard
+[22:23:21] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard[1,1,1]
+[22:23:25] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard
+[22:23:32] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,y,z]
+[22:23:36] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,1]
+[22:23:38] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,2]
+[22:23:41] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,1]
+[22:23:48] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,4]
+[22:23:50] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,3]
+[22:24:31] [Server thread/INFO]: Yukki_Moru issued server command: //replace cherry_planks pink_stained_glass
+[22:24:44] [Server thread/INFO]: Yukki_Moru issued server command: //replace dark_oak_planks brown_stained_glass
+[22:25:14] [Server thread/INFO]: Yukki_Moru issued server command: //cut
+[22:25:17] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:27:05] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:27:13] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:30:38] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:30:54] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard
+[22:30:56] [Server thread/INFO]: Yukki_Moru issued server command: //set *
+[22:31:06] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,1]
+[22:31:09] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[3,1,1]
+[22:31:17] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,0,3]
+[22:31:48] [Server thread/INFO]: Yukki_Moru issued server command: //set
+[22:31:52] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:32:42] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:33:03] [Server thread/INFO]: Yukki_Moru issued server command: //replace 0 iron_block
+[22:34:23] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:34:26] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:34:31] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:35:58] [Server thread/INFO]: Yukki_Moru issued server command: //set
+[22:36:02] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:36:25] [Server thread/INFO]: Yukki_Moru issued server command: //replace diamond_block hand
+[22:37:05] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:37:10] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:37:18] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:37:24] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:37:26] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:37:35] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:37:52] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[1,1,1]
+[22:38:02] [Server thread/INFO]: Yukki_Moru issued server command: //set #clipboard@[0,1,1]
+[22:38:09] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:38:13] [Server thread/INFO]: Yukki_Moru issued server command: //undo
+[22:38:28] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:38:34] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:38:36] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:38:38] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:39:14] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[22:39:59] [Server thread/INFO]: Yukki_Moru issued server command: //set hnad
+[22:40:02] [Server thread/INFO]: Yukki_Moru issued server command: //set hnad
+[22:40:04] [Server thread/INFO]: Yukki_Moru issued server command: //set hnad
+[22:40:07] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:40:23] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:41:18] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:41:22] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:41:43] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[22:42:14] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[22:43:14] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:43:18] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:44:06] [Server thread/INFO]: Yukki_Moru issued server command: //set
+[22:44:08] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:44:52] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:45:08] [Server thread/INFO]: Yukki_Moru issued server command: //set hand
+[22:45:31] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:45:38] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:45:42] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:45:44] [Server thread/INFO]: Yukki_Moru issued server command: /undo -a
+[22:45:46] [Server thread/INFO]: Yukki_Moru issued server command: /undo -o
+[22:45:50] [Server thread/INFO]: Yukki_Moru issued server command: //paste -a
+[22:45:53] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:45:56] [Server thread/INFO]: Yukki_Moru issued server command: //paste -b
+[22:45:58] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:46:01] [Server thread/INFO]: Yukki_Moru issued server command: //paste -e
+[22:46:02] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:46:05] [Server thread/INFO]: Yukki_Moru issued server command: //paste -m
+[22:46:08] [Server thread/INFO]: Yukki_Moru issued server command: //paste -n
+[22:46:16] [Server thread/INFO]: Yukki_Moru issued server command: //paste -o
+[22:46:33] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:46:36] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:46:38] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:46:40] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:46:41] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:46:43] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:46:49] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:46:58] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:47:00] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:47:02] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:47:06] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:47:09] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:47:11] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:47:14] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:47:15] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:47:59] [Server thread/INFO]: Yukki_Moru issued server command: //replace 0 hand
+[22:48:16] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:48:22] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:48:29] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:48:32] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:48:51] [Server thread/INFO]: Yukki_Moru issued server command: //copt
+[22:48:54] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:48:57] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:49:00] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:49:03] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:50:14] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:50:18] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:50:37] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:50:41] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:50:43] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:51:05] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:51:08] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:51:10] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:51:42] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:51:46] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:51:48] [Server thread/INFO]: Yukki_Moru issued server command: /unod
+[22:51:50] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:51:52] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:51:55] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:51:56] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:52:00] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:52:11] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:52:15] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:52:19] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:52:22] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:52:40] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:52:43] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:53:07] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[22:53:16] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:53:19] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:53:21] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:53:47] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:53:55] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:54:35] [Server thread/INFO]: Yukki_Moru issued server command: //replace pink_stained_glass||Brown_stained_glass 0
+[22:54:42] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:54:48] [Server thread/INFO]: Yukki_Moru issued server command: //replace pink_stained_glass||brown_stained_glass 0
+[22:54:51] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:55:06] [Server thread/INFO]: Yukki_Moru issued server command: //replace glass 0
+[22:55:11] [Server thread/INFO]: Yukki_Moru issued server command: //replace *glass 0
+[22:55:15] [Server thread/INFO]: Yukki_Moru issued server command: //replace *glass glass
+[22:55:36] [Server thread/INFO]: Yukki_Moru issued server command: //replace ##* glass
+[22:56:01] [Server thread/INFO]: Yukki_Moru issued server command: //expand
+[22:56:22] [Server thread/INFO]: Yukki_Moru issued server command: //shrink
+[22:57:33] [Server thread/INFO]: Yukki_Moru issued server command: //shift 1 up
+[22:57:35] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[22:57:38] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:57:43] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:57:49] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[22:57:52] [Server thread/INFO]: Yukki_Moru issued server command: /undio
+[22:57:56] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:57:59] [Server thread/INFO]: Yukki_Moru issued server command: //paste -s
+[22:58:09] [Server thread/INFO]: Yukki_Moru issued server command: //replace cherry_planks 0
+[22:58:17] [Server thread/INFO]: Yukki_Moru issued server command: //replace dark_oak_planks_planks 0
+[22:58:21] [Server thread/INFO]: Yukki_Moru issued server command: //replace dark_oak_planks 0
+[22:59:18] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[22:59:39] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:59:40] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:59:40] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:59:41] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:59:42] [Server thread/INFO]: Yukki_Moru issued server command: /redo
+[22:59:47] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[23:00:05] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[23:00:19] [Server thread/INFO]: Yukki_Moru issued server command: //paste -s
+[23:00:28] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:00:50] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[23:00:59] [Server thread/INFO]: Yukki_Moru issued server command: //paste -s
+[23:01:40] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[23:01:44] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[23:01:47] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:01:50] [Server thread/INFO]: Yukki_Moru issued server command: //paste -s
+[23:02:01] [Server thread/INFO]: Yukki_Moru issued server command: //replace dark_oak_planks_planks 0
+[23:02:05] [Server thread/INFO]: Yukki_Moru issued server command: //replace dark_oak_planks_planks 0
+[23:02:09] [Server thread/INFO]: Yukki_Moru issued server command: //replace dark_oak_planks 0
+[23:02:14] [Server thread/INFO]: Yukki_Moru issued server command: //replace cherry_planks 0
+[23:02:23] [Server thread/INFO]: Yukki_Moru issued server command: //replace gold_block lapis_block
+[23:02:31] [Server thread/INFO]: Yukki_Moru issued server command: //replace emerald_block lapis_block
+[23:02:38] [Server thread/INFO]: Yukki_Moru issued server command: //replace diamond_block lapis_block
+[23:02:40] [Server thread/INFO]: Yukki_Moru issued server command: //replace diamond_block
+[23:02:46] [Server thread/INFO]: Yukki_Moru issued server command: //replace diamond_block lapis_block
+[23:02:54] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[23:02:58] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[23:03:02] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:04:36] [Server thread/INFO]: Yukki_Moru issued server command: //paste -a
+[23:04:38] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:04:40] [Server thread/INFO]: Yukki_Moru issued server command: //paste -a
+[23:05:03] [Server thread/INFO]: Yukki_Moru issued server command: //set 0
+[23:05:14] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:05:47] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[23:05:50] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[23:06:35] [Server thread/INFO]: Yukki_Moru issued server command: //copy
+[23:06:42] [Server thread/INFO]: Yukki_Moru issued server command: //paste
+[23:06:44] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:06:47] [Server thread/INFO]: Yukki_Moru issued server command: //paste -a
+[23:06:50] [Server thread/INFO]: Yukki_Moru issued server command: /undo
+[23:06:53] [Server thread/INFO]: Yukki_Moru issued server command: //paste -as
+[23:07:52] [Server thread/INFO]: Yukki_Moru issued server command: //replace lapis_block hand
+[23:08:18] [Server thread/INFO]: Yukki_Moru issued server command: /stop
+[23:08:18] [Server thread/INFO]: [Yukki_Moru: Stopping the server]
+[23:08:18] [Server thread/INFO]: Stopping server
+[23:08:18] [Server thread/INFO]: [PlugManX] Disabling PlugManX v2.3.5
+[23:08:18] [Server thread/INFO]: [Tower_Defense] Disabling Tower_Defense v1.0-SNAPSHOT
+[23:08:18] [Server thread/INFO]: Tower_Defenseプラグインが無効化されました
+[23:08:18] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.2.19+6642-415ef95
+[23:08:18] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[23:08:18] [Server thread/INFO]: Saving players
+[23:08:18] [Server thread/INFO]: Yukki_Moru lost connection: Server closed
+[23:08:18] [Server thread/INFO]: Yukki_Moru left the game
+[23:08:18] [Server thread/INFO]: Saving worlds
+[23:08:18] [Server thread/INFO]: Saving chunks for level 'ServerLevel[TD_world]'/minecraft:overworld
+[23:08:18] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'TD_world'
+[23:08:18] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'TD_world'
+[23:08:18] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'TD_world'
+[23:08:18] [Server thread/INFO]: [ChunkHolderManager] Saved 321 block chunks, 1 entity chunks, 0 poi chunks in world 'TD_world' in 0.29s
+[23:08:18] [Server thread/INFO]: ThreadedAnvilChunkStorage (TD_world): All chunks are saved
+[23:08:18] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[23:08:18] [Server thread/INFO]: Flushing Chunk IO
+[23:08:18] [Server thread/INFO]: Closing Thread Pool
+[23:08:18] [Server thread/INFO]: Closing Server
