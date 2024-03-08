@@ -43,7 +43,7 @@ jobs:
           # systemctl stop minecraft-server
 
           # Replace old PaperMC JAR with the new one
-          cp $JAR_NAME Tower_Defense_Server/
+          cp $JAR_NAME Server/
 
           # Move to the server directory
           cd Server/
