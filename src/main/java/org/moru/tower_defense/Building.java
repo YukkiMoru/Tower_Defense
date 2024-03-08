@@ -35,7 +35,7 @@ public class Building implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
 
-    private List<Tower_Offensive> towers = new ArrayList<>();
+    private List<Tower> towers = new ArrayList<>();
 
     public Building(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -44,7 +44,7 @@ public class Building implements Listener {
         plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
             @Override
             public void run() {
-                for (Tower_Offensive tower : towers) {
+                for (Tower tower : towers) {
                     tower.attackMobs();
                 }
             }
@@ -69,7 +69,7 @@ public class Building implements Listener {
                         spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
                         spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
                         ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower_Offensive tower = new Tower_Offensive(armorStand, 5.0, 1L, 10.0);
+                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
                         towers.add(tower);
 
                         // Apply cooldown

@@ -6,14 +6,14 @@ import org.bukkit.util.Vector;
 
 import java.util.List;
 
-public class Tower_Offensive {
+public class Tower {
     private ArmorStand armorStand;
     private double damage;
     private long fireRate;
     private double range;
 
 
-    public Tower_Offensive(ArmorStand armorStand, double damage, long fireRate, double range) {
+    public Tower(ArmorStand armorStand, double damage, long fireRate, double range) {
         this.armorStand = armorStand;
         this.damage = damage;
         this.fireRate = fireRate;
