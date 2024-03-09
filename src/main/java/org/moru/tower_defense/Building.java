@@ -84,19 +84,26 @@ public class Building implements Listener {
     }
 
     private boolean isCenterOf3x3(Location location, PlayerInteractEvent event) {
-        // Check if the blocks around the clicked block form a 3x3x1 of oak wood
+
         int size = 3;
+        boolean isCenter = false;
+
         int halfSize = size / 2;
         for (int point_x = -1 * halfSize; point_x <= halfSize; point_x++) {
             for (int point_z = -1 * halfSize; point_z <= halfSize; point_z++) {
+                isCenter = true;
                 for (int x = -1 * halfSize + point_x; halfSize + x <= 1; x++) {
                     for (int z = -1 * halfSize + point_z; halfSize + z <= 1; z++) {
-                        if (location.clone().add(x, 0, z).getBlock().getType() == Material.OAK_PLANKS) {
-                            Player player = event.getPlayer();
-                            player.sendMessage("You opened GUI!");
-                            return true;
+                        if (location.clone().add(x, 0, z).getBlock().getType() != Material.OAK_PLANKS) {
+                            isCenter = false;
                         }
+                        ;
                     }
+                }
+                if (isCenter) {
+                    Player player = event.getPlayer();
+                    player.sendMessage("You opened GUI!");
+                    return true;
                 }
             }
         }
