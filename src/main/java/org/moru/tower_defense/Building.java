@@ -56,7 +56,7 @@ public class Building implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
             if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                    if (isCenterOf3x3(event.getClickedBlock().getLocation())) {
+                    if (isCenterOf3x3(event.getClickedBlock().getLocation(), event)) {
                         Player player = event.getPlayer();
                         player.sendMessage("You clicked the center of a 3x3 oak wood!3");
 
@@ -83,16 +83,24 @@ public class Building implements Listener {
         }
     }
 
-private boolean isCenterOf3x3(Location location) {
+    private boolean isCenterOf3x3(Location location, PlayerInteractEvent event) {
         // Check if the blocks around the clicked block form a 3x3x1 of oak wood
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
-                if (location.clone().add(x, 0, z).getBlock().getType() != Material.OAK_PLANKS) {
-                    return false;
+        int size = 3;
+        int halfSize = size / 2;
+        for (int point_x = -1 * halfSize; point_x <= halfSize; point_x++) {
+            for (int point_z = -1 * halfSize; point_z <= halfSize; point_z++) {
+                for (int x = -1 * halfSize + point_x; halfSize + x <= 1; x++) {
+                    for (int z = -1 * halfSize + point_z; halfSize + z <= 1; z++) {
+                        if (location.clone().add(x, 0, z).getBlock().getType() == Material.OAK_PLANKS) {
+                            Player player = event.getPlayer();
+                            player.sendMessage("You opened GUI!");
+                            return true;
+                        }
+                    }
                 }
             }
         }
-        return true;
+        return false;
     }
 
     private void summonStructure(Location location) {
