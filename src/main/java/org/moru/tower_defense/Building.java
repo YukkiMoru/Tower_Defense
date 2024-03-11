@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Building implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
@@ -56,44 +57,35 @@ public class Building implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
             if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                    if (isCenterOf3x3(event.getClickedBlock().getLocation())) {
+                    Platform_Manager platformManager = new Platform_Manager();
+                    if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.OAK_PLANKS, event)) {
                         Player player = event.getPlayer();
                         player.sendMessage("You clicked the center of a 3x3 oak wood!3");
 
-                        // Run code to summon the structure
-                        summonStructure(event.getClickedBlock().getLocation());
-
-                        // Create and set up the tower
-                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
-                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
-                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
-                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
-                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
-                        towers.add(tower);
-
-                        // Apply cooldown
-                        setCooldown();
-
-                        // Cancel the event to prevent it from triggering again before the cooldown is applied
-                        event.setCancelled(true);
+//                        // Run code to summon the structure
+//                        summonStructure(event.getClickedBlock().getLocation());
+//
+//                        // Create and set up the tower
+//                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
+//                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
+//                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
+//                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
+//                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
+//                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
+//                        towers.add(tower);
+//
+//                        // Apply cooldown
+//                        setCooldown();
+//
+//                        // Cancel the event to prevent it from triggering again before the cooldown is applied
+//                        event.setCancelled(true);
                     }
                 }
             }
         }
     }
 
-private boolean isCenterOf3x3(Location location) {
-        // Check if the blocks around the clicked block form a 3x3x1 of oak wood
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
-                if (location.clone().add(x, 0, z).getBlock().getType() != Material.OAK_PLANKS) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+
 
     private void summonStructure(Location location) {
         File schematic = new File("plugins/WorldEdit/schematics/test_tower.schem");
