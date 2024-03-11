@@ -43,10 +43,10 @@ jobs:
           # systemctl stop minecraft-server
 
           # Replace old PaperMC JAR with the new one
-          cp $JAR_NAME Tower_Defense_Server/
+          cp $JAR_NAME Server/
 
           # Move to the server directory
-          cd Tower_Defense_Server/
+          cd Server/
 
           # Update start.bat with the new JAR filename
           sed -i "s/java.exe -Xms8G -Xmx8G -jar paper-[0-9.]*-[0-9]*.jar/java.exe -Xms8G -Xmx8G -jar $JAR_NAME/" start.bat
