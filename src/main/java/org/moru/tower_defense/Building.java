@@ -89,23 +89,23 @@ public class Building implements Listener {
 
         Material material = Material.OAK_PLANKS;
 
-        int top = 0;
-        int bottom = 0;
-        int left = 0;
-        int right = 0;
-        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z + 1 + top)) != null &&
+        int top = 0; // z+
+        int bottom = 0; // z-
+        int left = 0; // x-
+        int right = 0; // x+
+        while (
                 location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z + 1 + top)).getType() == material) {
             top++;
         }
-        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z - 1 + bottom)) != null &&
+        while (
                 location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z - 1 + bottom)).getType() == material) {
             bottom--;
         }
-        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x - 1 + left, location.getY(), z)) != null &&
+        while (
                 location.getWorld().getBlockAt(new Location(location.getWorld(), x - 1 + left, location.getY(), z)).getType() == material) {
             left--;
         }
-        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x + 1 + right, location.getY(), z)) != null &&
+        while (
                 location.getWorld().getBlockAt(new Location(location.getWorld(), x + 1 + right, location.getY(), z)).getType() == material) {
             right++;
         }
