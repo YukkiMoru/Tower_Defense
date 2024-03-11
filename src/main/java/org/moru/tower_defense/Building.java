@@ -84,48 +84,71 @@ public class Building implements Listener {
     }
 
     private boolean isPartOf3x3(Location location, PlayerInteractEvent event) {
+        //クリックされた場所の座標
         double x = location.getX();
         double z = location.getZ();
 
+        //ブロックの種類
         Material material = Material.OAK_PLANKS;
 
-        int top = 0; // z+
-        int bottom = 0; // z-
-        int left = 0; // x-
-        int right = 0; // x+
+        //東西南北
+        int west = 0;
+        int east = 0;
+        int south = 0;
+        int north = 0;
+
+        //東西南北のブロックの数を数える
         while (
-                location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z + 1 + top)).getType() == material) {
-            top++;
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x - 1 + west, location.getY(), z)).getType() == material) {
+            west--;
         }
         while (
-                location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z - 1 + bottom)).getType() == material) {
-            bottom--;
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x + 1 + east, location.getY(), z)).getType() == material) {
+            east++;
         }
         while (
-                location.getWorld().getBlockAt(new Location(location.getWorld(), x - 1 + left, location.getY(), z)).getType() == material) {
-            left--;
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z + 1 + south)).getType() == material) {
+            south++;
         }
         while (
-                location.getWorld().getBlockAt(new Location(location.getWorld(), x + 1 + right, location.getY(), z)).getType() == material) {
-            right++;
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z - 1 + north)).getType() == material) {
+            north--;
         }
+
 
         Player player = event.getPlayer();
-        player.sendMessage("Top: " + top);
-        player.sendMessage("Bottom: " + bottom);
-        player.sendMessage("Left: " + left);
-        player.sendMessage("Right: " + right);
+        player.sendMessage("West: " + -west);
+        player.sendMessage("East: " + east);
+        player.sendMessage("South: " + south);
+        player.sendMessage("North: " + -north);
 
-        int distanceX = right - left + 1;
-        int distanceY = top - bottom + 1;
+        int distanceX = east - west + 1;
+        int distanceY = south - north + 1;
         player.sendMessage("DistanceX: " + distanceX);
         player.sendMessage("DistanceY: " + distanceY);
 
-        if (distanceX == 3 && distanceY == 3) {
-            return true;
-        } else {
-            return false;
+        double centerX = (east + west) / 2;
+        double centerZ = (south + north) / 2;
+
+        if (distanceX % 2 == 0) {
+            centerX += 0.5;
         }
+        if (distanceY % 2 == 0) {
+            centerZ += 0.5;
+        }
+
+        player.sendMessage("Center " + centerX + " " + (location.getY() - 1) + " " + centerZ);
+
+
+        for (int i = 0; i <= north + south; i++) {
+            for (int j = 0; j <= west + east; j++) {
+                if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
+                    return false;
+                }
+            }
+        }
+        player.sendMessage("You clicked part of " + distanceX + " * " + distanceY + " " + material + "!");
+        return true;
     }
 
 
