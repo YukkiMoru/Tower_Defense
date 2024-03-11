@@ -44,15 +44,15 @@ public class Platform_Manager {
         player.sendMessage("East: " + east);
         player.sendMessage("South: " + south);
         player.sendMessage("North: " + -north);
-        player.sendMessage("DistanceX: " + distanceX);
-        player.sendMessage("DistanceY: " + distanceY);
+        player.sendMessage("Platform_Size_X: " + distanceX);
+        player.sendMessage("Platform_Size_Y: " + distanceY);
         if (distanceX % 2 == 0) {
             centerX += 0.5;
         }
         if (distanceY % 2 == 0) {
             centerZ += 0.5;
         }
-        player.sendMessage("Center " + centerX + " " + (location.getY() - 1) + " " + centerZ);
+        player.sendMessage("Center " + centerX + " " + (location.getY()) + " " + centerZ);
         player.sendMessage("You clicked part of " + distanceX + " * " + distanceY + " " + material + "!");
 
         //プラットフォームの判定
