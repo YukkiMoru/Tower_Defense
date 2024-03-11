@@ -16,9 +16,8 @@ public class TD_Command implements CommandExecutor {
                 if (args[0].equals("kill")) {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[type=!minecraft:player]");
                 }
-                player.sendMessage("TD command executed with argument: " + args[0]);
             } else {
-                player.sendMessage("TD command executed without arguments!");
+                player.sendMessage("Usage: /td <kill>");
             }
             return true;
         }
