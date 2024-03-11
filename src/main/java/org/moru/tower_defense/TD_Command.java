@@ -1,9 +1,11 @@
 package org.moru.tower_defense;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 
 public class TD_Command implements CommandExecutor {
     @Override
@@ -11,6 +13,9 @@ public class TD_Command implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length > 0) {
+                if (args[0].equals("kill")) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[type=!minecraft:player]");
+                }
                 player.sendMessage("TD command executed with argument: " + args[0]);
             } else {
                 player.sendMessage("TD command executed without arguments!");
