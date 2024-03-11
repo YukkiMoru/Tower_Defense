@@ -13,14 +13,20 @@ public class TD_Command implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length > 0) {
-                if (args[0].equals("kill")) {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[type=!minecraft:player]");
-                }
+                ExecuteCommand(args, "kill", "kill @e[type=!player]");
+
             } else {
                 player.sendMessage("Usage: /td <kill>");
             }
             return true;
         }
         return false;
+    }
+
+    private Void ExecuteCommand(String[] args, String command, String Execute_Command) {
+        if (args[0].equals(command)) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), Execute_Command);
+        }
+        return null;
     }
 }
