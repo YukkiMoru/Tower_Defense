@@ -13,6 +13,7 @@ public class TD_Command implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length > 0) {
+                // /td <command> → Execute_Commandが実行される
                 ExecuteCommand(args, "kill", "kill @e[type=!player]");
 
             } else {
