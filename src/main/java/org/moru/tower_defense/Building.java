@@ -56,59 +56,78 @@ public class Building implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
             if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                    if (isCenterOf3x3(event.getClickedBlock().getLocation(), event)) {
+                    if (isPartOf3x3(event.getClickedBlock().getLocation(), event)) {
                         Player player = event.getPlayer();
                         player.sendMessage("You clicked the center of a 3x3 oak wood!3");
 
-                        // Run code to summon the structure
-                        summonStructure(event.getClickedBlock().getLocation());
-
-                        // Create and set up the tower
-                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
-                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
-                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
-                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
-                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
-                        towers.add(tower);
-
-                        // Apply cooldown
-                        setCooldown();
-
-                        // Cancel the event to prevent it from triggering again before the cooldown is applied
-                        event.setCancelled(true);
+//                        // Run code to summon the structure
+//                        summonStructure(event.getClickedBlock().getLocation());
+//
+//                        // Create and set up the tower
+//                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
+//                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
+//                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
+//                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
+//                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
+//                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
+//                        towers.add(tower);
+//
+//                        // Apply cooldown
+//                        setCooldown();
+//
+//                        // Cancel the event to prevent it from triggering again before the cooldown is applied
+//                        event.setCancelled(true);
                     }
                 }
             }
         }
     }
 
-    private boolean isCenterOf3x3(Location location, PlayerInteractEvent event) {
+    private boolean isPartOf3x3(Location location, PlayerInteractEvent event) {
+        double x = location.getX();
+        double z = location.getZ();
 
-        int size = 3;
-        boolean isCenter = false;
+        Material material = Material.OAK_PLANKS;
 
-        int halfSize = size / 2;
-        for (int point_x = -1 * halfSize; point_x <= halfSize; point_x++) {
-            for (int point_z = -1 * halfSize; point_z <= halfSize; point_z++) {
-                isCenter = true;
-                for (int x = -1 * halfSize + point_x; halfSize + x <= 1; x++) {
-                    for (int z = -1 * halfSize + point_z; halfSize + z <= 1; z++) {
-                        if (location.clone().add(x, 0, z).getBlock().getType() != Material.OAK_PLANKS) {
-                            isCenter = false;
-                        }
-                        ;
-                    }
-                }
-                if (isCenter) {
-                    Player player = event.getPlayer();
-                    player.sendMessage("You opened GUI!");
-                    return true;
-                }
-            }
+        int top = 0;
+        int bottom = 0;
+        int left = 0;
+        int right = 0;
+        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z + 1 + top)) != null &&
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z + 1 + top)).getType() == material) {
+            top++;
         }
-        return false;
+        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z - 1 + bottom)) != null &&
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x, location.getY(), z - 1 + bottom)).getType() == material) {
+            bottom--;
+        }
+        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x - 1 + left, location.getY(), z)) != null &&
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x - 1 + left, location.getY(), z)).getType() == material) {
+            left--;
+        }
+        while (location.getWorld().getBlockAt(new Location(location.getWorld(), x + 1 + right, location.getY(), z)) != null &&
+                location.getWorld().getBlockAt(new Location(location.getWorld(), x + 1 + right, location.getY(), z)).getType() == material) {
+            right++;
+        }
+
+        Player player = event.getPlayer();
+        player.sendMessage("Top: " + top);
+        player.sendMessage("Bottom: " + bottom);
+        player.sendMessage("Left: " + left);
+        player.sendMessage("Right: " + right);
+
+        int distanceX = right - left + 1;
+        int distanceY = top - bottom + 1;
+        player.sendMessage("DistanceX: " + distanceX);
+        player.sendMessage("DistanceY: " + distanceY);
+
+        if (distanceX == 3 && distanceY == 3) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
 
     private void summonStructure(Location location) {
         File schematic = new File("plugins/WorldEdit/schematics/test_tower.schem");
