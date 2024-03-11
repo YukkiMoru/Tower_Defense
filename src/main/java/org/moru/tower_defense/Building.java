@@ -54,10 +54,12 @@ public class Building implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
+        // 新しいクラスを作成
+        Platform_Manager platformManager = new Platform_Manager();
+
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
             if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                    Platform_Manager platformManager = new Platform_Manager();
                     if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.OAK_PLANKS, event)) {
                         Player player = event.getPlayer();
                         player.sendMessage("You clicked the center of a 3x3 oak wood!3");
