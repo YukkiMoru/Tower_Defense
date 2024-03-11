@@ -53,7 +53,20 @@ public class Platform_Manager {
             centerZ += 0.5;
         }
         player.sendMessage("Center " + centerX + " " + (location.getY()) + " " + centerZ);
-        player.sendMessage("You clicked part of " + distanceX + " * " + distanceY + " " + material + "!");
+        boolean IsPlatformFilled = true;
+        for (int i = 0; i <= north + south; i++) {
+            for (int j = 0; j <= west + east; j++) {
+                if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
+                    IsPlatformFilled = false;
+                }
+            }
+        }
+        if (IsPlatformFilled) {
+            player.sendMessage("You clicked part of " + distanceX + " * " + distanceY + " " + material + "!");
+        } else {
+            player.sendMessage("This Platform is not filled with " + material + "!");
+        }
+
 
         //プラットフォームの判定
         if (distanceX == sizeX && distanceY == sizeZ) {
