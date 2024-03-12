@@ -1,0 +1,9 @@
+
+blocks:
+  motion:
+    forward: "minecraft:stone"
+  directions: # move mobs in the direction of the block
+    east: "minecraft:stone"
+    west: "minecraft:stone"
+    south: "minecraft:stone"
+    north: "minecraft:stone"

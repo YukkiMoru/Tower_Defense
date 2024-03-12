@@ -16,6 +16,9 @@ public final class Tower_Defense extends JavaPlugin {
         // TD_Commandの起動
         getCommand("td").setExecutor(new TD_Command());
 
+        // configの起動
+        Config configInstance = new Config(this);
+
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
     }
