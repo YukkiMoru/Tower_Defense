@@ -57,6 +57,11 @@ public class TD_Command implements CommandExecutor , TabCompleter{
         }
     }
 
+    public void ExecuteSqlShow(String[] args){
+        //show sql data
+
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (sender instanceof Player) {
