@@ -42,6 +42,21 @@ public class TD_Command implements CommandExecutor , TabCompleter{
         return null;
     }
 
+    private void ExecuteDebug(String[] args, Player player) {
+        Platform_Manager platformManager = Platform_Manager.getInstance();
+        if (args[1].equalsIgnoreCase("true")) {
+            // Enable debug mode
+            platformManager.setDebugMode(true);
+            player.sendMessage("デバッグモードが起動しました");
+        } else if (args[1].equalsIgnoreCase("false")) {
+            // Disable debug mode
+            platformManager.setDebugMode(false);
+            player.sendMessage("デバッグモードが停止しました");
+        } else {
+            player.sendMessage("デバッグモードでは無効な引数です。trueまたはfalseを使ってください。");
+        }
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (sender instanceof Player) {
@@ -62,20 +77,5 @@ public class TD_Command implements CommandExecutor , TabCompleter{
             }
         }
         return null;
-    }
-
-    private void ExecuteDebug(String[] args, Player player) {
-        Platform_Manager platformManager = Platform_Manager.getInstance();
-        if (args[1].equalsIgnoreCase("true")) {
-            // Enable debug mode
-            platformManager.setDebugMode(true);
-            player.sendMessage("デバッグモードが起動しました");
-        } else if (args[1].equalsIgnoreCase("false")) {
-            // Disable debug mode
-            platformManager.setDebugMode(false);
-            player.sendMessage("デバッグモードが停止しました");
-        } else {
-            player.sendMessage("デバッグモードでは無効な引数です。trueまたはfalseを使ってください。");
-        }
     }
 }
