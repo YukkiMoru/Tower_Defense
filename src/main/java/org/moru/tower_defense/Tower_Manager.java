@@ -1,20 +1,35 @@
 package org.moru.tower_defense;
 
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class Tower_Manager {
-    private Map<Integer, Tower_Data> towerDataMap;
 
-    public Tower_Manager() {
-        this.towerDataMap = new HashMap<>();
+
+    // データを保存するHashMap
+    private HashMap<String, TowerData> towerDataMap = new HashMap<>();
+
+    // タワーデータのクラス
+    private class TowerData {
+        String location;
+        String type;
+        int level;
+
+        public TowerData(String location, String type, int level) {
+            this.location = location;
+            this.type = type;
+            this.level = level;
+        }
     }
 
-    public Map<Integer, Tower_Data> getTowerDataMap() {
-        return towerDataMap;
+    // タワーデータを追加するメソッド
+    public void addTowerData(String towerName, String location, String type, int level) {
+        TowerData towerData = new TowerData(location, type, level);
+        towerDataMap.put(towerName, towerData);
     }
 
-    public void addTowerData(int id, Tower_Data towerData) {
-        towerDataMap.put(id, towerData);
+    // タワーデータを取得するメソッド
+    public TowerData getTowerData(String towerName) {
+        return towerDataMap.get(towerName);
     }
 }

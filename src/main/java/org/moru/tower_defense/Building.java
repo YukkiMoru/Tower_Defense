@@ -55,7 +55,7 @@ public class Building implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         // 新しいクラスを作成
-        Platform_Manager platformManager = new Platform_Manager();
+        Platform_Manager platformManager = Platform_Manager.getInstance();
 
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
             if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
