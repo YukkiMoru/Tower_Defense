@@ -6,6 +6,23 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class Platform_Manager {
+
+    private static Platform_Manager instance = null;
+    private boolean debugMode = false; // デバッグモードのフラグ
+
+    private Platform_Manager() {
+    }
+
+    public static Platform_Manager getInstance() {
+        if (instance == null) {
+            instance = new Platform_Manager();
+        }
+        return instance;
+    }
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
+    }
     public boolean Platform(Location location, int sizeX, int sizeZ, Material material, PlayerInteractEvent event) {
         //クリックされた場所の座標
         int x = (int) location.getX();
@@ -33,17 +50,17 @@ public class Platform_Manager {
         int EdgeX = x + west;
         int EdgeZ = z + north;
 
-        //デバッグゾーン
-        Player player = event.getPlayer();
-        player.sendMessage("West: " + -west);
-        player.sendMessage("East: " + east);
-        player.sendMessage("South: " + south);
-        player.sendMessage("North: " + -north);
-        player.sendMessage("Platform_Size_X: " + PlatformX);
-        player.sendMessage("Platform_Size_Y: " + PlatformY);
-        player.sendMessage("EdgeX: " + EdgeX + ", EdgeZ: " + EdgeZ);
-        player.sendMessage("Clicked " + (location.getX()) + " " + (location.getY()) + " " + (location.getZ()));
-
+        if (debugMode) {
+            Player player = event.getPlayer();
+            player.sendMessage("West: " + -west);
+            player.sendMessage("East: " + east);
+            player.sendMessage("South: " + south);
+            player.sendMessage("North: " + -north);
+            player.sendMessage("Platform_Size_X: " + PlatformX);
+            player.sendMessage("Platform_Size_Y: " + PlatformY);
+            player.sendMessage("EdgeX: " + EdgeX + ", EdgeZ: " + EdgeZ);
+            player.sendMessage("Clicked " + (location.getX()) + " " + (location.getY()) + " " + (location.getZ()));
+        }
 
 //        player.sendMessage("Center " + centerX + " " + (location.getY()) + " " + centerZ);
 //        boolean IsPlatformFilled = true;
