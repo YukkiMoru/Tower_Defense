@@ -2,41 +2,72 @@ package org.moru.tower_defense;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Arrays;
 
-public class Tower_GUI {
+public class Tower_GUI implements Listener {
+    private final Inventory gui;
 
-    public void openGUI(Player player) {
+    public Tower_GUI() {
         // Create a new inventory with 9 slots
-        Inventory gui = Bukkit.createInventory(null, 9, "Tower Defense GUI");
+        gui = Bukkit.createInventory(null, 9, "Tower Defense GUI");
 
-        // Create a new item stack of dirt
-        ItemStack item = new ItemStack(Material.DIRT, 1);
+        // Initialize the items in the inventory
+        initializeItems();
+    }
 
-        // Get the item's metadata
-        ItemMeta meta = item.getItemMeta();
+    private void initializeItems() {
+        gui.addItem(createGuiItem(Material.DIRT, "Example Item", "§aFirst line of the lore", "§bSecond line of the lore"));
+    }
+
+    private ItemStack createGuiItem(final Material material, final String name, final String... lore) {
+        final ItemStack item = new ItemStack(material, 1);
+        final ItemMeta meta = item.getItemMeta();
 
         // Set the item's name
-        meta.setDisplayName("Example Item");
+        meta.setDisplayName(name);
 
-        // Apply the updated meta to the item
+        // Set the item's lore
+        meta.setLore(Arrays.asList(lore));
+
         item.setItemMeta(meta);
 
-        // Add the item to the GUI
-        gui.addItem(item);
-
-        // Open the GUI for the player
-        player.openInventory(gui);
+        return item;
     }
+
+    public void openGUI(final HumanEntity ent) {
+        ent.openInventory(gui);
+    }
+
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getView().getTitle().equals("Tower Defense GUI")) {
+    public void onInventoryClick(final InventoryClickEvent event) {
+        if (!event.getInventory().equals(gui)) return;
+
+        event.setCancelled(true);
+
+        final ItemStack clickedItem = event.getCurrentItem();
+
+        // verify current item is not null
+        if (clickedItem == null || clickedItem.getType().isAir()) return;
+
+        final Player p = (Player) event.getWhoClicked();
+
+        // Using slots click is a best option for your inventory click's
+        p.sendMessage("You clicked at slot " + event.getRawSlot());
+    }
+
+    @EventHandler
+    public void onInventoryDrag(final InventoryDragEvent event) {
+        if (event.getInventory().equals(gui)) {
             event.setCancelled(true);
         }
     }
