@@ -5,5 +5,5 @@ api-version: '1.20'
 commands:
   towerdefense:
     description: Controls the Tower Defense plugin
-    usage: /<command> <mob_motion> <start|stop>
+    usage: /<command>
     aliases: [td]
