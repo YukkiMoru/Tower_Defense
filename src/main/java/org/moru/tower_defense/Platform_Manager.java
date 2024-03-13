@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class Platform_Manager {
 
     private static Platform_Manager instance = null;
-    private boolean debugMode = false; // デバッグモードのフラグ
+    private boolean debugMode = true; // デバッグモードのフラグ
 
     private Platform_Manager() {
     }
