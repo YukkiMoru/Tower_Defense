@@ -44,7 +44,7 @@ public class Platform_Manager {
 
         //東西南北のブロックの数を数える
         int PlatformX = east - west + 1;
-        int PlatformY = south - north + 1;
+        int PlatformZ = south - north + 1;
 
         //Edge座標
         int EdgeX = x + west;
@@ -57,7 +57,7 @@ public class Platform_Manager {
             player.sendMessage("South: " + south);
             player.sendMessage("North: " + -north);
             player.sendMessage("Platform_Size_X: " + PlatformX);
-            player.sendMessage("Platform_Size_Y: " + PlatformY);
+            player.sendMessage("Platform_Size_Z: " + PlatformZ);
             player.sendMessage("EdgeX: " + EdgeX + ", EdgeZ: " + EdgeZ);
             player.sendMessage("Clicked " + (location.getX()) + " " + (location.getY()) + " " + (location.getZ()));
         }
@@ -78,18 +78,18 @@ public class Platform_Manager {
 //        }
 //
 //
-//        //プラットフォームの判定
-//        if (distanceX == sizeX && distanceY == sizeZ) {
-//            for (int i = 0; i <= north + south; i++) {
-//                for (int j = 0; j <= west + east; j++) {
-//                    if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
-//                        return false;
-//                    }
-//                }
-//            }
-//        } else {
-//            return false;
-//        }
-        return false;
+        //プラットフォームの判定
+        if (PlatformX == sizeX && PlatformZ == sizeZ) {
+            for (int i = 0; i <= sizeX; i++) {
+                for (int j = 0; j <= sizeZ; j++) {
+                    if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
+                        return false;
+                    }
+                }
+            }
+        } else {
+            return false;
+        }
+        return true;
     }
 }
