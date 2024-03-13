@@ -27,8 +27,6 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                     }
                 }
 
-            } else {
-                player.sendMessage("Usage: /td <kill>");
             }
             return true;
         }
@@ -54,6 +52,14 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                 list.add("kill");
                 return list;
             }
+            if(args.length == 2 && args[0].equals("debug")){
+                if(args[0].equals("debug")){
+                    List<String> list = new ArrayList<>();
+                    list.add("true");
+                    list.add("false");
+                    return list;
+                }
+            }
         }
         return null;
     }
@@ -63,13 +69,13 @@ public class TD_Command implements CommandExecutor , TabCompleter{
         if (args[1].equalsIgnoreCase("true")) {
             // Enable debug mode
             platformManager.setDebugMode(true);
-            player.sendMessage("Debug mode enabled");
+            player.sendMessage("デバッグモードが起動しました");
         } else if (args[1].equalsIgnoreCase("false")) {
             // Disable debug mode
             platformManager.setDebugMode(false);
-            player.sendMessage("Debug mode disabled");
+            player.sendMessage("デバッグモードが停止しました");
         } else {
-            player.sendMessage("Invalid argument for debug mode, use true or false");
+            player.sendMessage("デバッグモードでは無効な引数です。trueまたはfalseを使ってください。");
         }
     }
 }
