@@ -92,8 +92,4 @@ public class Platform_Manager {
 //        }
         return false;
     }
-
-    public void DebugZone(Location location, int sizeX, int sizeZ, Material material, PlayerInteractEvent event) {
-        // デバッグゾーンのコードをここに移動...
-    }
 }
