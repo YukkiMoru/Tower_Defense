@@ -15,6 +15,10 @@ public class SQLite {
         }
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
     public void disconnect() {
         try {
             if (connection != null && !connection.isClosed()) {

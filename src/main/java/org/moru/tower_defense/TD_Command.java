@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TD_Command implements CommandExecutor , TabCompleter{
-
+    public Tower_Manager towerManager = new Tower_Manager();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -27,6 +27,13 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                     }
                 }
 
+                if (args[0].equals("show")) {
+                    if (args.length > 1) {
+                        ExecuteSqlShow(args, player);
+                    } else {
+                        player.sendMessage("Usage: /td <show>");
+                    }
+                }
             }
             return true;
         }
@@ -57,9 +64,17 @@ public class TD_Command implements CommandExecutor , TabCompleter{
         }
     }
 
-    public void ExecuteSqlShow(String[] args){
+    public void ExecuteSqlShow(String[] args, Player player){
         //show sql data
-
+        Tower_Manager.TowerData towerData = towerManager.getTowerData(args[1]);
+        if (towerData != null) {
+            player.sendMessage("Tower Name: " + args[1]);
+            player.sendMessage("Location: " + towerData.getLocation());
+            player.sendMessage("Type: " + towerData.getType());
+            player.sendMessage("Level: " + towerData.getLevel());
+        } else {
+            player.sendMessage("No data found for tower: " + args[1]);
+        }
     }
 
     @Override
