@@ -26,7 +26,7 @@ public class TD_Command implements CommandExecutor {
                     }
                 }
 
-                ExecuteGUI(args, player);
+//                ExecuteGUI(args, player);
 
             } else {
                 player.sendMessage("Usage: /td <kill>");
@@ -56,11 +56,11 @@ public class TD_Command implements CommandExecutor {
         platformManager.setDebugMode(debug);
     }
 
-    private void ExecuteGUI(String[] args, Player player) {
-        if (args[0].equals("gui")) {
-            //GUIを開く
-            Tower_GUI towerGUI = new Tower_GUI();
-            towerGUI.openGUI(player);
-        }
-    }
+//    private void ExecuteGUI(String[] args, Player player) {
+//        if (args[0].equals("gui")) {
+//            //GUIを開く
+//            Tower_GUI towerGUI = new Tower_GUI();
+//            towerGUI.openGUI(player);
+//        }
+//    }
 }

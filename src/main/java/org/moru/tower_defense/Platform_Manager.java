@@ -1,9 +1,13 @@
 package org.moru.tower_defense;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Platform_Manager {
 
@@ -60,6 +64,28 @@ public class Platform_Manager {
             player.sendMessage("Platform_Size_Z: " + PlatformZ);
             player.sendMessage("EdgeX: " + EdgeX + ", EdgeZ: " + EdgeZ);
             player.sendMessage("Clicked " + (location.getX()) + " " + (location.getY()) + " " + (location.getZ()));
+
+            // Create a new inventory with 9 slots and a custom name
+            Inventory gui = Bukkit.createInventory(null, 9, "Custom GUI");
+
+            // Create a new item stack of diamonds
+            ItemStack diamonds = new ItemStack(Material.DIAMOND, 1);
+
+            // Create a new item meta
+            ItemMeta meta = diamonds.getItemMeta();
+
+            // Set the name of the item
+            meta.setDisplayName("Click me!");
+
+            // Apply the meta to the item
+            diamonds.setItemMeta(meta);
+
+            // Add the item to the inventory
+            gui.setItem(0, diamonds);
+
+            // Show the player the inventory
+            player.openInventory(gui);
+
         }
 
 //        player.sendMessage("Center " + centerX + " " + (location.getY()) + " " + centerZ);
