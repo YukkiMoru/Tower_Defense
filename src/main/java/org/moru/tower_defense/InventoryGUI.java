@@ -9,24 +9,21 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class InventoryGUI {
 
     public static Inventory TowerGUI() {
-        // Create a new inventory with 9 slots and a custom name
-        Inventory gui_test = Bukkit.createInventory(null, 9, "TowerGUI");
-
-        // Create a new item stack of diamonds
-        ItemStack diamonds = new ItemStack(Material.DIAMOND, 1);
-
-        // Create a new item meta
-        ItemMeta meta = diamonds.getItemMeta();
-
-        // Set the name of the item
-        meta.setDisplayName("Click me!");
-
-        // Apply the meta to the item
-        diamonds.setItemMeta(meta);
-
-        // Add the item to the inventory
+        Inventory gui_test = createInventory("TowerGUI", 27);
+        ItemStack diamonds = createItem(Material.DIAMOND, 1, "Click me!");
         gui_test.setItem(0, diamonds);
-
         return gui_test;
+    }
+
+    private static Inventory createInventory(String name, int size) {
+        return Bukkit.createInventory(null, size, name);
+    }
+
+    private static ItemStack createItem(Material material, int amount, String displayName) {
+        ItemStack item = new ItemStack(material, amount);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(displayName);
+        item.setItemMeta(meta);
+        return item;
     }
 }
