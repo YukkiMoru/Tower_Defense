@@ -14,6 +14,8 @@ import java.util.List;
 public class TD_Command implements CommandExecutor , TabCompleter{
     public Tower_Manager towerManager = new Tower_Manager();
     private Platform_Manager platformManager = Platform_Manager.getInstance();
+    private GUI_Manager guiManager = new GUI_Manager();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -33,11 +35,36 @@ public class TD_Command implements CommandExecutor , TabCompleter{
 
                 //GUI
                 if (args[0].equals("gui")) {
-                    if (args.length > 1 && args[1].equals("TowerGUI")) {
-                        Inventory gui = InventoryGUI.TowerGUI();
-                        player.openInventory(gui);
+                    if (args.length > 1) {
+                        if (args[1].equals("create")) {
+                            if (args.length == 4) {
+                                String name = args[2];
+                                int size = Integer.parseInt(args[3]);
+                                String title = args[4];
+                                // Call the createAndSaveGui method of the GUI_Manager class
+                                guiManager.createAndSaveGui(name, size, title);
+                            } else {
+                                player.sendMessage("Usage: /td gui create <name> <size> <title>");
+                            }
+                        } else if (args[1].equals("show")) {
+                            if (args.length == 2) {
+                                String name = args[2];
+                                // Call the showGui method of the GUI_Manager class
+                                guiManager.showGui(name, player);
+                            } else {
+                                player.sendMessage("Usage: /td gui show <name>");
+                            }
+                        } else if (args[1].equals("remove")) {
+                            if (args.length == 2) {
+                                String name = args[2];
+                                // Call the removeGui method of the GUI_Manager class
+                                guiManager.removeGui(name);
+                            } else {
+                                player.sendMessage("Usage: /td gui remove <name>");
+                            }
+                        }
                     } else {
-                        player.sendMessage("Usage: /td <gui> <TowerGUI>");
+                        player.sendMessage("Usage: /td gui <create/show/remove>");
                     }
                 }
 
@@ -90,15 +117,19 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                 list.add("kill");
                 return list;
             }
-            if (args.length == 2 && args[0].equals("debug")) {
-                List<String> list = new ArrayList<>();
-                list.add("true");
-                list.add("false");
-                return list;
-            } else if (args.length == 2 && args[0].equals("gui")) {
-                List<String> list = new ArrayList<>();
-                list.add("TowerGUI");
-                return list;
+            if (args.length == 2) {
+                if (args[0].equals("debug")) {
+                    List<String> list = new ArrayList<>();
+                    list.add("true");
+                    list.add("false");
+                    return list;
+                } else if (args[0].equals("gui")) {
+                    List<String> list = new ArrayList<>();
+                    list.add("create");
+                    list.add("show");
+                    list.add("remove");
+                    return list;
+                }
             }
 
         }
