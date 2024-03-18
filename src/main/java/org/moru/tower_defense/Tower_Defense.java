@@ -18,12 +18,16 @@ public final class Tower_Defense extends JavaPlugin {
         // TD_Commandの起動
         getCommand("td").setExecutor(new TD_Command());
 
+        // Sqliteの起動
+        SQLite sqlite = new SQLite();
+        sqlite.connect();
+
+        //InventoryClickListenerの起動
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new InventoryClickListener(), this);
 
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
-
     }
 
     @Override

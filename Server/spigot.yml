@@ -118,12 +118,12 @@ world-settings:
     seed-mineshaft: default
     seed-stronghold: default
     entity-tracking-range:
-      players: 128
-      animals: 128
-      monsters: 128
-      misc: 128
+      players: 48
+      animals: 48
+      monsters: 48
+      misc: 32
       display: 128
-      other: 128
+      other: 64
     max-tick-time:
       tile: 50
       entity: 50

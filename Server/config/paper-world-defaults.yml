@@ -148,28 +148,28 @@ entities:
     despawn-ranges:
       ambient:
         hard: 128
-        soft: 128
+        soft: 32
       axolotls:
         hard: 128
-        soft: 128
+        soft: 32
       creature:
         hard: 128
-        soft: 128
+        soft: 32
       misc:
         hard: 128
-        soft: 128
+        soft: 32
       monster:
         hard: 128
-        soft: 128
+        soft: 32
       underground_water_creature:
         hard: 128
-        soft: 128
+        soft: 32
       water_ambient:
-        hard: 128
-        soft: 128
+        hard: 64
+        soft: 32
       water_creature:
         hard: 128
-        soft: 128
+        soft: 32
     disable-mob-spawner-spawn-egg-transformation: false
     duplicate-uuid:
       mode: SAFE_REGEN

@@ -11,8 +11,8 @@ import org.bukkit.inventory.Inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TD_Command implements CommandExecutor, TabCompleter {
-
+public class TD_Command implements CommandExecutor , TabCompleter{
+    public Tower_Manager towerManager = new Tower_Manager();
     private Platform_Manager platformManager = Platform_Manager.getInstance();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -41,6 +41,15 @@ public class TD_Command implements CommandExecutor, TabCompleter {
                     }
                 }
 
+                //sql
+                if (args[0].equals("show")) {
+                    if (args.length > 1) {
+                        ExecuteSqlShow(args, player);
+                    } else {
+                        player.sendMessage("Usage: /td <show>");
+                    }
+                }
+
             }
             return true;
         }
@@ -56,11 +65,26 @@ public class TD_Command implements CommandExecutor, TabCompleter {
         return null;
     }
 
+
+    public void ExecuteSqlShow(String[] args, Player player){
+        //show sql data
+        Tower_Manager.TowerData towerData = towerManager.getTowerData(args[1]);
+        if (towerData != null) {
+            player.sendMessage("Tower Name: " + args[1]);
+            player.sendMessage("Location: " + towerData.getLocation());
+            player.sendMessage("Type: " + towerData.getType());
+            player.sendMessage("Level: " + towerData.getLevel());
+        } else {
+            player.sendMessage("No data found for tower: " + args[1]);
+        }
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (sender instanceof Player) {
             if (args.length == 1) {
                 List<String> list = new ArrayList<>();
+                list.add("show");
                 list.add("gui");
                 list.add("debug");
                 list.add("kill");
