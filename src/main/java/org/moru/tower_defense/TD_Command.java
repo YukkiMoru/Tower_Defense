@@ -71,7 +71,12 @@ public class TD_Command implements CommandExecutor, TabCompleter {
                 list.add("true");
                 list.add("false");
                 return list;
+            } else if (args.length == 2 && args[0].equals("gui")) {
+                List<String> list = new ArrayList<>();
+                list.add("TowerGUI");
+                return list;
             }
+
         }
         return null;
     }
