@@ -67,12 +67,10 @@ public class TD_Command implements CommandExecutor, TabCompleter {
                 return list;
             }
             if (args.length == 2 && args[0].equals("debug")) {
-                if (args[0].equals("debug")) {
-                    List<String> list = new ArrayList<>();
-                    list.add("true");
-                    list.add("false");
-                    return list;
-                }
+                List<String> list = new ArrayList<>();
+                list.add("true");
+                list.add("false");
+                return list;
             }
         }
         return null;
