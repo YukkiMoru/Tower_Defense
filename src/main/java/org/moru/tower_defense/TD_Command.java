@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 
 public class TD_Command implements CommandExecutor {
@@ -15,9 +16,10 @@ public class TD_Command implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length > 0) {
-                // /td <command> → Execute_Commandが実行される
-                ExecuteCommand(args, "kill", "kill @e[type=!player]");
+                //コマンド
+                ExecuteCommand(args, "kill", "kill @e[type=!player]"); // /td <command> → Execute_Commandが実行される
 
+                //デバッグモード
                 if (args[0].equals("debug")) {
                     if (args.length > 1) {
                         ExecuteDebug(args);
@@ -26,10 +28,16 @@ public class TD_Command implements CommandExecutor {
                     }
                 }
 
-//                ExecuteGUI(args, player);
+                //GUI
+                if (args[0].equals("gui")) {
+                    if (args[1].equals("TowerGUI")) {
+                        Inventory gui = InventoryGUI.TowerGUI();
+                        player.openInventory(gui);
+                    } else {
+                        player.sendMessage("Usage: /td <gui> <TowerGUI>");
+                    }
+                }
 
-            } else {
-                player.sendMessage("Usage: /td <kill>");
             }
             return true;
         }
@@ -55,12 +63,4 @@ public class TD_Command implements CommandExecutor {
         }
         platformManager.setDebugMode(debug);
     }
-
-//    private void ExecuteGUI(String[] args, Player player) {
-//        if (args[0].equals("gui")) {
-//            //GUIを開く
-//            Tower_GUI towerGUI = new Tower_GUI();
-//            towerGUI.openGUI(player);
-//        }
-//    }
 }
