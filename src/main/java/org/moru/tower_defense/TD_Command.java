@@ -11,9 +11,6 @@ import org.bukkit.inventory.Inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TD_Command implements CommandExecutor, TabCompleter {
 
     private Platform_Manager platformManager = Platform_Manager.getInstance();
