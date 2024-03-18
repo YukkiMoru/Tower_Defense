@@ -6,27 +6,42 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TD_Command implements CommandExecutor , TabCompleter{
     public Tower_Manager towerManager = new Tower_Manager();
+    private Platform_Manager platformManager = Platform_Manager.getInstance();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length > 0) {
-                // /td <command> → Execute_Commandが実行される
-                ExecuteCommand(args, "kill", "kill @e[type=!player]");
+                //コマンド
+                ExecuteCommand(args, "kill", "kill @e[type=!player]"); // /td <command> → Execute_Commandが実行される
+
+                //デバッグモード
                 if (args[0].equals("debug")) {
                     if (args.length > 1) {
-                        ExecuteDebug(args, player);
+                        ExecuteDebug(args);
                     } else {
                         player.sendMessage("Usage: /td <debug> <true/false>");
                     }
                 }
 
+                //GUI
+                if (args[0].equals("gui")) {
+                    if (args[1].equals("TowerGUI")) {
+                        Inventory gui = InventoryGUI.TowerGUI();
+                        player.openInventory(gui);
+                    } else {
+                        player.sendMessage("Usage: /td <gui> <TowerGUI>");
+                    }
+                }
+
+                //sql
                 if (args[0].equals("show")) {
                     if (args.length > 1) {
                         ExecuteSqlShow(args, player);
@@ -34,6 +49,7 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                         player.sendMessage("Usage: /td <show>");
                     }
                 }
+
             }
             return true;
         }
@@ -49,20 +65,6 @@ public class TD_Command implements CommandExecutor , TabCompleter{
         return null;
     }
 
-    private void ExecuteDebug(String[] args, Player player) {
-        Platform_Manager platformManager = Platform_Manager.getInstance();
-        if (args[1].equalsIgnoreCase("true")) {
-            // Enable debug mode
-            platformManager.setDebugMode(true);
-            player.sendMessage("デバッグモードが起動しました");
-        } else if (args[1].equalsIgnoreCase("false")) {
-            // Disable debug mode
-            platformManager.setDebugMode(false);
-            player.sendMessage("デバッグモードが停止しました");
-        } else {
-            player.sendMessage("デバッグモードでは無効な引数です。trueまたはfalseを使ってください。");
-        }
-    }
 
     public void ExecuteSqlShow(String[] args, Player player){
         //show sql data
@@ -83,19 +85,29 @@ public class TD_Command implements CommandExecutor , TabCompleter{
             if (args.length == 1) {
                 List<String> list = new ArrayList<>();
                 list.add("show");
+                list.add("gui");
                 list.add("debug");
                 list.add("kill");
                 return list;
             }
-            if(args.length == 2 && args[0].equals("debug")){
-                if(args[0].equals("debug")){
-                    List<String> list = new ArrayList<>();
-                    list.add("true");
-                    list.add("false");
-                    return list;
-                }
+            if (args.length == 2 && args[0].equals("debug")) {
+                List<String> list = new ArrayList<>();
+                list.add("true");
+                list.add("false");
+                return list;
             }
         }
         return null;
+    }
+
+    private void ExecuteDebug(String[] args) {
+        boolean debug = false;
+        if (args[1].equals("true")) {
+            debug = true;
+        }
+        if (args[1].equals("false")) {
+            debug = false;
+        }
+        platformManager.setDebugMode(debug);
     }
 }
