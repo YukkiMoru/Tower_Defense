@@ -64,7 +64,7 @@ public class TD_Command implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             if (args.length == 1) {
                 List<String> list = new ArrayList<>();
-                list.add("show");
+                list.add("gui");
                 list.add("debug");
                 list.add("kill");
                 return list;
