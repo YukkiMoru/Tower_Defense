@@ -9,6 +9,11 @@ public final class Tower_Defense extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // GUI_Manager.javaのCreateDirectoryの起動
+        guiManager.CreateDirectory();
+
+
+
         // mob_motionの起動
         getServer().getPluginManager().registerEvents(new Mob_Listener(this), this);
 

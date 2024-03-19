@@ -1,6 +1,7 @@
 package org.moru.tower_defense;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -22,11 +23,18 @@ public class InventoryCloseListener implements Listener {
         this.guiManager = guiManager;
     }
 
+
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        LOGGER.log(Level.INFO, "onInventoryClose called");
+        Player player = (Player) event.getPlayer();
         Inventory closedInventory = event.getInventory();
-        if (closedInventory.equals(guiManager.getGui())) { // Check if the closed inventory is the GUI we created
+        LOGGER.log(Level.INFO, "Closed inventory: " + closedInventory);
+        LOGGER.log(Level.INFO, "GUI: " + guiManager.getGui(player));
+        LOGGER.log(Level.INFO, "closedInventory: " + closedInventory);
+        LOGGER.log(Level.INFO, "(guiManager.getGui(player)): " + (guiManager.getGui(player)));
+        LOGGER.log(Level.INFO, "closedInventory.equals(guiManager.getGui(player)):" + closedInventory.equals(guiManager.getGui(player)));
+        if (closedInventory.equals(guiManager.getGui(player))) {
+            LOGGER.log(Level.INFO, "Closed inventory is the GUI we created");
             Yaml yaml = new Yaml();
             GUI_Manager.GuiData guiData = guiManager.createGuiData(closedInventory.getSize(), Arrays.asList(closedInventory.getContents()));
             try (FileWriter writer = new FileWriter("plugins/Tower_Defense/guis/" + guiData.getName() + ".yml")) {
