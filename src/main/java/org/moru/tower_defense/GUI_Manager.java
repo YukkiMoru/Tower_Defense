@@ -2,7 +2,11 @@ package org.moru.tower_defense;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileInputStream;
@@ -11,22 +15,32 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class GUI_Manager {
+public class GUI_Manager implements Listener {
     private static final Logger LOGGER = Bukkit.getLogger();
+    private String title;
+    private String name;
 
-    public void createAndSaveGui(String name, int size, String title) {
-        // Create a new GUI
+    public void createAndSaveGui(Player player, String name, int size, String title) {
+        this.title = title;
+        this.name = name;
         Inventory gui = Bukkit.createInventory(null, size, title);
+        player.openInventory(gui);
+    }
 
-        // Save it to a YAML file
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent event) {
+        Inventory gui = event.getInventory();
         Yaml yaml = new Yaml();
-        try (FileWriter writer = new FileWriter("plugins/Tower_Defense/" + name + ".yml")) {
-            yaml.dump(new GuiData(name, size, title), writer);
+        GuiData guiData = new GuiData(this.name, gui.getSize(), this.title, Arrays.asList(gui.getContents()));
+        try (FileWriter writer = new FileWriter("plugins/Tower_Defense/guis/" + guiData.getName() + ".yml")) {
+            yaml.dump(guiData, writer);
         } catch (IOException e) {
-            LOGGER.log(Level.SEVERE, "Failed to save GUI: " + name, e);
+            LOGGER.log(Level.SEVERE, "Failed to save GUI: " + guiData.getName(), e);
         }
     }
 
@@ -60,11 +74,13 @@ public class GUI_Manager {
         private final String name;
         private final int size;
         private final String title;
+        private final List<ItemStack> items;
 
-        public GuiData(String name, int size, String title) {
+        public GuiData(String name, int size, String title, List<ItemStack> items) {
             this.name = name;
             this.size = size;
             this.title = title;
+            this.items = items;
         }
 
         public String getName() {
@@ -77,6 +93,10 @@ public class GUI_Manager {
 
         public String getTitle() {
             return title;
+        }
+
+        public List<ItemStack> getItems() {
+            return items;
         }
     }
 }
