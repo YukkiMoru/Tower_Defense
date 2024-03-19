@@ -45,7 +45,7 @@ if (args[0].equals("gui")) {
                     // Check if size is a multiple of 9 and between 9 and 54
                     if (size % 9 == 0 && size >= 9 && size <= 54) {
                         // Call the createAndSaveGui method of the GUI_Manager class
-                        guiManager.createAndSaveGui(player, name, size, title);
+                        guiManager.CreateGUI(player, name, size, title);
                         player.sendMessage("GUIの" + name + "が作成されました！");
                     } else {
                         player.sendMessage("Sizeは9から54までの9の倍数でなければなりません");

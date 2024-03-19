@@ -5,6 +5,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tower_Defense extends JavaPlugin {
+    private GUI_Manager guiManager = new GUI_Manager();
 
     @Override
     public void onEnable() {
@@ -22,9 +23,12 @@ public final class Tower_Defense extends JavaPlugin {
         SQLite sqlite = new SQLite();
         sqlite.connect();
 
-        //InventoryClickListenerの起動
+        // PluginManagerの起動
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new InventoryClickListener(), this);
+            //InventoryClickListenerの起動
+            pluginManager.registerEvents(new InventoryClickListener(), this);
+            //InventoryCloseListenerの起動
+            pluginManager.registerEvents(new InventoryCloseListener(guiManager), this);
 
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
