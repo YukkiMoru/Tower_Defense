@@ -34,39 +34,49 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                 }
 
                 //GUI
-                if (args[0].equals("gui")) {
-                    if (args.length > 1) {
-                        if (args[1].equals("create")) {
-                            if (args.length == 4) {
-                                String name = args[2];
-                                int size = Integer.parseInt(args[3]);
-                                String title = args[4];
-                                // Call the createAndSaveGui method of the GUI_Manager class
-                                guiManager.createAndSaveGui(name, size, title);
-                            } else {
-                                player.sendMessage("Usage: /td gui create <name> <size> <title>");
-                            }
-                        } else if (args[1].equals("show")) {
-                            if (args.length == 2) {
-                                String name = args[2];
-                                // Call the showGui method of the GUI_Manager class
-                                guiManager.showGui(name, player);
-                            } else {
-                                player.sendMessage("Usage: /td gui show <name>");
-                            }
-                        } else if (args[1].equals("remove")) {
-                            if (args.length == 2) {
-                                String name = args[2];
-                                // Call the removeGui method of the GUI_Manager class
-                                guiManager.removeGui(name);
-                            } else {
-                                player.sendMessage("Usage: /td gui remove <name>");
-                            }
-                        }
+if (args[0].equals("gui")) {
+    if (args.length > 1) {
+        switch (args[1]) {
+            case "create":
+                if (args.length == 5) {
+                    String name = args[2];
+                    int size = Integer.parseInt(args[3]);
+                    String title = args[4];
+                    // Check if size is a multiple of 9 and between 9 and 54
+                    if (size % 9 == 0 && size >= 9 && size <= 54) {
+                        // Call the createAndSaveGui method of the GUI_Manager class
+                        guiManager.createAndSaveGui(player, name, size, title);
+                        player.sendMessage("GUIの" + name + "が作成されました！");
                     } else {
-                        player.sendMessage("Usage: /td gui <create/show/remove>");
+                        player.sendMessage("Sizeは9から54までの9の倍数でなければなりません");
                     }
+                } else {
+                    player.sendMessage("Usage: /td gui create <name> <size> <title>");
                 }
+                break;
+            case "show":
+                if (args.length == 3) {
+                    String name = args[2];
+                    // Call the showGui method of the GUI_Manager class
+                    guiManager.showGui(name, player);
+                } else {
+                    player.sendMessage("Usage: /td gui show <name>");
+                }
+                break;
+            case "remove":
+                if (args.length == 3) {
+                    String name = args[2];
+                    // Call the removeGui method of the GUI_Manager class
+                    guiManager.removeGui(name);
+                } else {
+                    player.sendMessage("Usage: /td gui remove <name>");
+                }
+                break;
+        }
+    } else {
+        player.sendMessage("Usage: /td gui <create/show/remove>");
+    }
+}
 
                 //sql
                 if (args[0].equals("show")) {
@@ -109,6 +119,17 @@ public class TD_Command implements CommandExecutor , TabCompleter{
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (sender instanceof Player) {
+            /*
+            /tdの関係図
+            /td | args[0] | args[1]      | args[2] | args[3] | args[4]
+            /td | show    |              |         |         |
+                | gui     | create       | <name>  | <size>  | <title>
+                |         | show         | <name>  |         |
+                |         | remove       | <name>  |         |
+                | debug   | <true/false> |         |         |
+                | kill    |              |         |         |
+             */
+
             if (args.length == 1) {
                 List<String> list = new ArrayList<>();
                 list.add("show");
@@ -131,7 +152,15 @@ public class TD_Command implements CommandExecutor , TabCompleter{
                     return list;
                 }
             }
-
+            if (args.length == 4) {
+                if (args[0].equals("gui") && args[1].equals("create") && !args[2].isEmpty()) {
+                    List<String> list = new ArrayList<>();
+                    for(int i = 9; i <= 54; i += 9) {
+                        list.add(String.valueOf(i));
+                    }
+                    return list;
+                }
+            }
         }
         return null;
     }
