@@ -63,23 +63,23 @@ public class Building implements Listener {
                     if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event)) {
 
 
-//                        // Run code to summon the structure
-//                        summonStructure(event.getClickedBlock().getLocation());
-//
-//                        // Create and set up the tower
-//                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
-//                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
-//                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
-//                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
-//                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-//                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
-//                        towers.add(tower);
-//
-//                        // Apply cooldown
-//                        setCooldown();
-//
-//                        // Cancel the event to prevent it from triggering again before the cooldown is applied
-//                        event.setCancelled(true);
+                        // Run code to summon the structure
+                        summonStructure(event.getClickedBlock().getLocation());
+
+                        // Create and set up the tower
+                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
+                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
+                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
+                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
+                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
+                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
+                        towers.add(tower);
+
+                        // Apply cooldown
+                        setCooldown();
+
+                        // Cancel the event to prevent it from triggering again before the cooldown is applied
+                        event.setCancelled(true);
                     }
                 }
             }
@@ -121,6 +121,6 @@ public class Building implements Listener {
         plugin.getServer().getScheduler().runTaskLater(plugin, () -> {
             cooldown = false;
             System.out.println("Cooldown ended"); // Debug message
-        }, 200L); // 2 ticks cooldown (20 ticks/sec * 2 sec = 40 ticks)
+        }, 20L); // 2 ticks cooldown (20 ticks/sec * 2 sec = 40 ticks)
     }
 }
