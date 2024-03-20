@@ -60,37 +60,28 @@ public class Platform_Manager {
             player.sendMessage("EdgeX: " + EdgeX + ", EdgeZ: " + EdgeZ);
             player.sendMessage("Clicked " + (location.getX()) + " " + (location.getY()) + " " + (location.getZ()));
 
-            // Create a new inventory with 9 slots and a custom name
         }
 
-//        player.sendMessage("Center " + centerX + " " + (location.getY()) + " " + centerZ);
-//        boolean IsPlatformFilled = true;
-//        for (int i = 0; i <= north + south; i++) {
-//            for (int j = 0; j <= west + east; j++) {
-//                if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
-//                    IsPlatformFilled = false;
-//                }
-//            }
-//        }
-//        if (IsPlatformFilled) {
-//            player.sendMessage("You clicked part of " + distanceX + " * " + distanceY + " " + material + "!");
-//        } else {
-//            player.sendMessage("This Platform is not filled with " + material + "!");
-//        }
-//
-//
         //プラットフォームの判定
+        Player player = event.getPlayer();
         if (PlatformX == sizeX && PlatformZ == sizeZ) {
-            for (int i = 0; i <= sizeX; i++) {
-                for (int j = 0; j <= sizeZ; j++) {
-                    if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
+            for (int i = EdgeX; i < (EdgeX + PlatformX); i++) {
+                for (int j = EdgeZ; j < (EdgeZ + PlatformZ); j++) {
+                    if (debugMode)
+                        player.sendMessage("Block was checked at " + i + " " + (int) location.getY() + " " + j);
+                    if (location.getWorld().getBlockAt(new Location(location.getWorld(), i, location.getY(), j)).getType() != material) {
+                        if (debugMode)
+                            player.sendMessage(i + " " + (int) location.getY() + " " + j + " is wrong material!");
+                        player.sendMessage("This Platform is not filled with " + material + "!");
                         return false;
                     }
                 }
             }
         } else {
+            player.sendMessage("This Platform is not filled with " + material + "!");
             return false;
         }
+        player.sendMessage("You clicked part of " + sizeX + " * " + sizeZ + " " + material + "!");
         return true;
     }
 }
