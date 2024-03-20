@@ -22,7 +22,8 @@ public class Platform_Manager {
     public void setDebugMode(boolean debugMode) {
         this.debugMode = debugMode;
     }
-    public boolean Platform(Location location, int sizeX, int sizeZ, Material material, PlayerInteractEvent event) {
+
+    public Location Platform(Location location, int sizeX, int sizeZ, Material material, PlayerInteractEvent event) {
         //クリックされた場所の座標
         int x = (int) location.getX();
         int y = (int) location.getY();
@@ -73,15 +74,16 @@ public class Platform_Manager {
                         if (debugMode)
                             player.sendMessage(i + " " + (int) location.getY() + " " + j + " is wrong material!");
                         player.sendMessage("This Platform is not filled with " + material + "!");
-                        return false;
+                        return null;
                     }
                 }
             }
         } else {
             player.sendMessage("This Platform is not filled with " + material + "!");
-            return false;
+            return null;
         }
         player.sendMessage("You clicked part of " + sizeX + " * " + sizeZ + " " + material + "!");
-        return true;
+        Location Edgelocation = new Location(location.getWorld(), EdgeX + 1, location.getY(), EdgeZ + 1);
+        return Edgelocation;
     }
 }

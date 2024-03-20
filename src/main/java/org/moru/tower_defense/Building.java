@@ -60,14 +60,15 @@ public class Building implements Listener {
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
             if (event.getClickedBlock().getType() == Material.CHERRY_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                    if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event)) {
+                    Location Edgelocation = platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event);
+                    if (Edgelocation != null) {
 
 
                         // Run code to summon the structure
-                        summonStructure(event.getClickedBlock().getLocation());
+                        summonStructure(Edgelocation);
 
                         // Create and set up the tower
-                        Location spawnLocation = event.getClickedBlock().getLocation().clone();
+                        Location spawnLocation = Edgelocation;
                         spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
                         spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
                         spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
