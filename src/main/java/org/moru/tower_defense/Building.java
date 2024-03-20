@@ -61,8 +61,6 @@ public class Building implements Listener {
             if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
                     if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.OAK_PLANKS, event)) {
-                        Player player = event.getPlayer();
-                        player.sendMessage("You clicked the center of a 3x3 oak wood!3");
 
 //                        // Run code to summon the structure
 //                        summonStructure(event.getClickedBlock().getLocation());
