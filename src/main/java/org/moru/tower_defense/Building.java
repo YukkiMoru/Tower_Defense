@@ -58,9 +58,10 @@ public class Building implements Listener {
         Platform_Manager platformManager = Platform_Manager.getInstance();
 
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
-            if (event.getClickedBlock().getType() == Material.OAK_PLANKS) {
+            if (event.getClickedBlock().getType() == Material.CHERRY_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
-                    if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.OAK_PLANKS, event)) {
+                    if (platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event)) {
+
 
 //                        // Run code to summon the structure
 //                        summonStructure(event.getClickedBlock().getLocation());
