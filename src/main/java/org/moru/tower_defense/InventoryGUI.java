@@ -15,23 +15,23 @@ import java.util.UUID;
 
 public class InventoryGUI {
     public static Inventory TowerGUI() {
-        Inventory gui_test = createInventory("TowerGUI", 27);
+        Inventory gui_test = CreateInventory("TowerGUI", 27);
 
-        ItemStack diamonds = createItem(Material.DIAMOND, 1, "Click me!");
-        ItemStack Warden = createPlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=");
+        ItemStack Diamond = CreateItem(Material.DIAMOND, 1, "Click me!");
+        ItemStack Warden = CreatePlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=");
 
         // Add the items to the inventory
-        gui_test.setItem(0, diamonds);
+        gui_test.setItem(0, Diamond);
         gui_test.setItem(1, Warden);  // Add the player head to the inventory
 
         return gui_test;
     }
 
-    private static Inventory createInventory(String name, int size) {
+    private static Inventory CreateInventory(String name, int size) {
         return Bukkit.createInventory(null, size, name);
     }
 
-    private static ItemStack createItem(Material material, int amount, String displayName) {
+    private static ItemStack CreateItem(Material material, int amount, String displayName) {
         ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(displayName);
@@ -39,7 +39,7 @@ public class InventoryGUI {
         return item;
     }
 
-    private static ItemStack createPlayerHead(String name, String value) {
+    private static ItemStack CreatePlayerHead(String name, String value) {
 
         ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
