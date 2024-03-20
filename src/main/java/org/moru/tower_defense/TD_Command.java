@@ -66,14 +66,13 @@ public class TD_Command implements CommandExecutor , TabCompleter{
 
     public void ExecuteSqlShow(String[] args, Player player){
         //show sql data
-        Tower_Manager.TowerData towerData = towerManager.getTowerData(args[1]);
-        if (towerData != null) {
-            player.sendMessage("Tower Name: " + args[1]);
-            player.sendMessage("Location: " + towerData.getLocation());
-            player.sendMessage("Type: " + towerData.getType());
-            player.sendMessage("Level: " + towerData.getLevel());
+            Tower_Manager.TowerData towerData = towerManager.getTowerData(Integer.parseInt(args[1]));        if (towerData != null) {
+            player.sendMessage("TowerID: " + args[1]);
+            player.sendMessage("TowerName: " + towerData.getTowerName());
+            player.sendMessage("TowerType: " + towerData.getTowerType());
+            player.sendMessage("TowerLevel: " + towerData.getLevel());
         } else {
-            player.sendMessage("No data found for tower: " + args[1]);
+            player.sendMessage("No data found for TowerID: " + args[1]);
         }
     }
 
