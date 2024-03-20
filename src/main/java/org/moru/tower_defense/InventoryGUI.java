@@ -2,6 +2,7 @@ package org.moru.tower_defense;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
@@ -17,28 +18,11 @@ public class InventoryGUI {
         Inventory gui_test = createInventory("TowerGUI", 27);
 
         ItemStack diamonds = createItem(Material.DIAMOND, 1, "Click me!");
-
-        // Create the player head item
-        ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
-        SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
-
-        GameProfile profile = new GameProfile(UUID.randomUUID(), "Warden");
-        profile.getProperties().put("textures", new Property("textures", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0="));
-
-        try {
-            Field profileField = skullMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(skullMeta, profile);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        skullMeta.setDisplayName("Warden");
-        playerHead.setItemMeta(skullMeta);
+        ItemStack Warden = createPlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=");
 
         // Add the items to the inventory
         gui_test.setItem(0, diamonds);
-        gui_test.setItem(1, playerHead);  // Add the player head to the inventory
+        gui_test.setItem(1, Warden);  // Add the player head to the inventory
 
         return gui_test;
     }
@@ -53,5 +37,27 @@ public class InventoryGUI {
         meta.setDisplayName(displayName);
         item.setItemMeta(meta);
         return item;
+    }
+
+    private static ItemStack createPlayerHead(String name, String value) {
+
+        ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
+
+        GameProfile profile = new GameProfile(UUID.randomUUID(), "Player_Head");
+        profile.getProperties().put("textures", new Property("textures", value));
+
+        try {
+            Field profileField = skullMeta.getClass().getDeclaredField("profile");
+            profileField.setAccessible(true);
+            profileField.set(skullMeta, profile);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        skullMeta.setDisplayName(name);
+        playerHead.setItemMeta(skullMeta);
+
+        return playerHead;
+
     }
 }
