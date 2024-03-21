@@ -1,6 +1,7 @@
 package org.moru.tower_defense;
 
 import org.bukkit.Location;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -37,6 +38,11 @@ public class InventoryClickListener implements Listener {
                         player.sendMessage("Count: " + TowerID);
                         player.sendMessage("Tower constructed");
                         player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
+
+                        ArmorStand armorStand = platformManager.getArmorStand();
+
+
+
                         TowerID++;
                         break;
                     case 25: // Diamond
