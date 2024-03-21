@@ -7,8 +7,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
 public class Platform_Manager {
+    private static Platform_Manager instance = new Platform_Manager();
+    private Location Edgelocation;
 
-    private static Platform_Manager instance = null;
     private boolean debugMode = true; // デバッグモードのフラグ
 
 
@@ -83,7 +84,12 @@ public class Platform_Manager {
             return null;
         }
         player.sendMessage("You clicked part of " + sizeX + " * " + sizeZ + " " + material + "!");
-        Location Edgelocation = new Location(location.getWorld(), EdgeX + 1, location.getY(), EdgeZ + 1);
+        Edgelocation = new Location(location.getWorld(), EdgeX + 1, location.getY(), EdgeZ + 1);
         return Edgelocation;
     }
+
+    public Location getEdgelocation() {
+        return Edgelocation;
+    }
+
 }
