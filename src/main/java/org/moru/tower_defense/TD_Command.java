@@ -33,7 +33,7 @@ public class TD_Command implements CommandExecutor , TabCompleter{
 
                 //GUI
                 if (args[0].equals("gui")) {
-                    if (args[1].equals("TowerGUI")) {
+                    if (args.length > 1 && args[1].equals("TowerGUI")) {
                         Inventory gui = InventoryGUI.TowerGUI();
                         player.openInventory(gui);
                     } else {
@@ -95,7 +95,12 @@ public void ExecuteSqlShow(String[] args, Player player){
                 list.add("true");
                 list.add("false");
                 return list;
+            } else if (args.length == 2 && args[0].equals("gui")) {
+                List<String> list = new ArrayList<>();
+                list.add("TowerGUI");
+                return list;
             }
+
         }
         return null;
     }
