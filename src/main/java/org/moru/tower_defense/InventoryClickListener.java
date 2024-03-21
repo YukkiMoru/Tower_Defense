@@ -25,6 +25,9 @@ public class InventoryClickListener implements Listener {
                         // Construct the tower
                         Construction construction = new Construction();
                         construction.summonStructure(Edgelocation, "test_tower");
+                        construction.GetSizeStructure("test_tower");
+                        player.sendMessage("Tower constructed");
+                        player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
                         break;
                     case 25: // Diamond
                         // Code to execute when Diamond is clicked

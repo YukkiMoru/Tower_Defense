@@ -23,6 +23,13 @@ import java.io.IOException;
 
 
 public class Construction {
+
+    // create size class
+    public class Size {
+        public int x;
+        public int y;
+        public int z;
+    }
     public void summonStructure(Location location, String StructureName) {
         File schematic = new File("plugins/WorldEdit/schematics/" + StructureName + ".schem");
         WorldEdit worldEdit = WorldEdit.getInstance();
@@ -47,5 +54,27 @@ public class Construction {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Size GetSizeStructure(String StructureName) {
+        File schematic = new File("plugins/WorldEdit/schematics/" + StructureName + ".schem");
+        WorldEdit worldEdit = WorldEdit.getInstance();
+        ClipboardFormat format = ClipboardFormats.findByFile(schematic);
+        Size size = new Size();
+        // Get the size of the structure
+        try (Closer closer = Closer.create()) {
+            FileInputStream fis = closer.register(new FileInputStream(schematic));
+            BufferedInputStream bis = closer.register(new BufferedInputStream(fis));
+            ClipboardReader reader = closer.register(format.getReader(bis));
+
+            Clipboard clipboard = reader.read();
+
+            size.x = clipboard.getDimensions().getBlockX();
+            size.y = clipboard.getDimensions().getBlockY();
+            size.z = clipboard.getDimensions().getBlockZ();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return size;
     }
 }
