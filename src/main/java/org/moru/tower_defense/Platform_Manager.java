@@ -22,7 +22,8 @@ public class Platform_Manager {
     public void setDebugMode(boolean debugMode) {
         this.debugMode = debugMode;
     }
-    public boolean Platform(Location location, int sizeX, int sizeZ, Material material, PlayerInteractEvent event) {
+
+    public Location Platform(Location location, int sizeX, int sizeZ, Material material, PlayerInteractEvent event) {
         //クリックされた場所の座標
         int x = (int) location.getX();
         int y = (int) location.getY();
@@ -60,37 +61,29 @@ public class Platform_Manager {
             player.sendMessage("EdgeX: " + EdgeX + ", EdgeZ: " + EdgeZ);
             player.sendMessage("Clicked " + (location.getX()) + " " + (location.getY()) + " " + (location.getZ()));
 
-            // Create a new inventory with 9 slots and a custom name
         }
 
-//        player.sendMessage("Center " + centerX + " " + (location.getY()) + " " + centerZ);
-//        boolean IsPlatformFilled = true;
-//        for (int i = 0; i <= north + south; i++) {
-//            for (int j = 0; j <= west + east; j++) {
-//                if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
-//                    IsPlatformFilled = false;
-//                }
-//            }
-//        }
-//        if (IsPlatformFilled) {
-//            player.sendMessage("You clicked part of " + distanceX + " * " + distanceY + " " + material + "!");
-//        } else {
-//            player.sendMessage("This Platform is not filled with " + material + "!");
-//        }
-//
-//
         //プラットフォームの判定
+        Player player = event.getPlayer();
         if (PlatformX == sizeX && PlatformZ == sizeZ) {
-            for (int i = 0; i <= sizeX; i++) {
-                for (int j = 0; j <= sizeZ; j++) {
-                    if (location.getWorld().getBlockAt(new Location(location.getWorld(), x + j, location.getY(), z + i)).getType() != material) {
-                        return false;
+            for (int i = EdgeX; i < (EdgeX + PlatformX); i++) {
+                for (int j = EdgeZ; j < (EdgeZ + PlatformZ); j++) {
+                    if (debugMode)
+                        player.sendMessage("Block was checked at " + i + " " + (int) location.getY() + " " + j);
+                    if (location.getWorld().getBlockAt(new Location(location.getWorld(), i, location.getY(), j)).getType() != material) {
+                        if (debugMode)
+                            player.sendMessage(i + " " + (int) location.getY() + " " + j + " is wrong material!");
+                        player.sendMessage("This Platform is not filled with " + material + "!");
+                        return null;
                     }
                 }
             }
         } else {
-            return false;
+            player.sendMessage("This Platform is not filled with " + material + "!");
+            return null;
         }
-        return true;
+        player.sendMessage("You clicked part of " + sizeX + " * " + sizeZ + " " + material + "!");
+        Location Edgelocation = new Location(location.getWorld(), EdgeX + 1, location.getY(), EdgeZ + 1);
+        return Edgelocation;
     }
 }
