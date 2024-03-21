@@ -4,17 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 
 public class Tower_Manager {
 
-    private HashMap<String, TowerData> towerDataMap = new HashMap<>();
     private SQLite sqlite;
 
     public Tower_Manager() {
         sqlite = new SQLite();
+        sqlite.createTableIfNotExists();
         // add default tower data
-        addTowerData(1, "Archer", 3, 1);
+        WriteToDatabase(1, "Tower", 1, 1);
     }
 
     public static class TowerData {
@@ -48,17 +47,8 @@ public class Tower_Manager {
         }
     }
 
-    public void addTowerData(int TowerID, String TowerName, int TowerType, int level) {
-        TowerData towerData = new TowerData(TowerID, TowerName, TowerType, level);
-        towerDataMap.put(TowerName, towerData);
-        writeToDatabase(TowerID, TowerName, TowerType, level);
-    }
 
-    public TowerData getTowerData(int TowerID) {
-        return towerDataMap.get(TowerID);
-    }
-
-    private void writeToDatabase(int TowerID, String TowerName, int TowerType, int level) {
+    private void WriteToDatabase(int TowerID, String TowerName, int TowerType, int level) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
         PreparedStatement pstmt = null;
@@ -73,8 +63,49 @@ public class Tower_Manager {
             pstmt.setInt(4, level);
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            sqlite.disconnect();
+        }
+    }
+
+    public TowerData GetTowerDataFromDatabase(int TowerID) {
+        sqlite.connect();
+        Connection conn = sqlite.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        TowerData towerData = null;
+
+        String sql = "SELECT * FROM tower_data WHERE TowerID = ?";
+
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, TowerID);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String TowerName = rs.getString("TowerName");
+                int TowerType = rs.getInt("TowerType");
+                int level = rs.getInt("level");
+                towerData = new TowerData(TowerID, TowerName, TowerType, level);
+            }
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
             if (pstmt != null) {
                 try {
                     pstmt.close();
@@ -84,47 +115,7 @@ public class Tower_Manager {
             }
             sqlite.disconnect();
         }
+
+        return towerData;
     }
-public TowerData getTowerDataFromDatabase(int TowerID) {
-    sqlite.connect();
-    Connection conn = sqlite.getConnection();
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    TowerData towerData = null;
-
-    String sql = "SELECT * FROM tower_data WHERE TowerID = ?";
-
-    try {
-        pstmt = conn.prepareStatement(sql);
-        pstmt.setInt(1, TowerID);
-        rs = pstmt.executeQuery();
-
-        if (rs.next()) {
-            String TowerName = rs.getString("TowerName");
-            int TowerType = rs.getInt("TowerType");
-            int level = rs.getInt("level");
-            towerData = new TowerData(TowerID, TowerName, TowerType, level);
-        }
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
-    } finally {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        if (pstmt != null) {
-            try {
-                pstmt.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        sqlite.disconnect();
-    }
-
-    return towerData;
-}
 }
