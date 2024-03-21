@@ -18,11 +18,13 @@ public class InventoryGUI {
         Inventory gui_test = CreateInventory("TowerGUI", 27);
 
         ItemStack Diamond = CreateItem(Material.DIAMOND, 1, "Click me!");
+        ItemStack Oak_Planks = CreateItem(Material.OAK_PLANKS, 1, "Archer Tower");
         ItemStack Warden = CreatePlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=");
 
         // Add the items to the inventory
-        gui_test.setItem(0, Diamond);
-        gui_test.setItem(1, Warden);  // Add the player head to the inventory
+        gui_test.setItem(2, Oak_Planks);
+        gui_test.setItem(25, Diamond);
+        gui_test.setItem(26, Warden);  // Add the player head to the inventory
 
         return gui_test;
     }
