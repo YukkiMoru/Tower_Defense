@@ -68,7 +68,7 @@ public class TD_Command implements CommandExecutor , TabCompleter{
 
 public void ExecuteSqlShow(String[] args, Player player){
     //show sql data
-    Tower_Manager.TowerData towerData = towerManager.GetTowerDataFromDatabase(Integer.parseInt(args[1]));
+    Tower_Manager.TowerData towerData = towerManager.GetTowerDatabase(Integer.parseInt(args[1]));
     if (towerData != null) {
         player.sendMessage("TowerID: " + args[1]);
         player.sendMessage("TowerName: " + towerData.getTowerName());
