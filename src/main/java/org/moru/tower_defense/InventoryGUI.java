@@ -1,6 +1,7 @@
 package org.moru.tower_defense;
 
-import com.mojang.authlib.GameProfile;
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.properties.Property;
 
 import org.bukkit.Bukkit;
@@ -11,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.ChatColor;
 
-import java.lang.reflect.Field;
 import java.util.UUID;
 
 public class InventoryGUI {
@@ -43,26 +43,16 @@ public class InventoryGUI {
     }
 
     private static ItemStack CreatePlayerHead(String name, String value, ChatColor color) {
-
         ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
 
-        GameProfile profile = new GameProfile(UUID.randomUUID(), "Player_Head");
-        profile.getProperties().put("textures", new Property("textures", value));
+        PlayerProfile profile = Bukkit.createProfile(UUID.randomUUID(), null);
+        profile.setProperty(new ProfileProperty("textures", value));
+        skullMeta.setPlayerProfile(profile);
 
-        try {
-            Field profileField = skullMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(skullMeta, profile);
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
         skullMeta.setDisplayName(color + name);
         playerHead.setItemMeta(skullMeta);
 
         return playerHead;
-
     }
-
-
 }
