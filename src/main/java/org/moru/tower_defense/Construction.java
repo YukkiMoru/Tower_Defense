@@ -30,7 +30,8 @@ public class Construction {
         public int y;
         public int z;
     }
-    public void summonStructure(Location location, String StructureName) {
+
+    public void SummonStructure(Location location, String StructureName) {
         File schematic = new File("plugins/WorldEdit/schematics/" + StructureName + ".schem");
         WorldEdit worldEdit = WorldEdit.getInstance();
         ClipboardFormat format = ClipboardFormats.findByFile(schematic);
