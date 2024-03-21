@@ -23,7 +23,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.entity.ArmorStand;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -33,13 +32,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Building implements Listener {
+public class Platform_Listener implements Listener {
     private JavaPlugin plugin;
     private boolean cooldown = false;
 
     private List<Tower> towers = new ArrayList<>();
 
-    public Building(JavaPlugin plugin) {
+    public Platform_Listener(JavaPlugin plugin) {
         this.plugin = plugin;
 
         // Schedule the attackMobs method to be called periodically
@@ -67,6 +66,8 @@ public class Building implements Listener {
                         Inventory gui = InventoryGUI.TowerGUI();
                         player.openInventory(gui);
 //
+//                         summon Structure
+//
 //                        // Run code to summon the structure
 //                        summonStructure(Edgelocation);
 //
@@ -91,8 +92,7 @@ public class Building implements Listener {
     }
 
 
-
-    private void summonStructure(Location location) {
+    public void summonStructure(Location location) {
         File schematic = new File("plugins/WorldEdit/schematics/test_tower.schem");
         WorldEdit worldEdit = WorldEdit.getInstance();
         ClipboardFormat format = ClipboardFormats.findByFile(schematic);
@@ -118,7 +118,7 @@ public class Building implements Listener {
         }
     }
 
-    private void setCooldown() {
+    public void setCooldown() {
         cooldown = true;
         System.out.println("Cooldown started"); // Debug message
 
