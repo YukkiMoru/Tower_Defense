@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.ChatColor;
 
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -17,9 +18,9 @@ public class InventoryGUI {
     public static Inventory TowerGUI() {
         Inventory gui_test = CreateInventory("TowerGUI", 27);
 
-        ItemStack Diamond = CreateItem(Material.DIAMOND, 1, "Click me!");
-        ItemStack Oak_Planks = CreateItem(Material.OAK_PLANKS, 1, "Archer Tower");
-        ItemStack Warden = CreatePlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=");
+        ItemStack Diamond = CreateItem(Material.DIAMOND, 1, "Click me!", ChatColor.AQUA);
+        ItemStack Oak_Planks = CreateItem(Material.OAK_PLANKS, 1, "Archer Tower", ChatColor.GREEN);
+        ItemStack Warden = CreatePlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=", ChatColor.RED);
 
         // Add the items to the inventory
         gui_test.setItem(2, Oak_Planks);
@@ -33,15 +34,15 @@ public class InventoryGUI {
         return Bukkit.createInventory(null, size, name);
     }
 
-    private static ItemStack CreateItem(Material material, int amount, String displayName) {
+    private static ItemStack CreateItem(Material material, int amount, String displayName, ChatColor color) {
         ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(displayName);
+        meta.setDisplayName(color + displayName);
         item.setItemMeta(meta);
         return item;
     }
 
-    private static ItemStack CreatePlayerHead(String name, String value) {
+    private static ItemStack CreatePlayerHead(String name, String value, ChatColor color) {
 
         ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD);
         SkullMeta skullMeta = (SkullMeta) playerHead.getItemMeta();
@@ -56,7 +57,7 @@ public class InventoryGUI {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
-        skullMeta.setDisplayName(name);
+        skullMeta.setDisplayName(color + name);
         playerHead.setItemMeta(skullMeta);
 
         return playerHead;
