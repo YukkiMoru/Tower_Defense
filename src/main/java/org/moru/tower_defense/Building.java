@@ -21,6 +21,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.entity.ArmorStand;
 
@@ -62,25 +63,27 @@ public class Building implements Listener {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
                     Location Edgelocation = platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event);
                     if (Edgelocation != null) {
-
-
-                        // Run code to summon the structure
-                        summonStructure(Edgelocation);
-
-                        // Create and set up the tower
-                        Location spawnLocation = Edgelocation;
-                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
-                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
-                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
-                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
-                        towers.add(tower);
-
-                        // Apply cooldown
-                        setCooldown();
-
-                        // Cancel the event to prevent it from triggering again before the cooldown is applied
-                        event.setCancelled(true);
+                        Player player = event.getPlayer();
+                        Inventory gui = InventoryGUI.TowerGUI();
+                        player.openInventory(gui);
+//
+//                        // Run code to summon the structure
+//                        summonStructure(Edgelocation);
+//
+//                        // Create and set up the tower
+//                        Location spawnLocation = Edgelocation;
+//                        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
+//                        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
+//                        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
+//                        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
+//                        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
+//                        towers.add(tower);
+//
+//                        // Apply cooldown
+//                        setCooldown();
+//
+//                        // Cancel the event to prevent it from triggering again before the cooldown is applied
+//                        event.setCancelled(true);
                     }
                 }
             }
