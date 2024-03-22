@@ -55,7 +55,7 @@ public class InventoryClickListener implements Listener {
                         spawnLocation.setX(spawnLocation.getX() + (double)(size.x/2) - 0.5);
                         spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
                         spawnLocation.setZ(spawnLocation.getZ() + (double)(size.z/2) - 0.5);
-                        ArmorStand armorStand = (ArmorStand) Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
+                        ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
                         Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
                         towers.add(tower);
 
