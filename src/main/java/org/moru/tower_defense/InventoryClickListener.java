@@ -12,20 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryClickListener implements Listener {
-    private JavaPlugin plugin;
     private List<Tower> towers = new ArrayList<>();
-
-    public InventoryClickListener(JavaPlugin plugin) {
-        this.plugin = plugin;
-    }
-
     private int TowerID;
     private Tower_Manager towerManager;
-
     public InventoryClickListener() {
         towerManager = new Tower_Manager();
         TowerID = towerManager.GetLastTowerID() + 1;
     }
+
+
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if (event.getInventory().getViewers().contains(event.getWhoClicked())) {

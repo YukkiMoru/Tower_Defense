@@ -2,6 +2,7 @@ package org.moru.tower_defense;
 
 import org.bukkit.Location;
 import org.bukkit.entity.*;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 import java.util.List;
@@ -11,13 +12,22 @@ public class Tower {
     private double damage;
     private long fireRate;
     private double range;
-
+    private JavaPlugin plugin;
 
     public Tower(ArmorStand armorStand, double damage, long fireRate, double range) {
         this.armorStand = armorStand;
         this.damage = damage;
         this.fireRate = fireRate;
         this.range = range;
+        this.plugin = plugin;
+
+        // Schedule the attackMobs method to be called periodically
+        plugin.getServer().getScheduler().runTaskTimer(plugin, new Runnable() {
+            @Override
+            public void run() {
+                attackMobs();
+            }
+        }, 0L, fireRate); // 20 ticks = 1 second
 
     }
 

@@ -13,7 +13,7 @@ public final class Tower_Defense extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Mob_Listener(this), this);
 
         // Buildingの起動
-        Platform_Listener buildingInstance = new Platform_Listener(this);
+        Platform_Listener buildingInstance = new Platform_Listener();
         getServer().getPluginManager().registerEvents(buildingInstance, this);
 
         // TD_Commandの起動
