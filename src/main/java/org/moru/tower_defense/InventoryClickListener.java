@@ -35,26 +35,25 @@ public class InventoryClickListener implements Listener {
                 player.sendMessage("EdgeLocation: " + Edgelocation);
                 switch (event.getSlot()) {
                     case 2: // Oak_Planks
-                        // Construct the tower
+                        // タワーの建設
                         Construction construction = new Construction();
                         construction.SummonStructure(Edgelocation, "test_tower");
 
                         Construction.Size size = construction.GetSizeStructure("test_tower");
-                        // save the tower data
-                        towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
-                        player.sendMessage("Count: " + TowerID);
-                        player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
 
-                        //add armorstand
+                        //　攻撃用タワー(ArmorStand)の設定
                         Location spawnLocation = Edgelocation;
-                        spawnLocation.setX(spawnLocation.getX() + (double)(size.x/2) - 0.5);
+                        spawnLocation.setX(spawnLocation.getX() + (double) (size.x / 2) - 0.5);
                         spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
-                        spawnLocation.setZ(spawnLocation.getZ() + (double)(size.z/2) - 0.5);
+                        spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
                         ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
                         Tower tower = new Tower(armorStand, 5.0, 1L, 10.0, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
                         towers.add(tower);
 
-
+                        // SQLiteにタワーの情報を書き込む
+                        towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
+                        player.sendMessage("Count: " + TowerID);
+                        player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
 
                         player.sendMessage("Tower constructed");
                         TowerID++;
