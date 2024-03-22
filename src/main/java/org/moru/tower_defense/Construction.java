@@ -16,7 +16,7 @@ import com.sk89q.worldedit.util.io.Closer;
 
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
-import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.Event;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -81,16 +81,5 @@ public class Construction {
             e.printStackTrace();
         }
         return size;
-    }
-
-    public void SummonArmorStand(Location Edgelocation, PlayerInteractEvent event) {
-        List<Tower> towers = new ArrayList<>();
-        Location spawnLocation = Edgelocation;
-        spawnLocation.setX(Math.floor(spawnLocation.getX()) + 0.5);
-        spawnLocation.setY(Math.floor(spawnLocation.getY()) + 7);
-        spawnLocation.setZ(Math.floor(spawnLocation.getZ()) + 0.5);
-        ArmorStand armorStand = (ArmorStand) event.getClickedBlock().getWorld().spawn(spawnLocation, ArmorStand.class);
-        Tower tower = new Tower(armorStand, 5.0, 1L, 10.0);
-        towers.add(tower);
     }
 }
