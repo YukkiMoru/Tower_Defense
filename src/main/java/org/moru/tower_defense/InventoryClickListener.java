@@ -47,7 +47,7 @@ public class InventoryClickListener implements Listener {
                         spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
                         spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
                         ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 100, 1L, 1000.0, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
+                        Tower tower = new Tower(armorStand, 100, 1L, 100.0, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
                         towers.add(tower);
 
                         // SQLiteにタワーの情報を書き込む
