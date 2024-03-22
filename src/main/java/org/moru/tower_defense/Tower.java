@@ -50,5 +50,6 @@ public class Tower {
         Vector direction = targetLocation.subtract(loc).toVector();
         Arrow arrow = armorStand.getWorld().spawnArrow(loc, direction, (float) damage, 0);
         arrow.setShooter(armorStand);
+        arrow.setDamage(damage); // Add this line to set the damage of the arrow
     }
 }
