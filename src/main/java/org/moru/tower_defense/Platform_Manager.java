@@ -72,18 +72,23 @@ public class Platform_Manager {
                     if (debugMode)
                         player.sendMessage("Block was checked at " + i + " " + (int) location.getY() + " " + j);
                     if (location.getWorld().getBlockAt(new Location(location.getWorld(), i, location.getY(), j)).getType() != material) {
-                        if (debugMode)
+                        if (debugMode) {
                             player.sendMessage(i + " " + (int) location.getY() + " " + j + " is wrong material!");
-                        player.sendMessage("This Platform is not filled with " + material + "!");
+                            player.sendMessage("This Platform is not filled with " + material + "!");
+                        }
                         return null;
                     }
                 }
             }
         } else {
-            player.sendMessage("This Platform is not filled with " + material + "!");
+            if (debugMode) {
+                player.sendMessage("This Platform is not filled with " + material + "!");
+            }
             return null;
         }
-        player.sendMessage("You clicked part of " + sizeX + " * " + sizeZ + " " + material + "!");
+        if (debugMode) {
+            player.sendMessage("You clicked part of " + sizeX + " * " + sizeZ + " " + material + "!");
+        }
         Edgelocation = new Location(location.getWorld(), EdgeX + 1, location.getY(), EdgeZ + 1);
         return Edgelocation;
     }
