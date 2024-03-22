@@ -14,7 +14,7 @@ public class Tower {
     private double range;
     private JavaPlugin plugin;
 
-    public Tower(ArmorStand armorStand, double damage, long fireRate, double range) {
+    public Tower(ArmorStand armorStand, double damage, long fireRate, double range, JavaPlugin plugin) {
         this.armorStand = armorStand;
         this.damage = damage;
         this.fireRate = fireRate;
