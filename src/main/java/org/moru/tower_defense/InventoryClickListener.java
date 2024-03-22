@@ -35,11 +35,22 @@ public class InventoryClickListener implements Listener {
                 player.sendMessage("EdgeLocation: " + Edgelocation);
                 switch (event.getSlot()) {
                     case 2: // Oak_Planks
+
+
                         // タワーの建設
                         Construction construction = new Construction();
                         construction.SummonStructure(Edgelocation, "test_tower");
 
                         Construction.Size size = construction.GetSizeStructure("test_tower");
+
+                        // SQLiteにタワーの情報を書き込む
+                        towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
+                        player.sendMessage("Count: " + TowerID);
+                        player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
+
+                        // Coordinateを書き込む
+                        towerManager.WriteCoordinates(TowerID, Edgelocation, size);
+
 
                         //　攻撃用タワー(ArmorStand)の設定
                         Location spawnLocation = Edgelocation;
@@ -50,10 +61,6 @@ public class InventoryClickListener implements Listener {
                         Tower tower = new Tower(armorStand, 100, 1L, 100.0, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
                         towers.add(tower);
 
-                        // SQLiteにタワーの情報を書き込む
-                        towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
-                        player.sendMessage("Count: " + TowerID);
-                        player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
 
                         player.sendMessage("Tower constructed");
                         TowerID++;

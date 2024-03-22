@@ -1,5 +1,7 @@
 package org.moru.tower_defense;
 
+import org.bukkit.Location;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -122,6 +124,7 @@ public class Tower_Manager {
      * @param TowerID
      * @param coordinates
      */
+
     public static class Coordinates {
         private int TowerID;
         private int x;
@@ -151,18 +154,25 @@ public class Tower_Manager {
         }
     }
 
-    public void WriteCoordinates(int TowerID, int x, int y, int z) {
+    public void WriteCoordinates(int TowerID, Location EdgeLocation, Construction.Size size) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
         PreparedStatement pstmt = null;
         String sql = "INSERT INTO tower_coordinates(TowerID, x, y, z) VALUES(?, ?, ?, ?)";
+
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, TowerID);
-            pstmt.setInt(2, x);
-            pstmt.setInt(3, y);
-            pstmt.setInt(4, z);
-            pstmt.executeUpdate();
+            for (int x = (int) EdgeLocation.getX(); x < EdgeLocation.getX() + size.x; x++) {
+                for (int y = (int) EdgeLocation.getY(); y < (int) EdgeLocation.getY() + size.y; y++) {
+                    for (int z = (int) EdgeLocation.getZ(); z < (int) EdgeLocation.getZ() + size.z; z++) {
+                        pstmt.setInt(1, TowerID);
+                        pstmt.setInt(2, x - 1);
+                        pstmt.setInt(3, y + 1);
+                        pstmt.setInt(4, z - 1);
+                        pstmt.executeUpdate();
+                    }
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
