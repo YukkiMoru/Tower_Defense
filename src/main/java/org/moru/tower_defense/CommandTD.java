@@ -11,9 +11,9 @@ import org.bukkit.inventory.Inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TD_Command implements CommandExecutor , TabCompleter{
-    public Tower_Manager towerManager = new Tower_Manager();
-    private Platform_Manager platformManager = Platform_Manager.getInstance();
+public class CommandTD implements CommandExecutor, TabCompleter {
+    public SQLiteManagerTower towerManager = new SQLiteManagerTower();
+    private ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -68,7 +68,7 @@ public class TD_Command implements CommandExecutor , TabCompleter{
 
 public void ExecuteSqlShow(String[] args, Player player){
     //show sql data
-    Tower_Manager.TowerData towerData = towerManager.GetTowerDatabase(Integer.parseInt(args[1]));
+    SQLiteManagerTower.TowerData towerData = towerManager.GetTowerDatabase(Integer.parseInt(args[1]));
     if (towerData != null) {
         player.sendMessage("TowerID: " + args[1]);
         player.sendMessage("TowerName: " + towerData.getTowerName());
@@ -113,6 +113,6 @@ public void ExecuteSqlShow(String[] args, Player player){
         if (args[1].equals("false")) {
             debug = false;
         }
-        platformManager.setDebugMode(debug);
+        managerPlatform.setDebugMode(debug);
     }
 }

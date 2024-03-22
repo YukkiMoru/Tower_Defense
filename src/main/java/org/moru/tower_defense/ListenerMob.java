@@ -6,17 +6,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Mob_Listener implements Listener {
+public class ListenerMob implements Listener {
     private final JavaPlugin plugin;
 
-    public Mob_Listener(JavaPlugin plugin) {
+    public ListenerMob(JavaPlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         LivingEntity mob = (LivingEntity) event.getEntity();
-        Mob_Motion mobMotion = new Mob_Motion(mob);
-        mobMotion.runTaskTimer(plugin, 0L, 1L);
+        MotionMob motionMob = new MotionMob(mob);
+        motionMob.runTaskTimer(plugin, 0L, 1L);
     }
 }

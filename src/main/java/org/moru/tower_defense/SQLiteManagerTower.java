@@ -7,11 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Tower_Manager {
+public class SQLiteManagerTower {
 
     private SQLite sqlite;
 
-    public Tower_Manager() {
+    public SQLiteManagerTower() {
         sqlite = new SQLite();
         //dump data
         sqlite.deleteAllData();

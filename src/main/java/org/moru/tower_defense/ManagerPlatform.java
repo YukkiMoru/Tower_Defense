@@ -4,18 +4,17 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 
-public class Platform_Manager {
-    private static Platform_Manager instance = new Platform_Manager();
+public class ManagerPlatform {
+    private static ManagerPlatform instance = new ManagerPlatform();
     private Location Edgelocation;
 
     private boolean debugMode = true; // デバッグモードのフラグ
 
 
-    public static Platform_Manager getInstance() {
+    public static ManagerPlatform getInstance() {
         if (instance == null) {
-            instance = new Platform_Manager();
+            instance = new ManagerPlatform();
         }
         return instance;
     }

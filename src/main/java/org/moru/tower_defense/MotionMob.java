@@ -6,10 +6,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class Mob_Motion extends BukkitRunnable {
+public class MotionMob extends BukkitRunnable {
     private final LivingEntity mob;
 
-    public Mob_Motion(LivingEntity mob) {
+    public MotionMob(LivingEntity mob) {
         //mobを取得
         this.mob = mob;
         //mobのAIを無効化

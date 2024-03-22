@@ -10,14 +10,14 @@ public final class Tower_Defense extends JavaPlugin {
     @Override
     public void onEnable() {
         // mob_motionの起動
-        getServer().getPluginManager().registerEvents(new Mob_Listener(this), this);
+        getServer().getPluginManager().registerEvents(new ListenerMob(this), this);
 
         // Buildingの起動
-        Platform_Listener buildingInstance = new Platform_Listener();
+        ListenerBlock buildingInstance = new ListenerBlock();
         getServer().getPluginManager().registerEvents(buildingInstance, this);
 
         // TD_Commandの起動
-        getCommand("td").setExecutor(new TD_Command());
+        getCommand("td").setExecutor(new CommandTD());
 
         // Sqliteの起動
         sqlite = new SQLite();
@@ -25,7 +25,7 @@ public final class Tower_Defense extends JavaPlugin {
 
         //InventoryClickListenerの起動
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new InventoryClickListener(), this);
+        pluginManager.registerEvents(new ListenerInventoryClick(), this);
 
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");

@@ -11,12 +11,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryClickListener implements Listener {
+public class ListenerInventoryClick implements Listener {
     private List<Tower> towers = new ArrayList<>();
     private int TowerID;
-    private Tower_Manager towerManager;
-    public InventoryClickListener() {
-        towerManager = new Tower_Manager();
+    private SQLiteManagerTower towerManager;
+
+    public ListenerInventoryClick() {
+        towerManager = new SQLiteManagerTower();
         TowerID = towerManager.GetLastTowerID() + 1;
     }
 
@@ -27,10 +28,10 @@ public class InventoryClickListener implements Listener {
             if (event.getView().getTitle().equals("TowerGUI")) {
                 // GUI内のアイテムを取った時そのイベントをキャンセル
                 event.setCancelled(true);
-                Platform_Manager platformManager = Platform_Manager.getInstance();
+                ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
                 Player player = (Player) event.getWhoClicked();
                 //send message
-                Location Edgelocation = platformManager.getEdgelocation();
+                Location Edgelocation = managerPlatform.getEdgelocation();
                 player.sendMessage("You clicked at slot " + event.getSlot());
                 player.sendMessage("EdgeLocation: " + Edgelocation);
                 switch (event.getSlot()) {
