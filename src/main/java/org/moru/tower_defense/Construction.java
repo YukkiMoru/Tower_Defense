@@ -15,11 +15,15 @@ import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.util.io.Closer;
 
 import org.bukkit.Location;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.event.Event;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Construction {
@@ -30,7 +34,8 @@ public class Construction {
         public int y;
         public int z;
     }
-    public void summonStructure(Location location, String StructureName) {
+
+    public void SummonStructure(Location location, String StructureName) {
         File schematic = new File("plugins/WorldEdit/schematics/" + StructureName + ".schem");
         WorldEdit worldEdit = WorldEdit.getInstance();
         ClipboardFormat format = ClipboardFormats.findByFile(schematic);
