@@ -15,12 +15,11 @@ import java.util.List;
 
 
 public class Platform_Listener implements Listener {
-    private boolean cooldown = false;
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Platform_Manager platformManager = Platform_Manager.getInstance();
 
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && !cooldown) {
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             if (event.getClickedBlock().getType() == Material.CHERRY_PLANKS) {
                 if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.AIR) {
                     Location Edgelocation = platformManager.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event);
