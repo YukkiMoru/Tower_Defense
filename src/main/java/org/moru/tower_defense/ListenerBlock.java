@@ -26,6 +26,19 @@ public class ListenerBlock implements Listener {
                     }
                 }
             }
+
+            // Get the clicked block's coordinates
+            Location clickedBlockLocation = event.getClickedBlock().getLocation();
+
+            // get an instance of SQLiteManagerTower
+            SQLiteManagerTower sqliteManagerTower = new SQLiteManagerTower();
+
+            // Get the TowerID from the SQLite database
+            int TowerID = sqliteManagerTower.GetTowerID(clickedBlockLocation);
+
+            Player player = (Player) event.getPlayer();
+            player.sendMessage("TowerID " + TowerID + " がクリックされました!");
+
         }
     }
 }

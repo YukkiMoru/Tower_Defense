@@ -13,11 +13,11 @@ public class SQLiteManagerTower {
 
     public SQLiteManagerTower() {
         sqlite = new SQLite();
-        //dump data
-        sqlite.deleteAllData();
+//        //dump data
+//        sqlite.deleteAllData();
         // create table
         sqlite.createTableIfNotExists();
-        WriteTowerDatabase(1, "Tower", 1, 1);
+//        WriteTowerDatabase(1, "Tower", 1, 1);
     }
 
 
@@ -187,22 +187,60 @@ public class SQLiteManagerTower {
         }
     }
 
-    public Coordinates GetCoordinates(int TowerID) {
+//    public Coordinates GetCoordinates(int TowerID) {
+//        sqlite.connect();
+//        Connection conn = sqlite.getConnection();
+//        PreparedStatement pstmt = null;
+//        ResultSet rs = null;
+//        Coordinates coordinates = null;
+//        String sql = "SELECT * FROM tower_coordinates WHERE TowerID = ?";
+//        try {
+//            pstmt = conn.prepareStatement(sql);
+//            pstmt.setInt(1, TowerID);
+//            rs = pstmt.executeQuery();
+//            if (rs.next()) {
+//                int x = rs.getInt("x");
+//                int y = rs.getInt("y");
+//                int z = rs.getInt("z");
+//                coordinates = new Coordinates(x, y, z);
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            if (rs != null) {
+//                try {
+//                    rs.close();
+//                } catch (SQLException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            if (pstmt != null) {
+//                try {
+//                    pstmt.close();
+//                } catch (SQLException e) {
+//                    System.out.println(e.getMessage());
+//                }
+//            }
+//            sqlite.disconnect();
+//        }
+//        return coordinates;
+//    }
+
+    public int GetTowerID(Location location) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        Coordinates coordinates = null;
-        String sql = "SELECT * FROM tower_coordinates WHERE TowerID = ?";
+        int TowerID = 0;
+        String sql = "SELECT TowerID FROM tower_coordinates WHERE x = ? AND y = ? AND z = ?";
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, TowerID);
+            pstmt.setInt(1, (int) location.getX());
+            pstmt.setInt(2, (int) location.getY());
+            pstmt.setInt(3, (int) location.getZ());
             rs = pstmt.executeQuery();
             if (rs.next()) {
-                int x = rs.getInt("x");
-                int y = rs.getInt("y");
-                int z = rs.getInt("z");
-                coordinates = new Coordinates(x, y, z);
+                TowerID = rs.getInt("TowerID");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -223,7 +261,7 @@ public class SQLiteManagerTower {
             }
             sqlite.disconnect();
         }
-        return coordinates;
+        return TowerID;
     }
 
     public int GetLastTowerID() {
