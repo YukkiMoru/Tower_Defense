@@ -78,6 +78,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 list.add("gui");
                 list.add("debug");
                 list.add("kill");
+                list.add("sql");
                 return list;
             }
             if (args.length == 2 && args[0].equals("debug")) {
