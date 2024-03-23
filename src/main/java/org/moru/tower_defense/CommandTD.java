@@ -89,6 +89,10 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 List<String> list = new ArrayList<>();
                 list.add("TowerGUI");
                 return list;
+            } else if (args.length == 2 && args[0].equals("sql")) {
+                List<String> list = new ArrayList<>();
+                list.add("dump");
+                return list;
             }
 
         }
