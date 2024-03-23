@@ -8,18 +8,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SQLiteManagerTower {
-
-    private SQLite sqlite;
+    private static SQLiteManagerTower instance;
+    private final SQLite sqlite;
 
     public SQLiteManagerTower() {
         sqlite = new SQLite();
-//        //dump data
-//        sqlite.deleteAllData();
-        // create table
+        sqlite.DumpAllData();
         sqlite.createTableIfNotExists();
-//        WriteTowerDatabase(1, "Tower", 1, 1);
     }
 
+
+    public static SQLiteManagerTower getInstance() {
+        if (instance == null) {
+            instance = new SQLiteManagerTower();
+        }
+        return instance;
+    }
 
     /*
      * タワーのデータを保存する

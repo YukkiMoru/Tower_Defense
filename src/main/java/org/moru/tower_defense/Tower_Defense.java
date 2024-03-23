@@ -5,8 +5,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tower_Defense extends JavaPlugin {
-
-    private SQLite sqlite;
+    private SQLiteManagerTower sqliteManagerTower;
+    private SQLite sqlite = new SQLite();
     @Override
     public void onEnable() {
         // mob_motionの起動
@@ -19,9 +19,8 @@ public final class Tower_Defense extends JavaPlugin {
         // TD_Commandの起動
         getCommand("td").setExecutor(new CommandTD());
 
-        // Sqliteの起動
-        sqlite = new SQLite();
-        sqlite.connect();
+        // SQLiteManagerTowerの起動
+        sqliteManagerTower = SQLiteManagerTower.getInstance();
 
         //InventoryClickListenerの起動
         PluginManager pluginManager = Bukkit.getPluginManager();

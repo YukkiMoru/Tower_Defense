@@ -17,7 +17,7 @@ public class ListenerInventoryClick implements Listener {
     private SQLiteManagerTower towerManager;
 
     public ListenerInventoryClick() {
-        towerManager = new SQLiteManagerTower();
+        towerManager = SQLiteManagerTower.getInstance();
         TowerID = towerManager.GetLastTowerID() + 1;
     }
 
