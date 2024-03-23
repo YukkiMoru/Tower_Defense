@@ -56,11 +56,10 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         return false;
     }
 
-    private Void ExecuteCommand(String[] args, String command, String Execute_Command) {
-        if (args[0].equals(command)) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), Execute_Command);
-            //chatにメッセージを送信
-            Bukkit.broadcastMessage("Command " + command + " has been executed!");
+    private Void ExecuteCommand(String[] args, String AliasCommand, String ExecuteCommand) {
+        if (args[0].equals(AliasCommand)) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ExecuteCommand);
+            Bukkit.broadcastMessage(AliasCommand + "が実行されました!");
         }
         return null;
     }
