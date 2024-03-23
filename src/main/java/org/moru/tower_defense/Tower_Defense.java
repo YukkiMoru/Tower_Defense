@@ -5,6 +5,13 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tower_Defense extends JavaPlugin {
+
+    private static Tower_Defense instance;
+
+    public static Tower_Defense getInstance() {
+        return instance;
+    }
+
     private SQLiteManagerTower sqliteManagerTower;
     private SQLite sqlite = new SQLite();
     @Override

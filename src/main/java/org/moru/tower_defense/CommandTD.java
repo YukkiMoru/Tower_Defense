@@ -13,6 +13,8 @@ import java.util.List;
 
 public class CommandTD implements CommandExecutor, TabCompleter {
     private ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
+
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -47,6 +49,12 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                     } else {
                         player.sendMessage("Usage: /td <sql> <dump>");
                     }
+                }
+
+                // instance
+                if (args[0].equals("instance")) {
+                    displayInstances displayInstances = new displayInstances();
+                    displayInstances.displayInstances(player, Tower_Defense.getInstance());
                 }
 
             }
