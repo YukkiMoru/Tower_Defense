@@ -5,3 +5,4 @@
 # サーバーの除外パス
 /Server/logs/
 /Server/plugins/Tower_Defense-1.0-SNAPSHOT.jar
+/Server/logs/

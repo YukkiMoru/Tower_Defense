@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class SQLite {
-    private Connection connection;
+    private static Connection connection;
 
-    public void createTableIfNotExists() {
+    public static void createTableIfNotExists() {
         connect();
         Connection conn = getConnection();
         PreparedStatement pstmt = null;
@@ -35,7 +35,7 @@ public class SQLite {
         }
     }
 
-    public void deleteAllData() {
+    public static void DeleteAllData() {
         connect();
         Connection conn = getConnection();
         PreparedStatement pstmt = null;
@@ -60,7 +60,7 @@ public class SQLite {
         }
     }
 
-    public void connect() {
+    public static void connect() {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:TdSql.db");
         } catch (SQLException e) {
@@ -68,11 +68,11 @@ public class SQLite {
         }
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 
-    public void disconnect() {
+    public static void disconnect() {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
@@ -83,7 +83,7 @@ public class SQLite {
     }
 
     //shutdown sqlite
-    public void shutdown() {
+    public static void shutdown() {
         try {
             connection.createStatement().execute("SHUTDOWN");
         } catch (SQLException e) {

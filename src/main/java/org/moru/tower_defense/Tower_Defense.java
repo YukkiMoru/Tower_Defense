@@ -5,38 +5,34 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tower_Defense extends JavaPlugin {
-
-    private SQLite sqlite;
+    private SQLiteManagerTower sqliteManagerTower;
+    private SQLite sqlite = new SQLite();
     @Override
     public void onEnable() {
-        // mob_motionの起動
-        getServer().getPluginManager().registerEvents(new Mob_Listener(this), this);
+        // MobMotionの起動
+        getServer().getPluginManager().registerEvents(new ListenerMob(this), this);
 
-        // Buildingの起動
-        Platform_Listener buildingInstance = new Platform_Listener();
-        getServer().getPluginManager().registerEvents(buildingInstance, this);
+        // ListenerBlockの起動
+        getServer().getPluginManager().registerEvents(new ListenerBlock(), this);
 
-        // TD_Commandの起動
-        getCommand("td").setExecutor(new TD_Command());
+        // CommandTDの起動
+        getCommand("td").setExecutor(new CommandTD());
 
-        // Sqliteの起動
-        sqlite = new SQLite();
-        sqlite.connect();
+        // SQLiteManagerTowerの起動
+        sqliteManagerTower = SQLiteManagerTower.getInstance();
 
-        //InventoryClickListenerの起動
+        //ListenerInventoryClickの起動
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new InventoryClickListener(), this);
+        pluginManager.registerEvents(new ListenerInventoryClick(), this);
 
-        // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
     }
 
     @Override
     public void onDisable() {
-        // shutdown sqlite
+        // SQLiteのシャットダウン
         sqlite.shutdown();
 
-        // チャットにメッセージを送信("Tower_Defenseプラグインが無効化されました")
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが無効化されました");
     }
 }
