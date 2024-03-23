@@ -35,7 +35,7 @@ public class SQLite {
         }
     }
 
-    public static void DumpAllData() {
+    public static void DeleteAllData() {
         connect();
         Connection conn = getConnection();
         PreparedStatement pstmt = null;

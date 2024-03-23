@@ -65,7 +65,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
 
 
     private void ExecuteSqlDump() {
-        SQLite.DumpAllData();
+        SQLite.DeleteAllData();
     }
 
 

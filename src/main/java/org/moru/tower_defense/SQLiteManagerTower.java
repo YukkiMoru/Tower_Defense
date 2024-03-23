@@ -11,9 +11,9 @@ public class SQLiteManagerTower {
     private static SQLiteManagerTower instance;
     private final SQLite sqlite;
 
-    public SQLiteManagerTower() {
+    public SQLiteManagerTower() {　// Tower_Defense起動時
         sqlite = new SQLite();
-        sqlite.DumpAllData();
+//        sqlite.DeleteAllData(); // テーブルのデータを全て削除
         sqlite.createTableIfNotExists();
     }
 
