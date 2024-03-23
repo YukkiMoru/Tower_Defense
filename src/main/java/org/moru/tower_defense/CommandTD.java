@@ -25,6 +25,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 if (args[0].equals("debug")) {
                     if (args.length > 1) {
                         ExecuteDebug(args);
+                        sender.sendMessage("デバッグモードを" + args[1] + "に設定しました");
                     } else {
                         player.sendMessage("Usage: /td <debug> <true/false>");
                     }
@@ -42,10 +43,11 @@ public class CommandTD implements CommandExecutor, TabCompleter {
 
                 //sql
                 if (args[0].equals("sql")) {
-                    if (args.length > 1 && args[1].equals("dump")) {
-                        ExecuteSqlDump();
+                    if (args.length > 1 && args[1].equals("delete")) {
+                        ExecuteSqlDelete();
+                        sender.sendMessage("データを削除しました");
                     } else {
-                        player.sendMessage("Usage: /td <sql> <dump>");
+                        player.sendMessage("Usage: /td <sql> <delete>");
                     }
                 }
 
@@ -64,7 +66,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
     }
 
 
-    private void ExecuteSqlDump() {
+    private void ExecuteSqlDelete() {
         SQLite.DeleteAllData();
     }
 
@@ -92,7 +94,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 return list;
             } else if (args.length == 2 && args[0].equals("sql")) {
                 List<String> list = new ArrayList<>();
-                list.add("dump");
+                list.add("delete");
                 return list;
             }
 
