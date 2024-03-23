@@ -41,4 +41,15 @@ public class Tower {
         Arrow arrow = armorStand.getWorld().spawnArrow(loc, direction, (float) damage, 0);
         arrow.setShooter(armorStand);
     }
+
+    public void shootParticle(LivingEntity target){
+        Location loc = armorStand.getEyeLocation().clone();
+        Location targetLocation = target.getLocation().clone();
+        // Adjust the target location to aim for the head
+        targetLocation.add(0, target.getHeight() * 0.9, 0);
+        Vector direction = targetLocation.subtract(loc).toVector();
+        armorStand.getWorld().spawnParticle(org.bukkit.Particle.CRIT_MAGIC, loc, 1);
+        // ターゲットのエンティティに移動速度低下のエフェクトを与える
+        target.addPotionEffect(new org.bukkit.potion.PotionEffect(org.bukkit.potion.PotionEffectType.SLOW, 20, 1));
+    }
 }

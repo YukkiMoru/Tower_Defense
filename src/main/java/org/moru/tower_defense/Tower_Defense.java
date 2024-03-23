@@ -27,12 +27,12 @@ public final class Tower_Defense extends JavaPlugin {
         pluginManager.registerEvents(new InventoryClickListener(), this);
 
         // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
-        getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
+        getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されましたaaaa");
     }
 
     @Override
     public void onDisable() {
         // チャットにメッセージを送信("Tower_Defenseプラグインが無効化されました")
-        getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが無効化されました");
+        getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが無効化されましたaaa");
     }
 }

@@ -29,11 +29,20 @@ public class InventoryClickListener implements Listener {
                         player.sendMessage("Tower constructed");
                         player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
                         break;
+                    case 3: // Stone
+                        Construction Immobilizer = new Construction();
+                        Immobilizer.summonStructure(Edgelocation, "Immobilizer");
+                        Immobilizer.GetSizeStructure("Immobilizer");
+                        player.sendMessage("Immobilizer constructed");
+                        player.sendMessage("Immobilizer size: " + Immobilizer.GetSizeStructure("Immobilizer").x + " " + Immobilizer.GetSizeStructure("Immobilizer").y + " " + Immobilizer.GetSizeStructure("Immobilizer").z);
+                        break;
                     case 25: // Diamond
                         // Code to execute when Diamond is clicked
                         break;
                     case 26: // Warden
                         // Code to execute when Warden is clicked
+
+                        player.sendMessage("You clicked on Warden");
                         break;
                     default:
                         break;
