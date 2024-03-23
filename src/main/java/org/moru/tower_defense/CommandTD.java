@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommandTD implements CommandExecutor, TabCompleter {
-    public SQLiteManagerTower towerManager = new SQLiteManagerTower();
     private ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -42,11 +41,11 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 }
 
                 //sql
-                if (args[0].equals("show")) {
-                    if (args.length > 1) {
-                        ExecuteSqlShow(args, player);
+                if (args[0].equals("sql")) {
+                    if (args.length > 1 && args[1].equals("dump")) {
+                        ExecuteSqlDump();
                     } else {
-                        player.sendMessage("Usage: /td <show>");
+                        player.sendMessage("Usage: /td <sql> <dump>");
                     }
                 }
 
@@ -65,18 +64,10 @@ public class CommandTD implements CommandExecutor, TabCompleter {
     }
 
 
-public void ExecuteSqlShow(String[] args, Player player){
-    //show sql data
-    SQLiteManagerTower.TowerData towerData = towerManager.GetTowerDatabase(Integer.parseInt(args[1]));
-    if (towerData != null) {
-        player.sendMessage("TowerID: " + args[1]);
-        player.sendMessage("TowerName: " + towerData.getTowerName());
-        player.sendMessage("TowerType: " + towerData.getTowerType());
-        player.sendMessage("TowerLevel: " + towerData.getLevel());
-    } else {
-        player.sendMessage("No data found for TowerID: " + args[1]);
+    private void ExecuteSqlDump() {
+        SQLite.DumpAllData();
     }
-}
+
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
