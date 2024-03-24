@@ -25,7 +25,7 @@ public class ListenerInventoryClick implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if (event.getInventory().getViewers().contains(event.getWhoClicked())) {
-            if (event.getView().getTitle().equals("TowerGUI")) {
+            if (event.getView().getTitle().equals("PlatformGUI")) {
                 // GUI内のアイテムを取った時そのイベントをキャンセル
                 event.setCancelled(true);
                 ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
@@ -66,6 +66,22 @@ public class ListenerInventoryClick implements Listener {
                         break;
                     case 26: // Warden
                         // Code to execute when Warden is clicked
+                        break;
+                    default:
+                        break;
+                }
+            } else if (event.getView().getTitle().equals("TowerGUI")) {
+                // GUI内のアイテムを取った時そのイベントをキャンセル
+                event.setCancelled(true);
+                Player player = (Player) event.getWhoClicked();
+                player.sendMessage("You clicked at slot " + event.getSlot());
+
+                switch (event.getSlot()) {
+                    case 11: // RedGlassPanel
+                        // Code to execute when RedGlassPanel is clicked
+                        break;
+                    case 12: // GreenGlassPanel
+                        // Code to execute when GreenGlassPanel is clicked
                         break;
                     default:
                         break;
