@@ -34,7 +34,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 //GUI
                 if (args[0].equals("gui")) {
                     if (args.length > 1 && args[1].equals("TowerGUI")) {
-                        Inventory gui = InventoryGUI.TowerGUI();
+                        Inventory gui = InventoryGUI.PlatformGUI();
                         player.openInventory(gui);
                     } else {
                         player.sendMessage("Usage: /td <gui> <TowerGUI>");

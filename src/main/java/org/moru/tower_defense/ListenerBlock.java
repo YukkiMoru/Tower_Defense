@@ -30,7 +30,7 @@ public class ListenerBlock implements Listener {
                 Location edgeLocation = managerPlatform.Platform(event.getClickedBlock().getLocation(), 3, 3, Material.CHERRY_PLANKS, event);
                 if (edgeLocation != null) {
                     Player player = event.getPlayer();
-                    Inventory gui = InventoryGUI.TowerGUI();
+                    Inventory gui = InventoryGUI.PlatformGUI();
                     player.openInventory(gui);
                 }
             }

@@ -2,7 +2,6 @@ package org.moru.tower_defense;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
-import com.mojang.authlib.properties.Property;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,7 +14,7 @@ import org.bukkit.ChatColor;
 import java.util.UUID;
 
 public class InventoryGUI {
-    public static Inventory TowerGUI() {
+    public static Inventory PlatformGUI() {
         Inventory gui_test = CreateInventory("TowerGUI", 27);
 
         ItemStack Diamond = CreateItem(Material.DIAMOND, 1, "Click me!", ChatColor.AQUA);
