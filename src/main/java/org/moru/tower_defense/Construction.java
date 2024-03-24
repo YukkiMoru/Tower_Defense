@@ -36,6 +36,11 @@ public class Construction {
     }
 
     public void SummonStructure(Location location, String StructureName) {
+        // offset the structure
+        Location offset = new Location(location.getWorld(), location.getX(), location.getY(), location.getZ());
+        offset.setX(offset.getX() - 2);
+        offset.setY(offset.getY() + 1);
+        offset.setZ(offset.getZ() - 2);
         File schematic = new File("plugins/WorldEdit/schematics/" + StructureName + ".schem");
         WorldEdit worldEdit = WorldEdit.getInstance();
         ClipboardFormat format = ClipboardFormats.findByFile(schematic);
@@ -46,10 +51,10 @@ public class Construction {
 
             Clipboard clipboard = reader.read();
 
-            try (EditSession editSession = worldEdit.getEditSessionFactory().getEditSession(new BukkitWorld(location.getWorld()), -1)) {
+            try (EditSession editSession = worldEdit.getEditSessionFactory().getEditSession(new BukkitWorld(offset.getWorld()), -1)) {
                 Operation operation = new ClipboardHolder(clipboard)
                         .createPaste(editSession)
-                        .to(BlockVector3.at(location.getX(), location.getY(), location.getZ()))
+                        .to(BlockVector3.at(offset.getX(), offset.getY(), offset.getZ()))
                         .ignoreAirBlocks(false)
                         .build();
                 Operations.complete(operation);
