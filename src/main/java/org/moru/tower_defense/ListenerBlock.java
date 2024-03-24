@@ -21,7 +21,7 @@ public class ListenerBlock implements Listener {
             // プラットフォームかどうかを判定
             PlatformClick(event.getClickedBlock().getType(), event);
             // タワーかどうかを判定
-            TowerInteract(event);
+            TowerClick(event);
         }
     }
 
@@ -39,16 +39,14 @@ public class ListenerBlock implements Listener {
         }
     }
 
-    private void TowerInteract(PlayerInteractEvent event) {
+    private void TowerClick(PlayerInteractEvent event) {
         Location clickedBlockLocation = event.getClickedBlock().getLocation();
         SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
         int TowerID = sqliteManagerTower.GetTowerID(clickedBlockLocation);
         if (TowerID != 0) {
             Player player = (Player) event.getPlayer();
             player.sendMessage("TowerID " + TowerID + " がクリックされました!");
-
-            SQLiteManagerTower.TowerData towerData = sqliteManagerTower.GetTowerData(TowerID);
-            Inventory gui = InventoryGUI.TowerGUI();
+            Inventory gui = InventoryGUI.TowerGUI(TowerID);
             player.openInventory(gui);
         }
     }
