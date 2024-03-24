@@ -22,10 +22,10 @@ public class InventoryGUI {
         ItemStack Oak_Planks = CreateItem(Material.OAK_PLANKS, 1, "Archer Tower", ChatColor.GREEN);
         ItemStack Warden = CreatePlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=", ChatColor.RED);
 
-        // Add the items to the inventory
-        gui.setItem(2, Oak_Planks);
+        // calculateGUI は チェストのGUIの行と列を計算、row 1-6, column 1-9
+        gui.setItem(calculateGUI(1, 3), Oak_Planks);
         gui.setItem(25, Diamond);
-        gui.setItem(26, Warden);  // Add the player head to the inventory
+        gui.setItem(26, Warden);
 
         return gui;
     }
@@ -76,5 +76,10 @@ public class InventoryGUI {
         playerHead.setItemMeta(skullMeta);
 
         return playerHead;
+    }
+
+    // チェストのGUIの行と列を計算、row 1-6, column 1-9
+    private static int calculateGUI(int row, int column) {
+        return 9 * (row - 1) + column - 1;
     }
 }
