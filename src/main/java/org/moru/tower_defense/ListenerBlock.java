@@ -45,6 +45,9 @@ public class ListenerBlock implements Listener {
         if (TowerID != 0) {
             Player player = (Player) event.getPlayer();
             player.sendMessage("TowerID " + TowerID + " がクリックされました!");
+            //Open the Tower GUI
+            Inventory gui = InventoryGUI.TowerGUI();
+            player.openInventory(gui);
         }
     }
 }
