@@ -35,6 +35,8 @@ public class InventoryGUI {
         ItemStack RedGlassPanel = CreateItem(Material.RED_STAINED_GLASS_PANE, 1, "Red Glass Panel", ChatColor.RED);
         ItemStack GreenGlassPanel = CreateItem(Material.GREEN_STAINED_GLASS_PANE, 1, "Green Glass Panel", ChatColor.GREEN);
 
+        //create gui using sql
+
         gui.setItem(11, RedGlassPanel);
         gui.setItem(12, GreenGlassPanel);
 

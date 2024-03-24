@@ -40,14 +40,14 @@ public class ListenerBlock implements Listener {
     }
 
     private void TowerInteract(PlayerInteractEvent event) {
-        // Get the clicked block's coordinates
         Location clickedBlockLocation = event.getClickedBlock().getLocation();
         SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
         int TowerID = sqliteManagerTower.GetTowerID(clickedBlockLocation);
         if (TowerID != 0) {
             Player player = (Player) event.getPlayer();
             player.sendMessage("TowerID " + TowerID + " がクリックされました!");
-            //Open the Tower GUI
+
+            SQLiteManagerTower.TowerData towerData = sqliteManagerTower.GetTowerData(TowerID);
             Inventory gui = InventoryGUI.TowerGUI();
             player.openInventory(gui);
         }

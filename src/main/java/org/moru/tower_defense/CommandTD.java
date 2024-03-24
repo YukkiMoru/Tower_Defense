@@ -49,11 +49,14 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                     if (args.length > 1 && args[1].equals("delete")) {
                         ExecuteSqlDelete();
                         sender.sendMessage("データを削除しました");
-                    } else {
-                        player.sendMessage("Usage: /td <sql> <delete>");
+                    }
+                    else if (args.length > 1 && args[1].equals("show")) {
+                        SQLite.ShowAllData();
+                    }
+                    else {
+                        player.sendMessage("Usage: /td <sql> <delete|show>");
                     }
                 }
-
             }
             return true;
         }
