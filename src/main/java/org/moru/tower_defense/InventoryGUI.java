@@ -11,22 +11,34 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.ChatColor;
 
+import javax.security.auth.login.CredentialNotFoundException;
 import java.util.UUID;
 
 public class InventoryGUI {
     public static Inventory PlatformGUI() {
-        Inventory gui_test = CreateInventory("TowerGUI", 27);
+        Inventory gui = CreateInventory("PlatformGUI", 27);
 
         ItemStack Diamond = CreateItem(Material.DIAMOND, 1, "Click me!", ChatColor.AQUA);
         ItemStack Oak_Planks = CreateItem(Material.OAK_PLANKS, 1, "Archer Tower", ChatColor.GREEN);
         ItemStack Warden = CreatePlayerHead("Warden", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmNmMzY3NGIyZGRjMGVmN2MzOWUzYjljNmI1ODY3N2RlNWNmMzc3ZDJlYjA3M2YyZjNmZTUwOTE5YjFjYTRjOSJ9fX0=", ChatColor.RED);
 
         // Add the items to the inventory
-        gui_test.setItem(2, Oak_Planks);
-        gui_test.setItem(25, Diamond);
-        gui_test.setItem(26, Warden);  // Add the player head to the inventory
+        gui.setItem(2, Oak_Planks);
+        gui.setItem(25, Diamond);
+        gui.setItem(26, Warden);  // Add the player head to the inventory
 
-        return gui_test;
+        return gui;
+    }
+    public static Inventory TowerGUI() {
+        Inventory gui = CreateInventory("TowerGUI", 54);
+
+        ItemStack RedGlassPanel = CreateItem(Material.RED_STAINED_GLASS_PANE, 1, "Red Glass Panel", ChatColor.RED);
+        ItemStack GreenGlassPanel = CreateItem(Material.GREEN_STAINED_GLASS_PANE, 1, "Green Glass Panel", ChatColor.GREEN);
+
+        gui.setItem(11, RedGlassPanel);
+        gui.setItem(12, GreenGlassPanel);
+
+        return gui;
     }
 
     private static Inventory CreateInventory(String name, int size) {
