@@ -37,9 +37,11 @@ public class ListenerInventoryClick implements Listener {
                 switch (event.getSlot()) {
                     case 2: // Oak_Planks
                         // タワーの建設
+                        String StructureName = "archer_1";
+
                         Construction construction = new Construction();
-                        construction.SummonStructure(Edgelocation, "test_tower");
-                        Construction.Size size = construction.GetSizeStructure("test_tower");// タワーのサイズを取得
+                        construction.SummonStructure(Edgelocation, StructureName);
+                        Construction.Size size = construction.GetSizeStructure(StructureName);// タワーのサイズを取得
 
                         //　攻撃用タワー(ArmorStand)の設定
                         Location spawnLocation = new Location(Edgelocation.getWorld(), Edgelocation.getX(), Edgelocation.getY(), Edgelocation.getZ());
@@ -53,7 +55,7 @@ public class ListenerInventoryClick implements Listener {
                         // SQLiteにタワーの情報を書き込む
                         towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
                         player.sendMessage("Count: " + TowerID);
-                        player.sendMessage("Tower size: " + construction.GetSizeStructure("test_tower").x + " " + construction.GetSizeStructure("test_tower").y + " " + construction.GetSizeStructure("test_tower").z);
+                        player.sendMessage("Tower size: " + construction.GetSizeStructure(StructureName).x + " " + construction.GetSizeStructure(StructureName).y + " " + construction.GetSizeStructure(StructureName).z);
 
                         // SQLiteにタワーの座標(Coordinates)を書き込む
                         towerManager.WriteCoordinates(TowerID, Edgelocation, size);
