@@ -14,10 +14,12 @@ import org.bukkit.inventory.Inventory;
 public class ListenerBlock implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getHand() == EquipmentSlot.HAND) {
+        Player player = event.getPlayer();
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK &&
+                event.getHand() == EquipmentSlot.HAND &&
+                !player.isSneaking()) {
             // プラットフォームかどうかを判定
             PlatformClick(event.getClickedBlock().getType(), event);
-
             // タワーかどうかを判定
             TowerInteract(event);
         }
