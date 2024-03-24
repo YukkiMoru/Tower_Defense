@@ -37,7 +37,8 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                         Inventory gui = InventoryGUI.PlatformGUI();
                         player.openInventory(gui);
                     } else if (args.length > 1 && args[1].equals("TowerGUI")) {
-                        Inventory gui = InventoryGUI.TowerGUI();
+                        int TowerID = Integer.parseInt(args[2]);
+                        Inventory gui = InventoryGUI.TowerGUI(TowerID);
                         player.openInventory(gui);
                     } else {
                         player.sendMessage("Usage: /td <gui> <PlatformGUI|TowerGUI>");
@@ -50,11 +51,8 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                         ExecuteSqlDelete();
                         sender.sendMessage("データを削除しました");
                     }
-                    else if (args.length > 1 && args[1].equals("show")) {
-                        SQLite.ShowAllData();
-                    }
                     else {
-                        player.sendMessage("Usage: /td <sql> <delete|show>");
+                        player.sendMessage("Usage: /td <sql> <delete>");
                     }
                 }
             }
