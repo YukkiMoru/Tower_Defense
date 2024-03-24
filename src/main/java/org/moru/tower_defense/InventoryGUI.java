@@ -29,7 +29,16 @@ public class InventoryGUI {
 
         return gui;
     }
-    public static Inventory TowerGUI() {
+
+    public static Inventory TowerGUI(int TowerID) {
+        SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
+        SQLiteManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(TowerID);
+        //チャットにメッセージを送信
+        Bukkit.broadcastMessage("TowerID: " + TowerData.getTowerID());
+        Bukkit.broadcastMessage("TowerName: " + TowerData.getTowerName());
+        Bukkit.broadcastMessage("TowerType: " + TowerData.getTowerType());
+        Bukkit.broadcastMessage("Level: " + TowerData.getLevel());
+
         Inventory gui = CreateInventory("TowerGUI", 54);
 
         ItemStack RedGlassPanel = CreateItem(Material.RED_STAINED_GLASS_PANE, 1, "Red Glass Panel", ChatColor.RED);
