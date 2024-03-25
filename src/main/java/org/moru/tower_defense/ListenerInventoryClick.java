@@ -79,11 +79,9 @@ public class ListenerInventoryClick implements Listener {
                 player.sendMessage("You clicked at slot " + event.getSlot());
 
                 switch (event.getSlot()) {
-                    case 11: // RedGlassPanel
-                        // Code to execute when RedGlassPanel is clicked
-                        break;
-                    case 12: // GreenGlassPanel
-                        // Code to execute when GreenGlassPanel is clicked
+                    case 40: // Upgrade Tower
+
+
                         break;
                     default:
                         break;

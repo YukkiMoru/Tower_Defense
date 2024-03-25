@@ -123,6 +123,46 @@ public class SQLiteManagerTower {
         return towerData;
     }
 
+    public TowerData UpgradeTower(int TowerID) {
+        sqlite.connect();
+        Connection conn = sqlite.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        TowerData towerData = null;
+        String sql = "SELECT * FROM tower_data WHERE TowerID = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, TowerID);
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String TowerName = rs.getString("TowerName");
+                int TowerType = rs.getInt("TowerType");
+                int level = rs.getInt("level");
+                level++;
+                towerData = new TowerData(TowerID, TowerName, TowerType, level);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            sqlite.disconnect();
+        }
+        return towerData;
+    }
+
     /*
      * タワーの座標を保存する
      * @param TowerID

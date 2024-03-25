@@ -11,7 +11,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.ChatColor;
 
-import javax.security.auth.login.CredentialNotFoundException;
 import java.util.UUID;
 
 public class InventoryGUI {
@@ -45,16 +44,49 @@ public class InventoryGUI {
 
         ItemStack RedGlassPanel = CreateItem(Material.RED_STAINED_GLASS_PANE, 1, "Red Glass Panel", ChatColor.RED);
         ItemStack GreenGlassPanel = CreateItem(Material.GREEN_STAINED_GLASS_PANE, 1, "Green Glass Panel", ChatColor.GREEN);
+        ItemStack GrayGlassPanel = CreateItem(Material.GRAY_STAINED_GLASS_PANE, 1, "", null);
+        ItemStack GoldIngot = CreateItem(Material.GOLD_INGOT, 1, "Upgrade", ChatColor.GOLD);
 
-        //create gui using sql
+        gui.setItem(40, GoldIngot);
 
-        gui.setItem(11, RedGlassPanel);
-        gui.setItem(12, GreenGlassPanel);
 
-        if (TowerData.getTowerName() == "Archer") {
+        if ("Archer".equals(TowerData.getTowerName())) {
             ItemStack Archer = CreateItem(Material.BOW, 1, "Archer", ChatColor.WHITE);
             gui.setItem(4, Archer);
+
+            switch (TowerData.getLevel()) {
+                case 1:
+                    gui.setItem(11, GreenGlassPanel);
+                    gui.setItem(12, RedGlassPanel);
+                    gui.setItem(13, RedGlassPanel);
+                    gui.setItem(14, RedGlassPanel);
+                    gui.setItem(15, RedGlassPanel);
+                    break;
+                case 2:
+                    gui.setItem(11, GreenGlassPanel);
+                    gui.setItem(12, GreenGlassPanel);
+                    gui.setItem(13, RedGlassPanel);
+                    gui.setItem(14, RedGlassPanel);
+                    gui.setItem(15, RedGlassPanel);
+                    break;
+                case 3:
+                    gui.setItem(11, GreenGlassPanel);
+                    gui.setItem(12, GreenGlassPanel);
+                    gui.setItem(13, GreenGlassPanel);
+                    gui.setItem(14, RedGlassPanel);
+                    gui.setItem(15, RedGlassPanel);
+                    break;
+                case 4:
+                    gui.setItem(11, GreenGlassPanel);
+                    gui.setItem(12, GreenGlassPanel);
+                    gui.setItem(13, GreenGlassPanel);
+                    gui.setItem(14, GreenGlassPanel);
+                    gui.setItem(15, RedGlassPanel);
+                    break;
+            }
+
         }
+
 
         return gui;
     }
