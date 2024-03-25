@@ -21,6 +21,9 @@ public class ListenerInventoryClick implements Listener {
         TowerID = towerManager.GetLastTowerID() + 1;
     }
 
+    private static int calculateGUI(int row, int column) {
+        return 9 * (row - 1) + column - 1;
+    }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
@@ -35,7 +38,7 @@ public class ListenerInventoryClick implements Listener {
                 player.sendMessage("You clicked at slot " + event.getSlot());
                 player.sendMessage("EdgeLocation: " + Edgelocation);
                 switch (event.getSlot()) {
-                    case 2: // Oak_Planks
+                    case calculateGUI(1, 1): // Oak_Planks
                         // タワーの建設
                         String StructureName = "archer_1";
 
