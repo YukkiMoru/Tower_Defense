@@ -12,6 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListenerInventoryClick implements Listener {
+
+    private ListenerBlock listenerBlock;
+
+    public ListenerInventoryClick(ListenerBlock listenerBlock) {
+        this.listenerBlock = listenerBlock;
+        towerManager = SQLiteManagerTower.getInstance();
+        TowerID = towerManager.GetLastTowerID() + 1;
+    }
+
     private List<Tower> towers = new ArrayList<>();
     private int TowerID;
     private SQLiteManagerTower towerManager;
@@ -80,8 +89,13 @@ public class ListenerInventoryClick implements Listener {
 
                 switch (event.getSlot()) {
                     case 40: // Upgrade Tower
+                        player.sendMessage("TowerID: " + listenerBlock.getCurrentTowerID());
+                        int ClickedTowerID = listenerBlock.getCurrentTowerID();
 
-
+                        towerManager.UpgradeTower(ClickedTowerID);
+                        //reload gui
+                        InventoryGUI.TowerGUI(ClickedTowerID);
+                        player.sendMessage("Tower upgraded");
                         break;
                     default:
                         break;

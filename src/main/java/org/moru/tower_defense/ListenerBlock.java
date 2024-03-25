@@ -12,6 +12,13 @@ import org.bukkit.inventory.Inventory;
 
 
 public class ListenerBlock implements Listener {
+
+    private int currentTowerID;
+
+    public int getCurrentTowerID() {
+        return currentTowerID;
+    }
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
@@ -42,11 +49,11 @@ public class ListenerBlock implements Listener {
     private void TowerClick(PlayerInteractEvent event) {
         Location clickedBlockLocation = event.getClickedBlock().getLocation();
         SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
-        int TowerID = sqliteManagerTower.GetTowerID(clickedBlockLocation);
-        if (TowerID != 0) {
+        currentTowerID = sqliteManagerTower.GetTowerID(clickedBlockLocation);
+        if (currentTowerID != 0) {
             Player player = (Player) event.getPlayer();
-            player.sendMessage("TowerID " + TowerID + " がクリックされました!");
-            Inventory gui = InventoryGUI.TowerGUI(TowerID);
+//            player.sendMessage("TowerClick: TowerID " + currentTowerID + " がクリックされました!");
+            Inventory gui = InventoryGUI.TowerGUI(currentTowerID);
             player.openInventory(gui);
         }
     }

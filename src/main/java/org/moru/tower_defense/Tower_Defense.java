@@ -13,7 +13,8 @@ public final class Tower_Defense extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ListenerMob(this), this);
 
         // ListenerBlockの起動
-        getServer().getPluginManager().registerEvents(new ListenerBlock(), this);
+        ListenerBlock listenerBlock = new ListenerBlock();
+        getServer().getPluginManager().registerEvents(listenerBlock, this);
 
         // CommandTDの起動
         getCommand("td").setExecutor(new CommandTD());
@@ -23,7 +24,7 @@ public final class Tower_Defense extends JavaPlugin {
 
         //ListenerInventoryClickの起動
         PluginManager pluginManager = Bukkit.getPluginManager();
-        pluginManager.registerEvents(new ListenerInventoryClick(), this);
+        pluginManager.registerEvents(new ListenerInventoryClick(listenerBlock), this);
 
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが有効化されました");
     }

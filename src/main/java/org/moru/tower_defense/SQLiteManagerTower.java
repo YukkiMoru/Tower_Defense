@@ -123,44 +123,30 @@ public class SQLiteManagerTower {
         return towerData;
     }
 
-    public TowerData UpgradeTower(int TowerID) {
+    public void UpgradeTower(int TowerID) {
+        System.out.println("UpgradeTower method called with TowerID: " + TowerID);
         sqlite.connect();
         Connection conn = sqlite.getConnection();
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        TowerData towerData = null;
-        String sql = "SELECT * FROM tower_data WHERE TowerID = ?";
+        String sql = "UPDATE tower_data SET level = level + 1 WHERE TowerID = ?";
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, TowerID);
-            rs = pstmt.executeQuery();
-            if (rs.next()) {
-                String TowerName = rs.getString("TowerName");
-                int TowerType = rs.getInt("TowerType");
-                int level = rs.getInt("level");
-                level++;
-                towerData = new TowerData(TowerID, TowerName, TowerType, level);
-            }
+            int affectedRows = pstmt.executeUpdate();
+            System.out.println("SQL query executed, affected rows: " + affectedRows);
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    System.out.println(e.getMessage());
-                }
-            }
             if (pstmt != null) {
                 try {
                     pstmt.close();
                 } catch (SQLException e) {
-                    System.out.println(e.getMessage());
+                    e.printStackTrace();
                 }
             }
             sqlite.disconnect();
         }
-        return towerData;
+        System.out.println("UpgradeTower method finished");
     }
 
     /*
