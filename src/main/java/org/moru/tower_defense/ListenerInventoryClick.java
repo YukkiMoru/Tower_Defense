@@ -1,5 +1,6 @@
 package org.moru.tower_defense;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -71,6 +72,9 @@ public class ListenerInventoryClick implements Listener {
 
                         player.sendMessage("Tower constructed");
                         TowerID++;
+
+                        player.playSound(player.getLocation(), "minecraft:block.anvil.destroy", 1.0f, 0.5f);
+
                         break;
                     case 25: // Diamond
                         // Code to execute when Diamond is clicked
