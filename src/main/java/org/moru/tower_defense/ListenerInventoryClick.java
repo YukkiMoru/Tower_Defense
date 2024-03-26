@@ -90,7 +90,7 @@ public class ListenerInventoryClick implements Listener {
                 event.setCancelled(true);
                 Player player = (Player) event.getWhoClicked();
                 player.sendMessage("You clicked at slot " + event.getSlot());
-
+                Construction construction = new Construction();
                 switch (event.getSlot()) {
                     case 40: // Upgrade Tower
                         player.sendMessage("TowerID: " + listenerBlock.getCurrentTowerID());
@@ -99,6 +99,17 @@ public class ListenerInventoryClick implements Listener {
                         towerManager.UpgradeTower(ClickedTowerID);
                         //reload gui
                         InventoryGUI.TowerGUI(ClickedTowerID);
+
+                        //タワーをアップグレード
+                        SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
+                        SQLiteManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(ClickedTowerID);
+                        //新しいタワーを召喚
+                        ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
+                        Location Edgelocation = managerPlatform.getEdgelocation();
+                        String StructureName = "archer_" + TowerData.getLevel();
+                        player.sendMessage("StructureName: " + StructureName);
+                        construction.SummonStructure(Edgelocation, StructureName);
+
                         player.sendMessage("Tower upgraded");
                         break;
 
@@ -107,7 +118,6 @@ public class ListenerInventoryClick implements Listener {
                         int towerIdToRemove = listenerBlock.getCurrentTowerID();
 
                         // タワーの削除
-                        Construction construction = new Construction();
                         construction.RemoveStructure(towerIdToRemove);
                         // データベース内のタワーの削除
                         towerManager.removeTower(towerIdToRemove);
