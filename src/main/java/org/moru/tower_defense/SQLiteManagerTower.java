@@ -10,21 +10,16 @@ import java.sql.SQLException;
 public class SQLiteManagerTower {
     private static SQLiteManagerTower instance;
     private final SQLite sqlite;
-
     public SQLiteManagerTower() {// Tower_Defense起動時
         sqlite = new SQLite();
-//        sqlite.DeleteAllData(); // テーブルのデータを全て削除
         sqlite.createTableIfNotExists();
     }
-
-
     public static SQLiteManagerTower getInstance() {
         if (instance == null) {
             instance = new SQLiteManagerTower();
         }
         return instance;
     }
-
     /*
      * タワーのデータを保存する
      * @param TowerID
@@ -32,7 +27,6 @@ public class SQLiteManagerTower {
      * @param TowerType
      * @param level
      */
-
     public static class TowerData {
         private int TowerID;
         private String TowerName;
@@ -57,7 +51,6 @@ public class SQLiteManagerTower {
             return level;
         }
     }
-
     public void WriteTowerDatabase(int TowerID, String TowerName, int TowerType, int level) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
@@ -83,7 +76,6 @@ public class SQLiteManagerTower {
             sqlite.disconnect();
         }
     }
-
     public TowerData GetTowerDatabase(int TowerID) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
@@ -122,7 +114,6 @@ public class SQLiteManagerTower {
         }
         return towerData;
     }
-
     public void UpgradeTower(int TowerID) {
         System.out.println("UpgradeTower method called with TowerID: " + TowerID);
         sqlite.connect();
@@ -147,6 +138,29 @@ public class SQLiteManagerTower {
             sqlite.disconnect();
         }
         System.out.println("UpgradeTower method finished");
+    }
+
+    public void removeTower(int towerId) {
+        sqlite.connect();
+        Connection conn = sqlite.getConnection();
+        PreparedStatement pstmt = null;
+        String sql = "DELETE FROM tower_data WHERE TowerID = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, towerId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            sqlite.disconnect();
+        }
     }
 
     /*
@@ -216,7 +230,6 @@ public class SQLiteManagerTower {
             sqlite.disconnect();
         }
     }
-
 //    public Coordinates GetCoordinates(int TowerID) {
 //        sqlite.connect();
 //        Connection conn = sqlite.getConnection();
@@ -255,7 +268,6 @@ public class SQLiteManagerTower {
 //        }
 //        return coordinates;
 //    }
-
     public int GetTowerID(Location location) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
@@ -294,6 +306,29 @@ public class SQLiteManagerTower {
         return TowerID;
     }
 
+    public void RemoveTowerCoordinates(int TowerID) {
+        sqlite.connect();
+        Connection conn = sqlite.getConnection();
+        PreparedStatement pstmt = null;
+        int affectedRows = 0;
+        String sql = "DELETE FROM tower_coordinates WHERE TowerID = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, TowerID);
+            affectedRows = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            sqlite.disconnect();
+        }
+    }
     public int GetLastTowerID() {
         sqlite.connect();
         Connection conn = sqlite.getConnection();

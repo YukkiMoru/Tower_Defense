@@ -101,6 +101,17 @@ public class ListenerInventoryClick implements Listener {
                         InventoryGUI.TowerGUI(ClickedTowerID);
                         player.sendMessage("Tower upgraded");
                         break;
+
+                    case 8: // Remove Tower
+                        // Get the ID of the tower to be removed
+                        int towerIdToRemove = listenerBlock.getCurrentTowerID();
+                        // Remove the tower from the SQLite database
+                        towerManager.removeTower(towerIdToRemove);
+
+                        towerManager.RemoveTowerCoordinates(towerIdToRemove);
+
+                        player.sendMessage("Tower removed");
+                        break;
                     default:
                         break;
                 }

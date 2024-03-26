@@ -46,8 +46,10 @@ public class InventoryGUI {
         ItemStack GreenGlassPanel = CreateItem(Material.GREEN_STAINED_GLASS_PANE, 1, "Green Glass Panel", ChatColor.GREEN);
         ItemStack GrayGlassPanel = CreateItem(Material.GRAY_STAINED_GLASS_PANE, 1, "", null);
         ItemStack GoldIngot = CreateItem(Material.GOLD_INGOT, 1, "Upgrade", ChatColor.GOLD);
+        ItemStack Barrier = CreateItem(Material.BARRIER, 1, "Remove", ChatColor.RED);
 
         gui.setItem(40, GoldIngot);
+        gui.setItem(8, Barrier);
 
 
         if ("Archer".equals(TowerData.getTowerName())) {
