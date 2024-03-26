@@ -105,9 +105,12 @@ public class ListenerInventoryClick implements Listener {
                     case 8: // Remove Tower
                         // Get the ID of the tower to be removed
                         int towerIdToRemove = listenerBlock.getCurrentTowerID();
-                        // Remove the tower from the SQLite database
-                        towerManager.removeTower(towerIdToRemove);
 
+                        // タワーの削除
+                        Construction construction = new Construction();
+                        construction.RemoveStructure(towerIdToRemove);
+                        // データベース内のタワーの削除
+                        towerManager.removeTower(towerIdToRemove);
                         towerManager.RemoveTowerCoordinates(towerIdToRemove);
 
                         player.sendMessage("Tower removed");

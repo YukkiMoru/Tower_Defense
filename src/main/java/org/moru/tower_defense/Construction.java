@@ -14,7 +14,10 @@ import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import com.sk89q.worldedit.util.io.Closer;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.event.Event;
 
@@ -86,5 +89,16 @@ public class Construction {
             e.printStackTrace();
         }
         return size;
+    }
+
+    public void RemoveStructure(int TowerID) {
+        SQLiteManagerTower towerManager = SQLiteManagerTower.getInstance();
+        List<SQLiteManagerTower.Coordinates> coordinatesList = towerManager.GetCoordinates(TowerID);
+
+        for (SQLiteManagerTower.Coordinates coordinates : coordinatesList) {
+            World world = Bukkit.getWorld("TD_world"); // Replace with your world name
+            Location location = new Location(world, coordinates.getX(), coordinates.getY(), coordinates.getZ());
+            location.getBlock().setType(Material.AIR);
+        }
     }
 }

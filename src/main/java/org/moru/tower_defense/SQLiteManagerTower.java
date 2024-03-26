@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLiteManagerTower {
     private static SQLiteManagerTower instance;
@@ -139,7 +141,6 @@ public class SQLiteManagerTower {
         }
         System.out.println("UpgradeTower method finished");
     }
-
     public void removeTower(int towerId) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
@@ -230,44 +231,6 @@ public class SQLiteManagerTower {
             sqlite.disconnect();
         }
     }
-//    public Coordinates GetCoordinates(int TowerID) {
-//        sqlite.connect();
-//        Connection conn = sqlite.getConnection();
-//        PreparedStatement pstmt = null;
-//        ResultSet rs = null;
-//        Coordinates coordinates = null;
-//        String sql = "SELECT * FROM tower_coordinates WHERE TowerID = ?";
-//        try {
-//            pstmt = conn.prepareStatement(sql);
-//            pstmt.setInt(1, TowerID);
-//            rs = pstmt.executeQuery();
-//            if (rs.next()) {
-//                int x = rs.getInt("x");
-//                int y = rs.getInt("y");
-//                int z = rs.getInt("z");
-//                coordinates = new Coordinates(x, y, z);
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(e.getMessage());
-//        } finally {
-//            if (rs != null) {
-//                try {
-//                    rs.close();
-//                } catch (SQLException e) {
-//                    System.out.println(e.getMessage());
-//                }
-//            }
-//            if (pstmt != null) {
-//                try {
-//                    pstmt.close();
-//                } catch (SQLException e) {
-//                    System.out.println(e.getMessage());
-//                }
-//            }
-//            sqlite.disconnect();
-//        }
-//        return coordinates;
-//    }
     public int GetTowerID(Location location) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
@@ -306,6 +269,44 @@ public class SQLiteManagerTower {
         return TowerID;
     }
 
+    public List<Coordinates> GetCoordinates(int TowerID) {
+        sqlite.connect();
+        Connection conn = sqlite.getConnection();
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<Coordinates> coordinatesList = new ArrayList<>();
+        String sql = "SELECT * FROM tower_coordinates WHERE TowerID = ?";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, TowerID);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int x = rs.getInt("x");
+                int y = rs.getInt("y");
+                int z = rs.getInt("z");
+                coordinatesList.add(new Coordinates(x, y, z));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            sqlite.disconnect();
+        }
+        return coordinatesList;
+    }
     public void RemoveTowerCoordinates(int TowerID) {
         sqlite.connect();
         Connection conn = sqlite.getConnection();
