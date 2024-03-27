@@ -1,11 +1,14 @@
 package org.moru.tower_defense;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class Config {
@@ -13,24 +16,46 @@ public class Config {
 
     public Config(JavaPlugin plugin) {
         this.plugin = plugin;
-        if(!checkFile()){
-            createConfig();
-        }
+        createDirectory();
+        createConfig();
     }
 
-    public boolean checkFile() {
-        File configFile = new File(plugin.getDataFolder(), "config.yml");
-        return configFile.exists();
+    private boolean getcheck(String chechedfile) {
+        File checkedfile = new File(plugin.getDataFolder(), chechedfile);
+        return checkedfile.exists();
     }
+
 
     public void createConfig() {
         File configFile = new File(plugin.getDataFolder(), "config.yml");
         if (!configFile.exists()) {
-            try (InputStream in = plugin.getResource("original-config.yml")) {
+            try (InputStream in = plugin.getResource("original.yml")) {
                 if (in == null) {
-                    throw new IOException("Resource original-config.yml not found");
+                    throw new IOException("Resource original.yml not found");
                 }
                 Files.copy(in, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void createDirectory() {
+        Path path = Paths.get("plugins/Tower_Defense");
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectories(path);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void ShowConfig(CommandSender sender) {
+        File configFile = new File(plugin.getDataFolder(), "config.yml");
+        if (configFile.exists()) {
+            try {
+                Files.lines(configFile.toPath()).forEach(sender::sendMessage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
