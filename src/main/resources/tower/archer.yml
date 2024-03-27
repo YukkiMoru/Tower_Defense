@@ -1,0 +1,55 @@
+archer:
+  - level: 1
+    health: 100
+    damage: 10
+    defense: 5
+    speed: 1.0
+    skills:
+      - name: "Double Shot"
+        damage: 20
+        cooldown: 5
+      - name: "Piercing Arrow"
+        damage: 15
+        cooldown: 10
+    equipment:
+      - name: "Leather Armor"
+        defense: 2
+      - name: "Iron Boots"
+        defense: 1
+  - level: 2
+    health: 120
+    damage: 15
+    defense: 7
+    speed: 1.1
+    skills:
+      - name: "Triple Shot"
+        damage: 30
+        cooldown: 5
+      - name: "Piercing Arrow"
+        damage: 15
+        cooldown: 10
+    equipment:
+      - name: "Chain Mail"
+        defense: 4
+      - name: "Iron Boots"
+        defense: 1
+  - level: 3
+    health: 150
+    damage: 20
+    defense: 10
+    speed: 1.2
+    skills:
+      - name: "Triple Shot"
+        damage: 30
+        cooldown: 5
+      - name: "Piercing Arrow"
+        damage: 15
+        cooldown: 10
+      - name: "Explosive Arrow"
+        damage: 50
+        cooldown: 20
+    equipment:
+      - name: "Plate Armor"
+        defense: 6
+      - name: "Iron Boots"
+        defense: 1
