@@ -99,7 +99,7 @@ public class ListenerInventoryClick implements Listener {
                         towerManager.UpgradeTower(ClickedTowerID);
                         //reload gui
                         InventoryGUI.TowerGUI(ClickedTowerID);
-
+                        player.playSound(player.getLocation(), "minecraft:block.anvil.destroy", 1.0f, 0.5f);
                         //タワーをアップグレード
                         SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
                         SQLiteManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(ClickedTowerID);
@@ -109,7 +109,6 @@ public class ListenerInventoryClick implements Listener {
                         String StructureName = "archer_" + TowerData.getLevel();
                         player.sendMessage("StructureName: " + StructureName);
                         construction.SummonStructure(Edgelocation, StructureName);
-
                         player.sendMessage("Tower upgraded");
                         break;
 
