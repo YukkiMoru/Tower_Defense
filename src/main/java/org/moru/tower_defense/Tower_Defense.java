@@ -9,15 +9,15 @@ public final class Tower_Defense extends JavaPlugin {
     private SQLite sqlite = new SQLite();
     @Override
     public void onEnable() {
-        // MobMotionの起動
+        // MotionMobの登録
         getServer().getPluginManager().registerEvents(new ListenerMob(this), this);
 
-        // ListenerBlockの起動
+        // ListenerBlockの登録
         ListenerBlock listenerBlock = new ListenerBlock();
         getServer().getPluginManager().registerEvents(listenerBlock, this);
 
         // CommandTDの起動
-        getCommand("td").setExecutor(new CommandTD());
+        getCommand("td").setExecutor(new CommandTD(this));
 
         // SQLiteManagerTowerの起動
         sqliteManagerTower = SQLiteManagerTower.getInstance();
@@ -25,7 +25,6 @@ public final class Tower_Defense extends JavaPlugin {
         // configの起動
         Config configInstance = new Config(this);
 
-        // チャットにメッセージを送信("Tower_Defenseプラグインが有効化されました")
         //ListenerInventoryClickの起動
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new ListenerInventoryClick(listenerBlock), this);
