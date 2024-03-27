@@ -7,13 +7,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommandTD implements CommandExecutor, TabCompleter {
     private ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
+    private JavaPlugin plugin;
 
+    public CommandTD(JavaPlugin plugin) {
+        this.plugin = plugin;
+    }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -53,6 +58,18 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                         sender.sendMessage("データを削除しました");
                     } else {
                         player.sendMessage("Usage: /td <sql> <delete>");
+                    }
+                }
+
+                //config
+                if (args[0].equals("config")) {
+                    //get instance
+                    Config configInstance = new Config(plugin);
+                    if (args.length > 1 && args[1].equals("show")) {
+                        configInstance.ShowConfig(sender);
+                        sender.sendMessage("configを表示しました");
+                    } else {
+                        player.sendMessage("Usage: /td <config> <show>");
                     }
                 }
             }
