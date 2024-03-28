@@ -1,43 +1,45 @@
 archer:
   - path: 0
-  - level: 1
-    path: 0
-    damage: 1
-    attackspeed: 10
-    range: 10
-    skills:
-      - name: "none"
-  - level: 2
-    path: 0
-    damage: 2
-    attackspeed: 10
-    range: 10
-    skills:
-      - name: "none"
-  - level: 3
-    path: 0
-    damage: 3
-    attackspeed: 10
-    range: 10
-    skills:
-      - name: "none"
-  - level: 4
-    path: 0
-    damage: 4
-    attackspeed: 10
-    range: 10
-    paths:
-      - path: 1
-        damage: 5
+    levels:
+      - level: 1
+        damage: 1
         attackspeed: 10
         range: 10
         skills:
-          - name: "quickfire"
-            description: "Shoots 2 arrows at once"
-      - path: 2
-        damage: 4
-        attackspeed: 15
-        range: 15
+          - name: "none"
+      - level: 2
+        damage: 2
+        attackspeed: 10
+        range: 10
         skills:
-          - name: "long shot"
-            description: "Shoots an arrow with long range"
+          - name: "none"
+      - level: 3
+        damage: 3
+        attackspeed: 10
+        range: 10
+        skills:
+          - name: "none"
+      - level: 4
+        damage: 4
+        attackspeed: 10
+        range: 10
+        skills:
+          - name: "none"
+  - path: 1
+    levels:
+      - level: 5
+        damage: 2
+        attackspeed: 20
+        range: 10
+        skills:
+          - name: "quickfire"
+            description: "Shoots arrows faster"
+  - path: 2
+    levels:
+      - level: 5
+        damage: 4
+        attackspeed: 10
+        range: 10
+        skills:
+          - name: "double-shot"
+            description: "Shoots 2 arrows at once"
