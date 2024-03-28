@@ -5,12 +5,17 @@ import com.destroystokyo.paper.profile.ProfileProperty;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.ChatColor;
+import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class InventoryGUI {
@@ -30,9 +35,11 @@ public class InventoryGUI {
     }
 
     public static Inventory TowerGUI(int TowerID) {
+        Config configManager = new Config(JavaPlugin.getPlugin(Tower_Defense.class));
+        FileConfiguration config = configManager.loadConfig("archer");
+
         SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
         SQLiteManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(TowerID);
-        //チャットにメッセージを送信
 
         Bukkit.broadcastMessage("TowerID: " + TowerData.getTowerID());
         Bukkit.broadcastMessage("TowerName: " + TowerData.getTowerName());
@@ -40,7 +47,6 @@ public class InventoryGUI {
         Bukkit.broadcastMessage("Level: " + TowerData.getLevel());
 
         Inventory gui = CreateInventory("TowerGUI", 54);
-
 
         ItemStack RedGlassPanel = CreateItem(Material.RED_STAINED_GLASS_PANE, 1, "Red Glass Panel", ChatColor.RED);
         ItemStack GreenGlassPanel = CreateItem(Material.GREEN_STAINED_GLASS_PANE, 1, "Green Glass Panel", ChatColor.GREEN);
@@ -51,10 +57,30 @@ public class InventoryGUI {
         gui.setItem(40, GoldIngot);
         gui.setItem(8, Barrier);
 
-
         if ("Archer".equals(TowerData.getTowerName())) {
-            ItemStack Archer = CreateItem(Material.BOW, 1, "Archer", ChatColor.WHITE);
-            gui.setItem(4, Archer);
+            List<Map<?, ?>> paths = config.getMapList("archer");
+
+            for (Map<?, ?> path : paths) {
+                List<Map<String, Object>> levels = (List<Map<String, Object>>) path.get("levels");
+
+                for (Map<String, Object> level : levels) {
+                    if ((int) level.get("level") == TowerData.getLevel()) {
+                        ItemStack Archer = new ItemStack(Material.BOW, 1);
+                        ItemMeta meta = Archer.getItemMeta();
+
+                        meta.setDisplayName(ChatColor.WHITE + "Archer Level " + level.get("level"));
+                        meta.setLore(Arrays.asList(
+                                ChatColor.WHITE + "Damage: " + level.get("damage"),
+                                ChatColor.WHITE + "Attack Speed: " + level.get("attackspeed"),
+                                ChatColor.WHITE + "Range: " + level.get("range"),
+                                ChatColor.WHITE + "Skills: " + level.get("skills")
+                        ));
+
+                        Archer.setItemMeta(meta);
+                        gui.setItem(4, Archer);
+                    }
+                }
+            }
 
             switch (TowerData.getLevel()) {
                 case 1:
@@ -86,9 +112,7 @@ public class InventoryGUI {
                     gui.setItem(15, RedGlassPanel);
                     break;
             }
-
         }
-
 
         return gui;
     }

@@ -1,6 +1,8 @@
 package org.moru.tower_defense;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -60,5 +62,10 @@ public class Config {
                 e.printStackTrace();
             }
         }
+    }
+
+    public FileConfiguration loadConfig(String configName) {
+        File configFile = new File(plugin.getDataFolder(), configName + ".yml");
+        return YamlConfiguration.loadConfiguration(configFile);
     }
 }
