@@ -65,8 +65,8 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 if (args[0].equals("config")) {
                     //get instance
                     Config configInstance = new Config(plugin);
-                    if (args.length > 1 && args[1].equals("show")) {
-                        configInstance.ShowConfig(sender);
+                    if (args.length > 2 && args[1].equals("show")) {
+                        configInstance.ShowConfig(sender, args[2]);
                         sender.sendMessage("configを表示しました");
                     } else {
                         player.sendMessage("Usage: /td <config> <show>");

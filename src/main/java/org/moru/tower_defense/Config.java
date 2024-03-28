@@ -17,7 +17,8 @@ public class Config {
     public Config(JavaPlugin plugin) {
         this.plugin = plugin;
         createDirectory();
-        createConfig();
+        createConfig("original", "config");
+        createConfig("archer", "archer");
     }
 
     private boolean getcheck(String chechedfile) {
@@ -25,11 +26,10 @@ public class Config {
         return checkedfile.exists();
     }
 
-
-    public void createConfig() {
-        File configFile = new File(plugin.getDataFolder(), "config.yml");
+    public void createConfig(String OriginalName, String CopyName) {
+        File configFile = new File(plugin.getDataFolder(), CopyName + ".yml");
         if (!configFile.exists()) {
-            try (InputStream in = plugin.getResource("original.yml")) {
+            try (InputStream in = plugin.getResource(OriginalName + ".yml")) {
                 if (in == null) {
                     throw new IOException("Resource original.yml not found");
                 }
@@ -51,8 +51,8 @@ public class Config {
         }
     }
 
-    public void ShowConfig(CommandSender sender) {
-        File configFile = new File(plugin.getDataFolder(), "config.yml");
+    public void ShowConfig(CommandSender sender, String configName) {
+        File configFile = new File(plugin.getDataFolder(), configName + ".yml");
         if (configFile.exists()) {
             try {
                 Files.lines(configFile.toPath()).forEach(sender::sendMessage);
