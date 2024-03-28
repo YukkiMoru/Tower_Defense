@@ -1,55 +1,43 @@
 archer:
+  - path: 0
   - level: 1
-    health: 100
-    damage: 10
-    defense: 5
-    speed: 1.0
+    path: 0
+    damage: 1
+    attackspeed: 10
+    range: 10
     skills:
-      - name: "Double Shot"
-        damage: 20
-        cooldown: 5
-      - name: "Piercing Arrow"
-        damage: 15
-        cooldown: 10
-    equipment:
-      - name: "Leather Armor"
-        defense: 2
-      - name: "Iron Boots"
-        defense: 1
+      - name: "none"
   - level: 2
-    health: 120
-    damage: 15
-    defense: 7
-    speed: 1.1
+    path: 0
+    damage: 2
+    attackspeed: 10
+    range: 10
     skills:
-      - name: "Triple Shot"
-        damage: 30
-        cooldown: 5
-      - name: "Piercing Arrow"
-        damage: 15
-        cooldown: 10
-    equipment:
-      - name: "Chain Mail"
-        defense: 4
-      - name: "Iron Boots"
-        defense: 1
+      - name: "none"
   - level: 3
-    health: 150
-    damage: 20
-    defense: 10
-    speed: 1.2
+    path: 0
+    damage: 3
+    attackspeed: 10
+    range: 10
     skills:
-      - name: "Triple Shot"
-        damage: 30
-        cooldown: 5
-      - name: "Piercing Arrow"
-        damage: 15
-        cooldown: 10
-      - name: "Explosive Arrow"
-        damage: 50
-        cooldown: 20
-    equipment:
-      - name: "Plate Armor"
-        defense: 6
-      - name: "Iron Boots"
-        defense: 1
+      - name: "none"
+  - level: 4
+    path: 0
+    damage: 4
+    attackspeed: 10
+    range: 10
+    paths:
+      - path: 1
+        damage: 5
+        attackspeed: 10
+        range: 10
+        skills:
+          - name: "quickfire"
+            description: "Shoots 2 arrows at once"
+      - path: 2
+        damage: 4
+        attackspeed: 15
+        range: 15
+        skills:
+          - name: "long shot"
+            description: "Shoots an arrow with long range"
