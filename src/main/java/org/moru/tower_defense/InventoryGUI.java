@@ -54,7 +54,7 @@ public class InventoryGUI {
         ItemStack GoldIngot = CreateItem(Material.GOLD_INGOT, 1, "Upgrade", ChatColor.GOLD);
         ItemStack Barrier = CreateItem(Material.BARRIER, 1, "Remove", ChatColor.RED);
 
-        gui.setItem(40, GoldIngot);
+        gui.setItem(49, GoldIngot);
         gui.setItem(8, Barrier);
 
         if ("Archer".equals(TowerData.getTowerName())) {
@@ -81,36 +81,12 @@ public class InventoryGUI {
                     }
                 }
             }
-
-            switch (TowerData.getLevel()) {
-                case 1:
-                    gui.setItem(11, GreenGlassPanel);
-                    gui.setItem(12, RedGlassPanel);
-                    gui.setItem(13, RedGlassPanel);
-                    gui.setItem(14, RedGlassPanel);
-                    gui.setItem(15, RedGlassPanel);
-                    break;
-                case 2:
-                    gui.setItem(11, GreenGlassPanel);
-                    gui.setItem(12, GreenGlassPanel);
-                    gui.setItem(13, RedGlassPanel);
-                    gui.setItem(14, RedGlassPanel);
-                    gui.setItem(15, RedGlassPanel);
-                    break;
-                case 3:
-                    gui.setItem(11, GreenGlassPanel);
-                    gui.setItem(12, GreenGlassPanel);
-                    gui.setItem(13, GreenGlassPanel);
-                    gui.setItem(14, RedGlassPanel);
-                    gui.setItem(15, RedGlassPanel);
-                    break;
-                case 4:
-                    gui.setItem(11, GreenGlassPanel);
-                    gui.setItem(12, GreenGlassPanel);
-                    gui.setItem(13, GreenGlassPanel);
-                    gui.setItem(14, GreenGlassPanel);
-                    gui.setItem(15, RedGlassPanel);
-                    break;
+            int[] slots = {27, 28, 29, 30, 31, 32, 33, 34, 35};
+            for (int i = 0; i < TowerData.getLevel(); i++) {
+                gui.setItem(slots[i], GreenGlassPanel);
+            }
+            for (int i = TowerData.getLevel(); i < slots.length; i++) {
+                gui.setItem(slots[i], RedGlassPanel);
             }
         }
 
