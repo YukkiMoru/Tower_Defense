@@ -92,7 +92,19 @@ public class ListenerInventoryClick implements Listener {
                 player.sendMessage("You clicked at slot " + event.getSlot());
                 Construction construction = new Construction();
                 switch (event.getSlot()) {
-                    case 40: // Upgrade Tower
+                    case 8: // Remove Tower
+                        // Get the ID of the tower to be removed
+                        int towerIdToRemove = listenerBlock.getCurrentTowerID();
+
+                        // タワーの削除
+                        construction.RemoveStructure(towerIdToRemove);
+                        // データベース内のタワーの削除
+                        towerManager.removeTower(towerIdToRemove);
+                        towerManager.RemoveTowerCoordinates(towerIdToRemove);
+
+                        player.sendMessage("Tower removed");
+                        break;
+                    case 49: // Upgrade Tower
                         player.sendMessage("TowerID: " + listenerBlock.getCurrentTowerID());
                         int ClickedTowerID = listenerBlock.getCurrentTowerID();
 
@@ -110,19 +122,6 @@ public class ListenerInventoryClick implements Listener {
                         player.sendMessage("StructureName: " + StructureName);
                         construction.SummonStructure(Edgelocation, StructureName);
                         player.sendMessage("Tower upgraded");
-                        break;
-
-                    case 8: // Remove Tower
-                        // Get the ID of the tower to be removed
-                        int towerIdToRemove = listenerBlock.getCurrentTowerID();
-
-                        // タワーの削除
-                        construction.RemoveStructure(towerIdToRemove);
-                        // データベース内のタワーの削除
-                        towerManager.removeTower(towerIdToRemove);
-                        towerManager.RemoveTowerCoordinates(towerIdToRemove);
-
-                        player.sendMessage("Tower removed");
                         break;
                     default:
                         break;
