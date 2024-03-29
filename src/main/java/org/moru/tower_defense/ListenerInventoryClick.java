@@ -1,6 +1,5 @@
 package org.moru.tower_defense;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
@@ -9,9 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ListenerInventoryClick implements Listener {
 
@@ -23,7 +19,6 @@ public class ListenerInventoryClick implements Listener {
         TowerID = towerManager.GetLastTowerID() + 1;
     }
 
-    private List<Tower> towers = new ArrayList<>();
     private int TowerID;
     private SQLiteManagerTower towerManager;
 
@@ -60,8 +55,7 @@ public class ListenerInventoryClick implements Listener {
                         spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
                         spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
                         ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 100, 1L, 100.0, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
-                        towers.add(tower);
+                        Tower tower = new Tower(armorStand, 100, 1L, 100.0, TowerID, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
 
                         // SQLiteにタワーの情報を書き込む
                         towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
@@ -109,6 +103,7 @@ public class ListenerInventoryClick implements Listener {
                         player.sendMessage("TowerID: " + listenerBlock.getCurrentTowerID());
                         int ClickedTowerID = listenerBlock.getCurrentTowerID();
 
+                        // 新しいタワーを生成
                         towerManager.UpgradeTower(ClickedTowerID);
                         //変更後のGUIにリロード
                         Inventory newGui = InventoryGUI.TowerGUI(ClickedTowerID);
@@ -124,6 +119,19 @@ public class ListenerInventoryClick implements Listener {
                         player.sendMessage("StructureName: " + StructureName);
                         construction.SummonStructure(Edgelocation, StructureName);
                         player.sendMessage("Tower upgraded");
+
+                        Tower.removeTowerStand(ClickedTowerID);
+                        // 新しいタワーを生成
+                        //中心を設定
+                        Location spawnLocation = new Location(Edgelocation.getWorld(), Edgelocation.getX(), Edgelocation.getY(), Edgelocation.getZ());
+                        Construction.Size size = construction.GetSizeStructure(StructureName); // 追加
+                        spawnLocation.setX(spawnLocation.getX() + (double) (size.x / 2) - 0.5);
+                        spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
+                        spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
+
+                        ArmorStand newArmorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
+                        Tower newTower = new Tower(newArmorStand, 1, 1L, 10.0, ClickedTowerID, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
+
                         break;
                     default:
                         break;
