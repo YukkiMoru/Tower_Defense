@@ -96,6 +96,7 @@ public class ListenerInventoryClick implements Listener {
                         // データベース内のタワーの削除
                         towerManager.removeTower(towerIdToRemove);
                         towerManager.RemoveTowerCoordinates(towerIdToRemove);
+                        Tower.removeTowerStand(towerIdToRemove);
 
                         player.sendMessage("Tower removed");
                         break;
@@ -122,6 +123,7 @@ public class ListenerInventoryClick implements Listener {
 
                         Tower.removeTowerStand(ClickedTowerID);
                         // 新しいタワーを生成
+                        Tower.removeTowerStand(ClickedTowerID);
                         //中心を設定
                         Location spawnLocation = new Location(Edgelocation.getWorld(), Edgelocation.getX(), Edgelocation.getY(), Edgelocation.getZ());
                         Construction.Size size = construction.GetSizeStructure(StructureName); // 追加
