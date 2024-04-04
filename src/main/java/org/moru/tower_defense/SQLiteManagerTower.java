@@ -15,6 +15,8 @@ public class SQLiteManagerTower {
 
     public SQLiteManagerTower() {// Tower_Defense起動時
         sqlite = new SQLite();
+        //delete sql
+        sqlite.DeleteAllData();
         sqlite.createTableIfNotExists();
     }
 
