@@ -1,5 +1,14 @@
 package org.moru.tower_defense;
 
+/*
+このファイルは、Tower_Defenseプラグインのコマンドクラスです。
+/td <show> <config>              → config.ymlの中身を表示
+/td <debug> <true/false>         → デバッグモードを設定
+/td <kill>                       → 全てのエンティティを削除
+/td <gui> <PlatformGUI|TowerGUI> → GUIを表示
+/td <sql> <delete>               → データベースのデータを削除
+*/
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
