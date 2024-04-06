@@ -1,6 +1,7 @@
 package org.moru.tower_defense;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,8 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Map;
 
 public class Config {
+    private static Config instance;
     private JavaPlugin plugin;
 
     public Config(JavaPlugin plugin) {
@@ -23,9 +26,11 @@ public class Config {
         createConfig("archer", "archer");
     }
 
-    private boolean getcheck(String chechedfile) {
-        File checkedfile = new File(plugin.getDataFolder(), chechedfile);
-        return checkedfile.exists();
+    public static Config getInstance(JavaPlugin plugin) {
+        if (instance == null) {
+            instance = new Config(plugin);
+        }
+        return instance;
     }
 
     public void createConfig(String OriginalName, String CopyName) {
@@ -33,7 +38,7 @@ public class Config {
         if (!configFile.exists()) {
             try (InputStream in = plugin.getResource(OriginalName + ".yml")) {
                 if (in == null) {
-                    throw new IOException("Resource original.yml not found");
+                    throw new IOException("Could not find resource " + OriginalName + ".yml");
                 }
                 Files.copy(in, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
@@ -67,5 +72,18 @@ public class Config {
     public FileConfiguration loadConfig(String configName) {
         File configFile = new File(plugin.getDataFolder(), configName + ".yml");
         return YamlConfiguration.loadConfiguration(configFile);
+    }
+
+    public Map<String, Object> LoadConfig(String configname, int path, String level) {
+        FileConfiguration config = loadConfig(configname);
+        ConfigurationSection section = config.getConfigurationSection(configname + "." + path + ".levels");
+
+        for (String key : section.getKeys(false)) {
+            if (key.equals(level)) {
+                return section.getConfigurationSection(key).getValues(true);
+            }
+        }
+
+        return null;
     }
 }

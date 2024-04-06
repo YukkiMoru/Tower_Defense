@@ -9,6 +9,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Map;
+
 public class ListenerInventoryClick implements Listener {
 
     private ListenerBlock listenerBlock;
@@ -55,7 +57,20 @@ public class ListenerInventoryClick implements Listener {
                         spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
                         spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
                         ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 100, 1L, 100.0, TowerID, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
+
+
+                        // Configクラスのインスタンスを作成
+                        Config config = new Config((JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
+                        // LoadConfigメソッドを使用して設定を取得
+                        Map<String, Object> towerConfig = config.LoadConfig("archer", 0, "1");
+
+                        // 設定から必要なデータを取得
+                        double damage = (double) towerConfig.get("damage");
+                        long fireRate = ((Number) towerConfig.get("attackspeed")).longValue();
+                        double range = (double) towerConfig.get("range");
+
+                        // 取得したデータを使用してTowerオブジェクトを作成
+                        Tower tower = new Tower(armorStand, 100, fireRate, range, TowerID, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
 
                         // SQLiteにタワーの情報を書き込む
                         towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
