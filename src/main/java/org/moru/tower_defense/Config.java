@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このクラスは、Tower_Defenseプラグインのコンフィグクラスです。
+コンフィグファイルの読み込み、作成、表示を行います。
+*/
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

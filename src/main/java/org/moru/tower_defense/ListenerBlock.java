@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このクラスは、Tower_Defenseプラグインのブロッククリックリスナークラスです。
+プラットフォームとタワーにクリックしたか処理します。
+*/
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

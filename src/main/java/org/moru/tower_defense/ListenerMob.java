@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このクラスは、Tower_Defenseプラグインのモブリスナークラスです。
+モブの動きを制御します。
+ */
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

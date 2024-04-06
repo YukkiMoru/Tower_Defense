@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このクラスは、Tower_DefenseプラグインのSQLiteManagerTowerクラスです。
+タワーのデータを保存する、タワーの座標を保存する、タワーのデータを取得する、タワーをアップグレードする、タワーを削除する、タワーのIDを取得するメソッドがあります。
+ */
 import org.bukkit.Location;
 
 import java.sql.Connection;

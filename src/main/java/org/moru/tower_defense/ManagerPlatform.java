@@ -1,5 +1,12 @@
 package org.moru.tower_defense;
+/*
+このクラスは、Tower_Defenseプラグインのプラットフォームマネージャークラスです。
+プラットフォームの座標を取得し、デバッグモードを設定します。
+    ※private boolean debugMode = true; // デバッグモードのフラグ
+    にて現在デフォルトでオンにしています。
+プラットフォームの判定アルゴリズムがあります。
 
+ */
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

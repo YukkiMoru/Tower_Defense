@@ -1,5 +1,9 @@
 package org.moru.tower_defense;
-
+/*
+このクラスは、Tower_Defenseプラグインのモーションモブクラスです。
+モブの動きを制御します。
+マインクラフトのデフォルトのモブの動き(setAI(false))を禁止し、新しい動きを追加します。
+*/
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
