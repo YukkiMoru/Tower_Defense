@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このファイルは、Tower_DefenseプラグインのインベントリGUIクラスです。
+InventoryGUIでGUIを作成し、ListenerInventoryClickでイベントを処理します。
+*/
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
 

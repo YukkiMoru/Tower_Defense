@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このクラスは、Tower_Defenseプラグインのタワークラスです。
+タワーのArmorStandを生成し、攻撃を行います。
+*/
 import org.bukkit.Location;
 import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,5 +1,8 @@
 package org.moru.tower_defense;
-
+/*
+このファイルは、Tower_Defenseプラグインのインベントリクリックリスナークラスです。
+インベントリ内のアイテムをクリックしたときのイベントを処理します。
+*/
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;

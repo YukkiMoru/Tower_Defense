@@ -1,11 +1,9 @@
 package org.moru.tower_defense;
-
 /*
 このファイルは、Tower_Defenseプラグインのメインクラスです。
 このクラスは、プラグインの有効化と無効化を処理します。
 プラグインの機能を有効化するために、他のクラスをインスタンス化します。
 */
-
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
