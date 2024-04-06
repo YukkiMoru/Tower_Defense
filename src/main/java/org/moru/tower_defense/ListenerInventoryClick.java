@@ -101,7 +101,7 @@ public class ListenerInventoryClick implements Listener {
                         towerManager.RemoveTowerCoordinates(towerIdToRemove);
                         Tower.removeTowerStand(towerIdToRemove);
 
-                        player.sendMessage("Tower removed");
+                        player.sendMessage("TowerID:" + towerIdToRemove + " was removed");
                         break;
                     case 49: // Upgrade Tower
                         player.sendMessage("TowerID: " + listenerBlock.getCurrentTowerID());
@@ -122,10 +122,10 @@ public class ListenerInventoryClick implements Listener {
                         String StructureName = "archer_" + TowerData.getLevel();
                         player.sendMessage("StructureName: " + StructureName);
                         construction.SummonStructure(Edgelocation, StructureName);
-                        player.sendMessage("Tower upgraded");
+                        player.sendMessage("TowerID:" + ClickedTowerID + " was upgraded");
 
                         Tower.removeTowerStand(ClickedTowerID);
-                        // 新しいタワーを生成
+                        // 新しいアーマースタンドを生成
                         //中心を設定
                         Location spawnLocation = new Location(Edgelocation.getWorld(), Edgelocation.getX(), Edgelocation.getY(), Edgelocation.getZ());
                         Construction.Size size = construction.GetSizeStructure(StructureName); // 追加
