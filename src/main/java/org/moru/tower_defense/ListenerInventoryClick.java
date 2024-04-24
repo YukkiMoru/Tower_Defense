@@ -46,34 +46,10 @@ public class ListenerInventoryClick implements Listener {
                 switch (event.getSlot()) {
                     case 2: // Oak_Planks
                         // タワーの建設
-                        String StructureName = "archer_1";
-
-                        Construction construction = new Construction();
-                        construction.SummonStructure(Edgelocation, StructureName);
-                        Construction.Size size = construction.GetSizeStructure(StructureName);// タワーのサイズを取得
-
-                        //　攻撃用タワー(ArmorStand)の設定
-                        Location spawnLocation = new Location(Edgelocation.getWorld(), Edgelocation.getX(), Edgelocation.getY(), Edgelocation.getZ());
-                        spawnLocation.setX(spawnLocation.getX() + (double) (size.x / 2) - 0.5);
-                        spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
-                        spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
-                        ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
-                        Tower tower = new Tower(armorStand, 100, 1L, 100.0, TowerID, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
-
-                        // SQLiteにタワーの情報を書き込む
-                        towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
-                        player.sendMessage("Count: " + TowerID);
-                        player.sendMessage("Tower size: " + construction.GetSizeStructure(StructureName).x + " " + construction.GetSizeStructure(StructureName).y + " " + construction.GetSizeStructure(StructureName).z);
-
-                        // SQLiteにタワーの座標(Coordinates)を書き込む
-                        towerManager.WriteCoordinates(TowerID, Edgelocation, size);
-
-                        player.sendMessage("Tower constructed");
-                        TowerID++;
-
-                        player.playSound(player.getLocation(), "minecraft:block.anvil.destroy", 1.0f, 0.5f);
-
+                        BuildingTower("archer_1", player, Edgelocation);
                         break;
+                    case 3: // Spruce_Planks
+                        // WIP (make other tower e.x. mage, warrior and frozen)
                     case 25: // Diamond
                         // Code to execute when Diamond is clicked
                         break;
@@ -142,5 +118,34 @@ public class ListenerInventoryClick implements Listener {
                 }
             }
         }
+    }
+
+    public void BuildingTower(String towerName, Player player, Location Edgelocation) {
+        String structureName = towerName;
+
+        Construction construction = new Construction();
+        construction.SummonStructure(Edgelocation, structureName);
+        Construction.Size size = construction.GetSizeStructure(structureName); // タワーのサイズを取得
+
+        //　攻撃用タワー(ArmorStand)の設定
+        Location spawnLocation = new Location(Edgelocation.getWorld(), Edgelocation.getX(), Edgelocation.getY(), Edgelocation.getZ());
+        spawnLocation.setX(spawnLocation.getX() + (double) (size.x / 2) - 0.5);
+        spawnLocation.setY(spawnLocation.getY() + size.y + 1.0);
+        spawnLocation.setZ(spawnLocation.getZ() + (double) (size.z / 2) - 0.5);
+        ArmorStand armorStand = Edgelocation.getWorld().spawn(spawnLocation, ArmorStand.class);
+        Tower tower = new Tower(armorStand, 100, 1L, 100.0, TowerID, (JavaPlugin) Tower_Defense.getPlugin(Tower_Defense.class));
+
+        // SQLiteにタワーの情報を書き込む
+        towerManager.WriteTowerDatabase(TowerID, "Archer", 3, 1);
+        player.sendMessage("Count: " + TowerID);
+        player.sendMessage("Tower size: " + construction.GetSizeStructure(structureName).x + " " + construction.GetSizeStructure(structureName).y + " " + construction.GetSizeStructure(structureName).z);
+
+        // SQLiteにタワーの座標(Coordinates)を書き込む
+        towerManager.WriteCoordinates(TowerID, Edgelocation, size);
+
+        player.sendMessage("Tower constructed");
+        TowerID++;
+
+        player.playSound(player.getLocation(), "minecraft:block.anvil.destroy", 1.0f, 0.5f);
     }
 }
