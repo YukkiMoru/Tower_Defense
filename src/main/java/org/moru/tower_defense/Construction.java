@@ -92,10 +92,10 @@ public class Construction {
     }
 
     public void RemoveStructure(int TowerID) {
-        SQLiteManagerTower towerManager = SQLiteManagerTower.getInstance();
-        List<SQLiteManagerTower.Coordinates> coordinatesList = towerManager.GetCoordinates(TowerID);
+        SQLManagerTower towerManager = SQLManagerTower.getInstance();
+        List<SQLManagerTower.Coordinates> coordinatesList = towerManager.GetCoordinates(TowerID);
 
-        for (SQLiteManagerTower.Coordinates coordinates : coordinatesList) {
+        for (SQLManagerTower.Coordinates coordinates : coordinatesList) {
             World world = Bukkit.getWorld("TD_world"); // Replace with your world name
             Location location = new Location(world, coordinates.getX(), coordinates.getY(), coordinates.getZ());
             location.getBlock().setType(Material.AIR);

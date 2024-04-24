@@ -18,15 +18,15 @@ public class ListenerInventoryClick implements Listener {
 
     public ListenerInventoryClick(ListenerBlock listenerBlock) {
         this.listenerBlock = listenerBlock;
-        towerManager = SQLiteManagerTower.getInstance();
+        towerManager = SQLManagerTower.getInstance();
         TowerID = towerManager.GetLastTowerID() + 1;
     }
 
     private int TowerID;
-    private SQLiteManagerTower towerManager;
+    private SQLManagerTower towerManager;
 
     public ListenerInventoryClick() {
-        towerManager = SQLiteManagerTower.getInstance();
+        towerManager = SQLManagerTower.getInstance();
         TowerID = towerManager.GetLastTowerID() + 1;
     }
 
@@ -114,8 +114,8 @@ public class ListenerInventoryClick implements Listener {
                         player.openInventory(newGui);
                         player.playSound(player.getLocation(), "minecraft:block.anvil.destroy", 1.0f, 0.5f);
                         //タワーをアップグレード
-                        SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
-                        SQLiteManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(ClickedTowerID);
+                        SQLManagerTower sqliteManagerTower = SQLManagerTower.getInstance();
+                        SQLManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(ClickedTowerID);
                         //新しいタワーを召喚
                         ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
                         Location Edgelocation = managerPlatform.getEdgelocation();

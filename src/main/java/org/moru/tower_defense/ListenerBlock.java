@@ -51,7 +51,7 @@ public class ListenerBlock implements Listener {
 
     private void TowerClick(PlayerInteractEvent event) {
         Location clickedBlockLocation = event.getClickedBlock().getLocation();
-        SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
+        SQLManagerTower sqliteManagerTower = SQLManagerTower.getInstance();
         currentTowerID = sqliteManagerTower.GetTowerID(clickedBlockLocation);
         if (currentTowerID != 0) {
             Player player = (Player) event.getPlayer();

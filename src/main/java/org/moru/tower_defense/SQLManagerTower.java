@@ -12,20 +12,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLiteManagerTower {
-    private static SQLiteManagerTower instance;
-    private final SQLite sqlite;
+public class SQLManagerTower {
+    private static SQLManagerTower instance;
+    private final SQL sqlite;
 
-    public SQLiteManagerTower() {// Tower_Defense起動時
-        sqlite = new SQLite();
+    public SQLManagerTower() {// Tower_Defense起動時
+        sqlite = new SQL();
         //delete sql
         sqlite.DeleteAllData();
         sqlite.createTableIfNotExists();
     }
 
-    public static SQLiteManagerTower getInstance() {
+    public static SQLManagerTower getInstance() {
         if (instance == null) {
-            instance = new SQLiteManagerTower();
+            instance = new SQLManagerTower();
         }
         return instance;
     }

@@ -41,8 +41,8 @@ public class InventoryGUI {
         Config configManager = new Config(JavaPlugin.getPlugin(Tower_Defense.class));
         FileConfiguration config = configManager.loadConfig("archer");
 
-        SQLiteManagerTower sqliteManagerTower = SQLiteManagerTower.getInstance();
-        SQLiteManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(TowerID);
+        SQLManagerTower sqliteManagerTower = SQLManagerTower.getInstance();
+        SQLManagerTower.TowerData TowerData = sqliteManagerTower.GetTowerDatabase(TowerID);
 
         Bukkit.broadcastMessage("TowerID: " + TowerData.getTowerID());
         Bukkit.broadcastMessage("TowerName: " + TowerData.getTowerName());

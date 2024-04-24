@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SQLite {
+public class SQL {
     private static Connection connection;
 
     public static void createTableIfNotExists() {

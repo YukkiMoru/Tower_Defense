@@ -9,8 +9,8 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tower_Defense extends JavaPlugin {
-    private SQLiteManagerTower sqliteManagerTower;
-    private SQLite sqlite = new SQLite();
+    private SQLManagerTower sqliteManagerTower;
+    private SQL sqlite = new SQL();
     @Override
     public void onEnable() {
         // MotionMobの登録
@@ -24,7 +24,7 @@ public final class Tower_Defense extends JavaPlugin {
         getCommand("td").setExecutor(new CommandTD(this));
 
         // SQLiteManagerTowerの起動
-        sqliteManagerTower = SQLiteManagerTower.getInstance();
+        sqliteManagerTower = SQLManagerTower.getInstance();
 
         // configの起動
         Config configInstance = new Config(this);
