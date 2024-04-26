@@ -2,8 +2,9 @@ package org.moru.tower_defense;
 /*
 このファイルは、Tower_Defenseプラグインのコマンドクラスです。
 以下のコマンドを実装しています。
-/td <debug> <true/false>         → デバッグモードを設定
 /td <kill>                       → 全てのエンティティを削除
+/td <help>                       → ヘルプを表示
+/td <debug> <true/false>         → デバッグモードを設定
 /td <gui> <PlatformGUI|TowerGUI> → GUIを表示
 /td <sql> <delete>               → データベースのデータを削除
 /td <config> <show> <xxx.yml>    → xxx.ymlの中身を表示
@@ -38,10 +39,11 @@ public class CommandTD implements CommandExecutor, TabCompleter {
 
         String cmd = args[0];
         switch (cmd) {
+            case "kill":
+                ExecuteDefaultCommand(args, "kill", "kill @e[type=!player]");
+                break;
             case "help":
                 handleHelpCommand(player);
-            case "kill":
-                handleKillCommand(args);
                 break;
             case "debug":
                 handleDebugCommand(player, args);
@@ -62,6 +64,13 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         return true;
     }
 
+    private void ExecuteDefaultCommand(String[] args, String AliasCommand, String ExecuteCommand) {
+        if (args[0].equals(AliasCommand)) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ExecuteCommand);
+            Bukkit.broadcastMessage(AliasCommand + "が実行されました!");
+        }
+    }
+
     private void handleHelpCommand(Player player) {
         player.sendMessage("Usage: /td <command> <args>");
         player.sendMessage("Commands: ");
@@ -69,16 +78,14 @@ public class CommandTD implements CommandExecutor, TabCompleter {
             player.sendMessage(key + " : " + String.join(", ", value));
         });
     }
-    private void handleKillCommand(String[] args) {
-        ExecuteDefaultCommand(args, "kill", "kill @e[type=!player]");
-    }
 
     private void handleDebugCommand(Player player, String[] args) {
         if (args.length > 1) {
-            ExecuteDebug(args);
+            boolean debug = "true".equals(args[1]);
+            managerPlatform.setDebugMode(debug);
             player.sendMessage("デバッグモードを" + args[1] + "に設定しました");
         } else {
-            player.sendMessage("Usage: /td <debug> <true/false>");
+            player.sendMessage("/td <debug> <true/false>");
         }
     }
 
@@ -100,7 +107,6 @@ public class CommandTD implements CommandExecutor, TabCompleter {
             }
         }
     }
-
     private void handleSqlCommand(Player player, String[] args) {
         if (args.length > 1 && args[1].equals("delete")) {
             SQL.DeleteAllData();
@@ -109,7 +115,6 @@ public class CommandTD implements CommandExecutor, TabCompleter {
             player.sendMessage("Usage: /td <sql> <delete>");
         }
     }
-
     private void handleConfigCommand(Player player, String[] args) {
         if (args.length > 2 && args[1].equals("show")) {
             Config configInstance = new Config(plugin);
@@ -120,21 +125,8 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         }
     }
 
-    private void ExecuteDefaultCommand(String[] args, String AliasCommand, String ExecuteCommand) {
-        if (args[0].equals(AliasCommand)) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ExecuteCommand);
-            Bukkit.broadcastMessage(AliasCommand + "が実行されました!");
-        }
-    }
-
-
-    private void ExecuteDebug(String[] args) {
-        boolean debug = "true".equals(args[1]);
-        managerPlatform.setDebugMode(debug);
-    }
-
+    // この下は主にTab補完の処理です
     private static final Map<String, List<String>> COMMANDS = new HashMap<>();
-
     static {
         COMMANDS.put("", Arrays.asList("show", "gui", "debug", "kill", "sql", "config"));
         COMMANDS.put("debug", Arrays.asList("true", "false"));
@@ -142,7 +134,6 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         COMMANDS.put("sql", Arrays.asList("delete"));
         COMMANDS.put("config", Arrays.asList("show"));
     }
-
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (sender instanceof Player) {
