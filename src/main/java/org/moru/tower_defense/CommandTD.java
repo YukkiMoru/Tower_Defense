@@ -1,14 +1,13 @@
 package org.moru.tower_defense;
-
 /*
 このファイルは、Tower_Defenseプラグインのコマンドクラスです。
+以下のコマンドを実装しています。
 /td <show> <config>              → config.ymlの中身を表示
 /td <debug> <true/false>         → デバッグモードを設定
 /td <kill>                       → 全てのエンティティを削除
 /td <gui> <PlatformGUI|TowerGUI> → GUIを表示
 /td <sql> <delete>               → データベースのデータを削除
 */
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -45,7 +44,6 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                         player.sendMessage("Usage: /td <debug> <true/false>");
                     }
                 }
-
                 //GUI
                 if (args[0].equals("gui")) {
                     if (args.length > 1 && args[1].equals("PlatformGUI")) {
@@ -100,6 +98,16 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         SQL.DeleteAllData();
     }
 
+    private void ExecuteDebug(String[] args) {
+        boolean debug = false;
+        if (args[1].equals("true")) {
+            debug = true;
+        }
+        if (args[1].equals("false")) {
+            debug = false;
+        }
+        managerPlatform.setDebugMode(debug);
+    }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
@@ -130,16 +138,5 @@ public class CommandTD implements CommandExecutor, TabCompleter {
 
         }
         return null;
-    }
-
-    private void ExecuteDebug(String[] args) {
-        boolean debug = false;
-        if (args[1].equals("true")) {
-            debug = true;
-        }
-        if (args[1].equals("false")) {
-            debug = false;
-        }
-        managerPlatform.setDebugMode(debug);
     }
 }
