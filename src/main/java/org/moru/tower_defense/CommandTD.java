@@ -98,13 +98,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
     }
 
     private void ExecuteDebug(String[] args) {
-        boolean debug = false;
-        if (args[1].equals("true")) {
-            debug = true;
-        }
-        if (args[1].equals("false")) {
-            debug = false;
-        }
+        boolean debug = "true".equals(args[1]);
         managerPlatform.setDebugMode(debug);
     }
 
