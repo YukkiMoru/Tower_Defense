@@ -38,6 +38,8 @@ public class CommandTD implements CommandExecutor, TabCompleter {
 
         String cmd = args[0];
         switch (cmd) {
+            case "help":
+                handleHelpCommand(player);
             case "kill":
                 handleKillCommand(args);
                 break;
@@ -54,12 +56,19 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 handleConfigCommand(player, args);
                 break;
             default:
-                player.sendMessage("Unknown command: " + cmd);
+                player.sendMessage("不明なコマンドです　:" + cmd + ",詳しくは/td helpを入力してください");
                 break;
         }
         return true;
     }
 
+    private void handleHelpCommand(Player player) {
+        player.sendMessage("Usage: /td <command> <args>");
+        player.sendMessage("Commands: ");
+        COMMANDS.forEach((key, value) -> {
+            player.sendMessage(key + " : " + String.join(", ", value));
+        });
+    }
     private void handleKillCommand(String[] args) {
         ExecuteDefaultCommand(args, "kill", "kill @e[type=!player]");
     }
