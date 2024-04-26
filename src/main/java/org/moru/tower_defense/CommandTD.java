@@ -103,7 +103,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
 
     private void handleSqlCommand(Player player, String[] args) {
         if (args.length > 1 && args[1].equals("delete")) {
-            ExecuteSqlDelete();
+            SQL.DeleteAllData();
             player.sendMessage("データを削除しました");
         } else {
             player.sendMessage("Usage: /td <sql> <delete>");
@@ -127,10 +127,6 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         }
     }
 
-
-    private void ExecuteSqlDelete() {
-        SQL.DeleteAllData();
-    }
 
     private void ExecuteDebug(String[] args) {
         boolean debug = "true".equals(args[1]);
