@@ -31,52 +31,59 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (args.length > 0) {
-                //コマンド
-                ExecuteCommand(args, "kill", "kill @e[type=!player]"); // /td <command> → Execute_Commandが実行される
-
-                //デバッグモード
-                if (args[0].equals("debug")) {
-                    if (args.length > 1) {
-                        ExecuteDebug(args);
-                        sender.sendMessage("デバッグモードを" + args[1] + "に設定しました");
-                    } else {
-                        player.sendMessage("Usage: /td <debug> <true/false>");
-                    }
-                }
-                //GUI
-                if (args[0].equals("gui")) {
-                    if (args.length > 1 && args[1].equals("PlatformGUI")) {
-                        Inventory gui = InventoryGUI.PlatformGUI();
-                        player.openInventory(gui);
-                    } else if (args.length > 1 && args[1].equals("TowerGUI")) {
-                        int TowerID = Integer.parseInt(args[2]);
-                        Inventory gui = InventoryGUI.TowerGUI(TowerID);
-                        player.openInventory(gui);
-                    } else {
-                        player.sendMessage("Usage: /td <gui> <PlatformGUI|TowerGUI>");
-                    }
-                }
-
-                //sql
-                if (args[0].equals("sql")) {
-                    if (args.length > 1 && args[1].equals("delete")) {
-                        ExecuteSqlDelete();
-                        sender.sendMessage("データを削除しました");
-                    } else {
-                        player.sendMessage("Usage: /td <sql> <delete>");
-                    }
-                }
-
-                //config
-                if (args[0].equals("config")) {
-                    //get instance
-                    Config configInstance = new Config(plugin);
-                    if (args.length > 2 && args[1].equals("show")) {
-                        configInstance.ShowConfig(sender, args[2]);
-                        sender.sendMessage(args[2] + "のconfigを表示しました");
-                    } else {
-                        player.sendMessage("Usage: /td <config> <show>");
-                    }
+                String cmd = args[0];
+                switch (cmd) {
+                    case "kill":
+                        ExecuteCommand(args, "kill", "kill @e[type=!player]");
+                        break;
+                    case "debug":
+                        if (args.length > 1) {
+                            ExecuteDebug(args);
+                            sender.sendMessage("デバッグモードを" + args[1] + "に設定しました");
+                        } else {
+                            player.sendMessage("Usage: /td <debug> <true/false>");
+                        }
+                        break;
+                    case "gui":
+                        if (args.length > 1) {
+                            switch (args[1]) {
+                                case "PlatformGUI":
+                                    Inventory gui = InventoryGUI.PlatformGUI();
+                                    player.openInventory(gui);
+                                    break;
+                                case "TowerGUI":
+                                    int TowerID = Integer.parseInt(args[2]);
+                                    gui = InventoryGUI.TowerGUI(TowerID);
+                                    player.openInventory(gui);
+                                    break;
+                                default:
+                                    player.sendMessage("Usage: /td <gui> <PlatformGUI|TowerGUI>");
+                                    break;
+                            }
+                        }
+                        break;
+                    case "sql":
+                        if (args.length > 1) {
+                            if (args[1].equals("delete")) {
+                                ExecuteSqlDelete();
+                                sender.sendMessage("データを削除しました");
+                            }
+                        } else {
+                            player.sendMessage("Usage: /td <sql> <delete>");
+                        }
+                        break;
+                    case "config":
+                        if (args.length > 2 && args[1].equals("show")) {
+                            Config configInstance = new Config(plugin);
+                            configInstance.ShowConfig(sender, args[2]);
+                            sender.sendMessage(args[2] + "のconfigを表示しました");
+                        } else {
+                            player.sendMessage("Usage: /td <config> <show>");
+                        }
+                        break;
+                    default:
+                        player.sendMessage("Unknown command: " + cmd);
+                        break;
                 }
             }
             return true;
