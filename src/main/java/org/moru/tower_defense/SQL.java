@@ -84,13 +84,4 @@ public class SQL {
             e.printStackTrace();
         }
     }
-
-    //shutdown sqlite
-    public static void shutdown() {
-        try {
-            connection.createStatement().execute("SHUTDOWN");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }
