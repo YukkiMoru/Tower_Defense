@@ -17,8 +17,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CommandTD implements CommandExecutor, TabCompleter {
     private ManagerPlatform managerPlatform = ManagerPlatform.getInstance();
@@ -109,37 +108,20 @@ public class CommandTD implements CommandExecutor, TabCompleter {
         managerPlatform.setDebugMode(debug);
     }
 
+    private static final Map<String, List<String>> COMMANDS = new HashMap<>();
+
+    static {
+        COMMANDS.put("", Arrays.asList("show", "gui", "debug", "kill", "sql", "config"));
+        COMMANDS.put("debug", Arrays.asList("true", "false"));
+        COMMANDS.put("gui", Arrays.asList("TowerGUI"));
+        COMMANDS.put("sql", Arrays.asList("delete"));
+        COMMANDS.put("config", Arrays.asList("show"));
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (sender instanceof Player) {
-            if (args.length == 1) {
-                List<String> list = new ArrayList<>();
-                list.add("show");
-                list.add("gui");
-                list.add("debug");
-                list.add("kill");
-                list.add("sql");
-                list.add("config");
-                return list;
-            }
-            if (args.length == 2 && args[0].equals("debug")) {
-                List<String> list = new ArrayList<>();
-                list.add("true");
-                list.add("false");
-                return list;
-            } else if (args.length == 2 && args[0].equals("gui")) {
-                List<String> list = new ArrayList<>();
-                list.add("TowerGUI");
-                return list;
-            } else if (args.length == 2 && args[0].equals("sql")) {
-                List<String> list = new ArrayList<>();
-                list.add("delete");
-                return list;
-            } else if (args.length == 2 && args[0].equals("config")) {
-                List<String> list = new ArrayList<>();
-                list.add("show");
-                return list;
-            }
+            return COMMANDS.getOrDefault(args.length > 0 ? args[0] : "", Collections.emptyList());
         }
         return null;
     }
