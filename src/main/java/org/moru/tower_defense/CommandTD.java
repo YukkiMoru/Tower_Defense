@@ -26,77 +26,96 @@ public class CommandTD implements CommandExecutor, TabCompleter {
     public CommandTD(JavaPlugin plugin) {
         this.plugin = plugin;
     }
-    @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            if (args.length > 0) {
-                String cmd = args[0];
-                switch (cmd) {
-                    case "kill":
-                        ExecuteCommand(args, "kill", "kill @e[type=!player]");
-                        break;
-                    case "debug":
-                        if (args.length > 1) {
-                            ExecuteDebug(args);
-                            sender.sendMessage("デバッグモードを" + args[1] + "に設定しました");
-                        } else {
-                            player.sendMessage("Usage: /td <debug> <true/false>");
-                        }
-                        break;
-                    case "gui":
-                        if (args.length > 1) {
-                            switch (args[1]) {
-                                case "PlatformGUI":
-                                    Inventory gui = InventoryGUI.PlatformGUI();
-                                    player.openInventory(gui);
-                                    break;
-                                case "TowerGUI":
-                                    int TowerID = Integer.parseInt(args[2]);
-                                    gui = InventoryGUI.TowerGUI(TowerID);
-                                    player.openInventory(gui);
-                                    break;
-                                default:
-                                    player.sendMessage("Usage: /td <gui> <PlatformGUI|TowerGUI>");
-                                    break;
-                            }
-                        }
-                        break;
-                    case "sql":
-                        if (args.length > 1) {
-                            if (args[1].equals("delete")) {
-                                ExecuteSqlDelete();
-                                sender.sendMessage("データを削除しました");
-                            }
-                        } else {
-                            player.sendMessage("Usage: /td <sql> <delete>");
-                        }
-                        break;
-                    case "config":
-                        if (args.length > 2 && args[1].equals("show")) {
-                            Config configInstance = new Config(plugin);
-                            configInstance.ShowConfig(sender, args[2]);
-                            sender.sendMessage(args[2] + "のconfigを表示しました");
-                        } else {
-                            player.sendMessage("Usage: /td <config> <show>");
-                        }
-                        break;
-                    default:
-                        player.sendMessage("Unknown command: " + cmd);
-                        break;
-                }
-            }
-            return true;
+        if (!(sender instanceof Player)) {
+            return false;
         }
-        return false;
+
+        Player player = (Player) sender;
+        if (args.length == 0) {
+            return false;
+        }
+
+        String cmd = args[0];
+        switch (cmd) {
+            case "kill":
+                handleKillCommand(args);
+                break;
+            case "debug":
+                handleDebugCommand(player, args);
+                break;
+            case "gui":
+                handleGuiCommand(player, args);
+                break;
+            case "sql":
+                handleSqlCommand(player, args);
+                break;
+            case "config":
+                handleConfigCommand(player, args);
+                break;
+            default:
+                player.sendMessage("Unknown command: " + cmd);
+                break;
+        }
+        return true;
     }
 
-    private Void ExecuteCommand(String[] args, String AliasCommand, String ExecuteCommand) {
+    private void handleKillCommand(String[] args) {
+        ExecuteDefaultCommand(args, "kill", "kill @e[type=!player]");
+    }
+
+    private void handleDebugCommand(Player player, String[] args) {
+        if (args.length > 1) {
+            ExecuteDebug(args);
+            player.sendMessage("デバッグモードを" + args[1] + "に設定しました");
+        } else {
+            player.sendMessage("Usage: /td <debug> <true/false>");
+        }
+    }
+
+    private void handleGuiCommand(Player player, String[] args) {
+        if (args.length > 1) {
+            switch (args[1]) {
+                case "PlatformGUI":
+                    Inventory gui = InventoryGUI.PlatformGUI();
+                    player.openInventory(gui);
+                    break;
+                case "TowerGUI":
+                    int TowerID = Integer.parseInt(args[2]);
+                    gui = InventoryGUI.TowerGUI(TowerID);
+                    player.openInventory(gui);
+                    break;
+                default:
+                    player.sendMessage("Usage: /td <gui> <PlatformGUI|TowerGUI>");
+                    break;
+            }
+        }
+    }
+
+    private void handleSqlCommand(Player player, String[] args) {
+        if (args.length > 1 && args[1].equals("delete")) {
+            ExecuteSqlDelete();
+            player.sendMessage("データを削除しました");
+        } else {
+            player.sendMessage("Usage: /td <sql> <delete>");
+        }
+    }
+
+    private void handleConfigCommand(Player player, String[] args) {
+        if (args.length > 2 && args[1].equals("show")) {
+            Config configInstance = new Config(plugin);
+            configInstance.ShowConfig(player, args[2]);
+            player.sendMessage(args[2] + "のconfigを表示しました");
+        } else {
+            player.sendMessage("Usage: /td <config> <show>");
+        }
+    }
+
+    private void ExecuteDefaultCommand(String[] args, String AliasCommand, String ExecuteCommand) {
         if (args[0].equals(AliasCommand)) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), ExecuteCommand);
             Bukkit.broadcastMessage(AliasCommand + "が実行されました!");
         }
-        return null;
     }
 
 
