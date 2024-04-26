@@ -10,9 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Tower_Defense extends JavaPlugin {
     private SQLManagerTower sqliteManagerTower;
-    private SQL sqlite = new SQL();
+    private final SQL sqlite = new SQL();
     @Override
     public void onEnable() {
+
+        // SQLiteのcreateTableIfNotExistsメソッドを呼び出す
+        sqlite.createTableIfNotExists();
+
         // MotionMobの登録
         getServer().getPluginManager().registerEvents(new ListenerMob(this), this);
 
@@ -38,9 +42,8 @@ public final class Tower_Defense extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // SQLiteのシャットダウン
-        sqlite.shutdown();
-
+        // SQLiteのdeleteAllDataメソッドを呼び出す
+        sqlite.DeleteAllData();
         getServer().getConsoleSender().sendMessage("Tower_Defenseプラグインが無効化されました");
     }
 }
