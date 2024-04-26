@@ -1,7 +1,8 @@
 package org.moru.tower_defense;
 /*
 このクラスは、Tower_DefenseプラグインのSQLiteクラスです。
-SQLiteデータベースの作成、テーブルの作成、データの削除を行います。
+SQLに関した処理をします。
+SQLデータベースの作成、テーブルの作成、データの削除を行います。
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
