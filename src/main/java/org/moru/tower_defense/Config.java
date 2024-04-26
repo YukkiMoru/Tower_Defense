@@ -22,7 +22,7 @@ public class Config {
     public Config(JavaPlugin plugin) {
         this.plugin = plugin;
         createDirectory();
-        createConfig("original", "config");
+        createConfig("config", "config");
         createConfig("archer", "archer");
     }
 
@@ -36,7 +36,7 @@ public class Config {
         if (!configFile.exists()) {
             try (InputStream in = plugin.getResource(OriginalName + ".yml")) {
                 if (in == null) {
-                    throw new IOException("Resource original.yml not found");
+                    throw new IOException("Resource config.yml not found");
                 }
                 Files.copy(in, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
