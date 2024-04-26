@@ -2,11 +2,11 @@ package org.moru.tower_defense;
 /*
 このファイルは、Tower_Defenseプラグインのコマンドクラスです。
 以下のコマンドを実装しています。
-/td <show> <config>              → config.ymlの中身を表示
 /td <debug> <true/false>         → デバッグモードを設定
 /td <kill>                       → 全てのエンティティを削除
 /td <gui> <PlatformGUI|TowerGUI> → GUIを表示
 /td <sql> <delete>               → データベースのデータを削除
+/td <config> <show> <xxx.yml>    → xxx.ymlの中身を表示
 */
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -74,7 +74,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                     Config configInstance = new Config(plugin);
                     if (args.length > 2 && args[1].equals("show")) {
                         configInstance.ShowConfig(sender, args[2]);
-                        sender.sendMessage("configを表示しました");
+                        sender.sendMessage(args[2] + "のconfigを表示しました");
                     } else {
                         player.sendMessage("Usage: /td <config> <show>");
                     }
@@ -119,6 +119,7 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 list.add("debug");
                 list.add("kill");
                 list.add("sql");
+                list.add("config");
                 return list;
             }
             if (args.length == 2 && args[0].equals("debug")) {
@@ -134,8 +135,11 @@ public class CommandTD implements CommandExecutor, TabCompleter {
                 List<String> list = new ArrayList<>();
                 list.add("delete");
                 return list;
+            } else if (args.length == 2 && args[0].equals("config")) {
+                List<String> list = new ArrayList<>();
+                list.add("show");
+                return list;
             }
-
         }
         return null;
     }
