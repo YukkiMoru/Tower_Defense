@@ -36,7 +36,7 @@ public class Config {
         if (!configFile.exists()) {
             try (InputStream in = plugin.getResource(OriginalName + ".yml")) {
                 if (in == null) {
-                    throw new IOException("Resource config.yml not found");
+                    throw new IOException(OriginalName + ".yml が見つかりません");
                 }
                 Files.copy(in, configFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException e) {
